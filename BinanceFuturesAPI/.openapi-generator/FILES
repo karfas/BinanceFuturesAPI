@@ -1,0 +1,16 @@
+.openapi-generator-ignore
+README.md
+docs/AccountApi.md
+docs/DataStreamApi.md
+docs/MarketApi.md
+docs/OrderApi.md
+docs/PortfolioMarginApi.md
+docs/TradeApi.md
+src/APIClient.jl
+src/apis/api_AccountApi.jl
+src/apis/api_DataStreamApi.jl
+src/apis/api_MarketApi.jl
+src/apis/api_OrderApi.jl
+src/apis/api_PortfolioMarginApi.jl
+src/apis/api_TradeApi.jl
+src/modelincludes.jl
