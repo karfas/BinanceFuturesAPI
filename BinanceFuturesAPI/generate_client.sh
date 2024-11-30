@@ -4,6 +4,7 @@
 #
 docker run --rm \
     -v $PWD:/local openapitools/openapi-generator-cli generate \
-    -i /local/binance_futures.yaml \
+    -i /local/Spec/binance_futures.yaml \
     -g julia-client \
-    -o /local/
+    -o /local/APIClient
+sudo chown -R $USER .

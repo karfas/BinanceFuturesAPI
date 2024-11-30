@@ -11,37 +11,6 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
 basepath(::Type{ MarketApi }) = "http://}"
 
-const _returntypes_24hr_ticker_price_change_statistics_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
-)
-
-function _oacinternal_24hr_ticker_price_change_statistics(_api::MarketApi; symbol=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_24hr_ticker_price_change_statistics_MarketApi, "/fapi/v1/ticker/24hr", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""24hr Ticker Price Change Statistics
-
-24 hour rolling window price change statistics.  Careful when accessing this with no symbol.  Weight:  1 for a single symbol;  40 when the symbol parameter is omitted
-
-Params:
-- symbol::String
-
-Return: Nothing, OpenAPI.Clients.ApiResponse
-"""
-function 24hr_ticker_price_change_statistics(_api::MarketApi; symbol=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_24hr_ticker_price_change_statistics(_api; symbol=symbol, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function 24hr_ticker_price_change_statistics(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_24hr_ticker_price_change_statistics(_api; symbol=symbol, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
 const _returntypes_basis_MarketApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
 )
@@ -892,6 +861,37 @@ function test_connectivity(_api::MarketApi, response_stream::Channel; _mediaType
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
+const _returntypes_ticker_price_change_statistics24hr_MarketApi = Dict{Regex,Type}(
+    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+)
+
+function _oacinternal_ticker_price_change_statistics24hr(_api::MarketApi; symbol=nothing, _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_ticker_price_change_statistics24hr_MarketApi, "/fapi/v1/ticker/24hr", [])
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
+    return _ctx
+end
+
+@doc raw"""24hr Ticker Price Change Statistics
+
+24 hour rolling window price change statistics.  Careful when accessing this with no symbol.  Weight:  1 for a single symbol;  40 when the symbol parameter is omitted
+
+Params:
+- symbol::String
+
+Return: Nothing, OpenAPI.Clients.ApiResponse
+"""
+function ticker_price_change_statistics24hr(_api::MarketApi; symbol=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_ticker_price_change_statistics24hr(_api; symbol=symbol, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx)
+end
+
+function ticker_price_change_statistics24hr(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_ticker_price_change_statistics24hr(_api; symbol=symbol, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx, response_stream)
+end
+
 const _returntypes_top_trader_long_short_ratio_accounts_MarketApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
 )
@@ -970,7 +970,6 @@ function top_trader_long_short_ratio_positions(_api::MarketApi, response_stream:
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-export 24hr_ticker_price_change_statistics
 export basis
 export check_server_time
 export composite_index_symbol_information
@@ -995,5 +994,6 @@ export symbol_order_book_ticker
 export symbol_price_ticker_v2
 export taker_buy_sell_volume
 export test_connectivity
+export ticker_price_change_statistics24hr
 export top_trader_long_short_ratio_accounts
 export top_trader_long_short_ratio_positions

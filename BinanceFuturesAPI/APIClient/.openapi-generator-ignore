@@ -23,6 +23,3 @@
 #!docs/README.md
 
 *.toml
-*.sh
-*.json
-src/BinanceFuturesAPI.jl

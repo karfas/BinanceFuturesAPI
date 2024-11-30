@@ -4,7 +4,6 @@ All URIs are relative to *http://}*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**24hr_ticker_price_change_statistics**](MarketApi.md#24hr_ticker_price_change_statistics) | **GET** /fapi/v1/ticker/24hr | 24hr Ticker Price Change Statistics
 [**basis**](MarketApi.md#basis) | **GET** /futures/data/basis | Basis
 [**check_server_time**](MarketApi.md#check_server_time) | **GET** /fapi/v1/time | Check Server Time
 [**composite_index_symbol_information**](MarketApi.md#composite_index_symbol_information) | **GET** /fapi/v1/indexInfo | Composite Index Symbol Information
@@ -29,44 +28,10 @@ Method | HTTP request | Description
 [**symbol_price_ticker_v2**](MarketApi.md#symbol_price_ticker_v2) | **GET** /fapi/v2/ticker/price | Symbol Price Ticker V2
 [**taker_buy_sell_volume**](MarketApi.md#taker_buy_sell_volume) | **GET** /futures/data/takerlongshortRatio | Taker Buy/Sell Volume
 [**test_connectivity**](MarketApi.md#test_connectivity) | **GET** /fapi/v1/ping | Test Connectivity
+[**ticker_price_change_statistics24hr**](MarketApi.md#ticker_price_change_statistics24hr) | **GET** /fapi/v1/ticker/24hr | 24hr Ticker Price Change Statistics
 [**top_trader_long_short_ratio_accounts**](MarketApi.md#top_trader_long_short_ratio_accounts) | **GET** /futures/data/topLongShortAccountRatio | Top Trader Long/Short Ratio (Accounts)
 [**top_trader_long_short_ratio_positions**](MarketApi.md#top_trader_long_short_ratio_positions) | **GET** /futures/data/topLongShortPositionRatio | Top Trader Long/Short Ratio (Positions)
 
-
-# **24hr_ticker_price_change_statistics**
-> 24hr_ticker_price_change_statistics(_api::MarketApi; symbol=nothing, _mediaType=nothing) -> Nothing, OpenAPI.Clients.ApiResponse <br/>
-> 24hr_ticker_price_change_statistics(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing) -> Channel{ Nothing }, OpenAPI.Clients.ApiResponse
-
-24hr Ticker Price Change Statistics
-
-24 hour rolling window price change statistics.  Careful when accessing this with no symbol.  Weight:  1 for a single symbol;  40 when the symbol parameter is omitted
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **MarketApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**|  | [default to nothing]
-
-### Return type
-
-Nothing
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **basis**
 > basis(_api::MarketApi; pair=nothing, contract_type=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, _mediaType=nothing) -> Nothing, OpenAPI.Clients.ApiResponse <br/>
@@ -921,6 +886,41 @@ Test connectivity to the Rest API.
 
 ### Required Parameters
 This endpoint does not need any parameter.
+
+### Return type
+
+Nothing
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **ticker_price_change_statistics24hr**
+> ticker_price_change_statistics24hr(_api::MarketApi; symbol=nothing, _mediaType=nothing) -> Nothing, OpenAPI.Clients.ApiResponse <br/>
+> ticker_price_change_statistics24hr(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing) -> Channel{ Nothing }, OpenAPI.Clients.ApiResponse
+
+24hr Ticker Price Change Statistics
+
+24 hour rolling window price change statistics.  Careful when accessing this with no symbol.  Weight:  1 for a single symbol;  40 when the symbol parameter is omitted
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **MarketApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**|  | [default to nothing]
 
 ### Return type
 
