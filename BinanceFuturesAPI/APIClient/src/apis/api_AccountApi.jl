@@ -12,7 +12,7 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 basepath(::Type{ AccountApi }) = "http://}"
 
 const _returntypes_account_information_AccountApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_account_information(_api::AccountApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -21,7 +21,7 @@ function _oacinternal_account_information(_api::AccountApi; recv_window=nothing,
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -36,7 +36,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function account_information(_api::AccountApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_account_information(_api; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -49,7 +49,7 @@ function account_information(_api::AccountApi, response_stream::Channel; recv_wi
 end
 
 const _returntypes_account_trade_list_AccountApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_account_trade_list(_api::AccountApi; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -63,7 +63,7 @@ function _oacinternal_account_trade_list(_api::AccountApi; symbol=nothing, start
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -83,7 +83,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function account_trade_list(_api::AccountApi; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_account_trade_list(_api; symbol=symbol, start_time=start_time, end_time=end_time, from_id=from_id, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -96,7 +96,7 @@ function account_trade_list(_api::AccountApi, response_stream::Channel; symbol=n
 end
 
 const _returntypes_future_account_balance_AccountApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_future_account_balance(_api::AccountApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -105,7 +105,7 @@ function _oacinternal_future_account_balance(_api::AccountApi; recv_window=nothi
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -120,7 +120,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function future_account_balance(_api::AccountApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_future_account_balance(_api; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -133,7 +133,7 @@ function future_account_balance(_api::AccountApi, response_stream::Channel; recv
 end
 
 const _returntypes_get_income_history_AccountApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_get_income_history(_api::AccountApi; symbol=nothing, income_type=nothing, start_time=nothing, end_time=nothing, page=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -148,7 +148,7 @@ function _oacinternal_get_income_history(_api::AccountApi; symbol=nothing, incom
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -169,7 +169,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function get_income_history(_api::AccountApi; symbol=nothing, income_type=nothing, start_time=nothing, end_time=nothing, page=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_get_income_history(_api; symbol=symbol, income_type=income_type, start_time=start_time, end_time=end_time, page=page, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -182,7 +182,7 @@ function get_income_history(_api::AccountApi, response_stream::Channel; symbol=n
 end
 
 const _returntypes_notional_and_leverage_brackets_user_data_AccountApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_notional_and_leverage_brackets_user_data(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -192,7 +192,7 @@ function _oacinternal_notional_and_leverage_brackets_user_data(_api::AccountApi;
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -208,7 +208,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function notional_and_leverage_brackets_user_data(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_notional_and_leverage_brackets_user_data(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -221,7 +221,7 @@ function notional_and_leverage_brackets_user_data(_api::AccountApi, response_str
 end
 
 const _returntypes_position_adl_quantile_estimation_user_data_AccountApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_position_adl_quantile_estimation_user_data(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -231,7 +231,7 @@ function _oacinternal_position_adl_quantile_estimation_user_data(_api::AccountAp
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -247,7 +247,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function position_adl_quantile_estimation_user_data(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_position_adl_quantile_estimation_user_data(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -260,7 +260,7 @@ function position_adl_quantile_estimation_user_data(_api::AccountApi, response_s
 end
 
 const _returntypes_position_information_AccountApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_position_information(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -270,7 +270,7 @@ function _oacinternal_position_information(_api::AccountApi; symbol=nothing, rec
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -286,7 +286,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function position_information(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_position_information(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -299,7 +299,7 @@ function position_information(_api::AccountApi, response_stream::Channel; symbol
 end
 
 const _returntypes_user_commission_rate_user_data_AccountApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_user_commission_rate_user_data(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -309,7 +309,7 @@ function _oacinternal_user_commission_rate_user_data(_api::AccountApi; symbol=no
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -325,7 +325,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function user_commission_rate_user_data(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_user_commission_rate_user_data(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)

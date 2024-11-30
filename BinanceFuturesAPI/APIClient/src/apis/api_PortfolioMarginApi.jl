@@ -12,7 +12,7 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 basepath(::Type{ PortfolioMarginApi }) = "http://}"
 
 const _returntypes_portfolio_margin_account_information_PortfolioMarginApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_portfolio_margin_account_information(_api::PortfolioMarginApi; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -22,7 +22,7 @@ function _oacinternal_portfolio_margin_account_information(_api::PortfolioMargin
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -38,7 +38,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function portfolio_margin_account_information(_api::PortfolioMarginApi; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_portfolio_margin_account_information(_api; asset=asset, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)

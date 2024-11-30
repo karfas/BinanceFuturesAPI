@@ -1,7 +1,11 @@
-.openapi-generator-ignore
 README.md
 docs/AccountApi.md
 docs/DataStreamApi.md
+docs/ExchangeInfoResponse.md
+docs/ExchangeInfoResponseAssetsInner.md
+docs/ExchangeInfoResponseRateLimitsInner.md
+docs/ExchangeInfoResponseSymbolsInner.md
+docs/ExchangeInfoResponseSymbolsInnerFiltersInner.md
 docs/MarketApi.md
 docs/OrderApi.md
 docs/PortfolioMarginApi.md
@@ -14,3 +18,8 @@ src/apis/api_OrderApi.jl
 src/apis/api_PortfolioMarginApi.jl
 src/apis/api_TradeApi.jl
 src/modelincludes.jl
+src/models/model_ExchangeInfoResponse.jl
+src/models/model_ExchangeInfoResponseAssetsInner.jl
+src/models/model_ExchangeInfoResponseRateLimitsInner.jl
+src/models/model_ExchangeInfoResponseSymbolsInner.jl
+src/models/model_ExchangeInfoResponseSymbolsInnerFiltersInner.jl

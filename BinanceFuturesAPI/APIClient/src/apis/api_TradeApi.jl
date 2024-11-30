@@ -12,7 +12,7 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 basepath(::Type{ TradeApi }) = "http://}"
 
 const _returntypes_change_initial_leverage_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_change_initial_leverage(_api::TradeApi; symbol=nothing, leverage=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -23,7 +23,7 @@ function _oacinternal_change_initial_leverage(_api::TradeApi; symbol=nothing, le
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -40,7 +40,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function change_initial_leverage(_api::TradeApi; symbol=nothing, leverage=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_change_initial_leverage(_api; symbol=symbol, leverage=leverage, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -53,7 +53,7 @@ function change_initial_leverage(_api::TradeApi, response_stream::Channel; symbo
 end
 
 const _returntypes_change_margin_type_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_change_margin_type(_api::TradeApi; symbol=nothing, margin_type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -64,7 +64,7 @@ function _oacinternal_change_margin_type(_api::TradeApi; symbol=nothing, margin_
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -81,7 +81,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function change_margin_type(_api::TradeApi; symbol=nothing, margin_type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_change_margin_type(_api; symbol=symbol, margin_type=margin_type, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -94,7 +94,7 @@ function change_margin_type(_api::TradeApi, response_stream::Channel; symbol=not
 end
 
 const _returntypes_change_multi_assets_mode_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_change_multi_assets_mode(_api::TradeApi; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -104,7 +104,7 @@ function _oacinternal_change_multi_assets_mode(_api::TradeApi; multi_assets_marg
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -120,7 +120,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function change_multi_assets_mode(_api::TradeApi; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_change_multi_assets_mode(_api; multi_assets_margin=multi_assets_margin, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -133,7 +133,7 @@ function change_multi_assets_mode(_api::TradeApi, response_stream::Channel; mult
 end
 
 const _returntypes_change_position_mode_trade_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_change_position_mode_trade(_api::TradeApi; dual_side_position=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -143,7 +143,7 @@ function _oacinternal_change_position_mode_trade(_api::TradeApi; dual_side_posit
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -159,7 +159,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function change_position_mode_trade(_api::TradeApi; dual_side_position=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_change_position_mode_trade(_api; dual_side_position=dual_side_position, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -172,7 +172,7 @@ function change_position_mode_trade(_api::TradeApi, response_stream::Channel; du
 end
 
 const _returntypes_get_current_multi_assets_mode_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_get_current_multi_assets_mode(_api::TradeApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -181,7 +181,7 @@ function _oacinternal_get_current_multi_assets_mode(_api::TradeApi; recv_window=
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -196,7 +196,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function get_current_multi_assets_mode(_api::TradeApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_get_current_multi_assets_mode(_api; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -246,7 +246,7 @@ function get_current_position_mode_user_data(_api::TradeApi, response_stream::Ch
 end
 
 const _returntypes_get_postion_margin_change_history_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_get_postion_margin_change_history(_api::TradeApi; symbol=nothing, type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -260,7 +260,7 @@ function _oacinternal_get_postion_margin_change_history(_api::TradeApi; symbol=n
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -280,7 +280,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function get_postion_margin_change_history(_api::TradeApi; symbol=nothing, type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_get_postion_margin_change_history(_api; symbol=symbol, type=type, start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -293,7 +293,7 @@ function get_postion_margin_change_history(_api::TradeApi, response_stream::Chan
 end
 
 const _returntypes_modify_isolated_position_margin_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_modify_isolated_position_margin(_api::TradeApi; symbol=nothing, position_side=nothing, amount=nothing, type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -306,7 +306,7 @@ function _oacinternal_modify_isolated_position_margin(_api::TradeApi; symbol=not
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -325,7 +325,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function modify_isolated_position_margin(_api::TradeApi; symbol=nothing, position_side=nothing, amount=nothing, type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_modify_isolated_position_margin(_api; symbol=symbol, position_side=position_side, amount=amount, type=type, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -338,7 +338,7 @@ function modify_isolated_position_margin(_api::TradeApi, response_stream::Channe
 end
 
 const _returntypes_user_api_trading_quantitative_rules_indicators_user_data_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
 function _oacinternal_user_api_trading_quantitative_rules_indicators_user_data(_api::TradeApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -348,7 +348,7 @@ function _oacinternal_user_api_trading_quantitative_rules_indicators_user_data(_
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -364,7 +364,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
 function user_api_trading_quantitative_rules_indicators_user_data(_api::TradeApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_user_api_trading_quantitative_rules_indicators_user_data(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)

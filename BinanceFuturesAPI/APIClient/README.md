@@ -95,6 +95,11 @@ Class | Method
 
 ## Models
 
+ - [ExchangeInfoResponse](docs/ExchangeInfoResponse.md)
+ - [ExchangeInfoResponseAssetsInner](docs/ExchangeInfoResponseAssetsInner.md)
+ - [ExchangeInfoResponseRateLimitsInner](docs/ExchangeInfoResponseRateLimitsInner.md)
+ - [ExchangeInfoResponseSymbolsInner](docs/ExchangeInfoResponseSymbolsInner.md)
+ - [ExchangeInfoResponseSymbolsInnerFiltersInner](docs/ExchangeInfoResponseSymbolsInnerFiltersInner.md)
 
 
 <a id="authorization"></a>
