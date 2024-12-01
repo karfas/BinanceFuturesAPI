@@ -1,8 +1,9 @@
 openapi: 3.0.3
 info:
   title: Binance USDs-M Futures API
-  description: |-
-    Binance official supported Postman collections.<br/>
+  description: |
+    Binance official supported Postman collections.
+
     - API documents: https://binance-docs.github.io/apidocs/futures/en/
     - Telegram: https://t.me/binance_api_english
     - Open Issue at: https://github.com/binance-exchange/binance-api-postman
@@ -18,7 +19,8 @@ paths:
       tags:
         - Market
       summary: Test Connectivity
-      description: Test connectivity to the Rest API.
+      description: |
+        Test connectivity to the Rest API.
       operationId: testConnectivity
       responses:
         '200':
@@ -33,7 +35,8 @@ paths:
       tags:
         - Market
       summary: Check Server Time
-      description: Check Server Time
+      description: |
+        Check Server Time
       operationId: checkServerTime
       responses:
         '200':
@@ -48,11 +51,28 @@ paths:
       tags:
         - Market
       summary: Exchange Information
-      description: Exchange Information
+      description: |
+        Exchange Information
       operationId: exchangeInformation
+      parameters:
+        - name: symbol
+          in: query
+          description: |
+            Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols
+          schema:
+            type: string
+        - name: symbols
+          in: query
+          description: |
+            Array of trading pair symbols. Maximum of 100 symbols can be sent in a single request
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         '200':
-          description: Exchange information
+          description: |
+            Exchange information
           content:
             application/json:
               schema:
@@ -62,20 +82,27 @@ paths:
       tags:
         - Market
       summary: Order Book
-      description: Order Book
+      description: |
+        Order Book
       operationId: orderBook
       parameters:
         - name: symbol
           in: query
+          required: true
+          description: |
+            Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
-            example: BTCUSDT
         - name: limit
           in: query
+          description: |
+            Number of price levels to return.
+            Valid values: [5, 10, 20, 50, 100, 500, 1000]
+            Default: 100
           schema:
-            type: string
-            example: '100'
-          description: Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500, 1000]
+            type: integer
+            enum: [5, 10, 20, 50, 100, 500, 1000]
+            default: 100
       responses:
         '200':
           description: ''
@@ -94,15 +121,21 @@ paths:
       parameters:
         - name: symbol
           in: query
+          required: true
+          description: Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
-            example: BTCUSDT
         - name: limit
           in: query
+          description: |
+            Number of recent trades to return.
+            Default: 500
+            Max: 1000
           schema:
-            type: string
-            example: '500'
-          description: Default 500; max 1000.
+            type: integer
+            minimum: 1
+            maximum: 1000
+            default: 500
       responses:
         '200':
           description: ''
@@ -121,72 +154,72 @@ paths:
       parameters:
         - name: symbol
           in: query
+          required: true
           schema:
             type: string
-            example: BTCUSDT
         - name: limit
           in: query
           schema:
-            type: string
-            example: '100'
-          description: Default 500; max 1000.
+            type: integer
+            default: 500
+            maximum: 1000
+            description: Default 500; max 1000.
         - name: fromId
           in: query
           schema:
-            type: string
-            example: ''''''
-        - name: x-mbx-apikey
-          in: header
-          schema:
-            type: string
-            example: '{{binance-api-key}}'
+            type: integer
+            description: Trade id to fetch from. Default gets most recent trades.
       responses:
         '200':
-          description: ''
+          description: List of historical trades
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/HistoricalTradesResponse'
   /fapi/v1/aggTrades:
     get:
       tags:
         - Market
       summary: Compressed/Aggregate Trades List
-      description: Compressed/Aggregate Trades List
+      description: Get compressed, aggregate trades. Trades that fill at the same time, from the same order, with the same price will have the quantity aggregated.
       operationId: compressedAggregateTradesList
       parameters:
         - name: symbol
           in: query
+          required: true
           schema:
             type: string
-            example: BTCUSDT
         - name: fromId
           in: query
           schema:
-            type: string
+            type: integer
+            description: ID to get aggregate trades from INCLUSIVE.
         - name: startTime
           in: query
           schema:
-            type: string
+            type: integer
+            format: int64
+            description: Timestamp in ms to get aggregate trades from INCLUSIVE.
         - name: endTime
           in: query
           schema:
-            type: string
+            type: integer
+            format: int64
+            description: Timestamp in ms to get aggregate trades until INCLUSIVE.
         - name: limit
           in: query
           schema:
-            type: string
-            example: '500'
-          description: Default 500; max 1000.
+            type: integer
+            default: 500
+            maximum: 1000
+            description: Default 500; max 1000.
       responses:
         '200':
-          description: ''
+          description: List of aggregate trades
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/AggregateTradesResponse'
   /fapi/v1/klines:
     get:
       tags:
@@ -199,37 +232,63 @@ paths:
       parameters:
         - name: symbol
           in: query
+          required: true
+          description: Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
-            example: BTCUSDT
         - name: interval
           in: query
+          required: true
+          description: |
+            Kline/candlestick interval:
+            - 1m: 1 minute
+            - 3m: 3 minutes
+            - 5m: 5 minutes
+            - 15m: 15 minutes
+            - 30m: 30 minutes
+            - 1h: 1 hour
+            - 2h: 2 hours
+            - 4h: 4 hours
+            - 6h: 6 hours
+            - 8h: 8 hours
+            - 12h: 12 hours
+            - 1d: 1 day
+            - 3d: 3 days
+            - 1w: 1 week
+            - 1M: 1 month
           schema:
             type: string
-            example: 1h
-          description: 1m, 1h, 1d
+            enum: ["1m","3m","5m","15m","30m","1h","2h","4h","6h","8h","12h","1d","3d","1w","1M"]
         - name: startTime
           in: query
+          description: Start time in milliseconds. If not sent, returns from earliest available
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: endTime
           in: query
+          description: End time in milliseconds. If not sent, returns until latest available
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: limit
           in: query
+          description: |
+            Number of data points to return.
+            Default: 500
+            Max: 1500
           schema:
-            type: string
-            example: '500'
-          description: Default 500; max 1500.
+            type: integer
+            minimum: 1
+            maximum: 1500
+            default: 500
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/KlinesResponse'
   /fapi/v1/continuousKlines:
     get:
       tags:
@@ -276,8 +335,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/KlinesResponse'
   /fapi/v1/indexPriceKlines:
     get:
       tags:
@@ -319,8 +377,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/KlinesResponse'
   /fapi/v1/markPriceKlines:
     get:
       tags:
@@ -362,14 +419,13 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/KlinesResponse'
   /fapi/v1/premiumIndex:
     get:
       tags:
         - Market
       summary: Mark Price
-      description: |-
+      description: |
         Mark Price and Funding Rate
 
         Weight: 1
@@ -377,60 +433,72 @@ paths:
       parameters:
         - name: symbol
           in: query
+          description: |
+            Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols
           schema:
             type: string
             example: ''
       responses:
         '200':
-          description: ''
+          description: |
+            Premium index information
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/PremiumIndexResponse'
   /fapi/v1/fundingRate:
     get:
       tags:
         - Market
       summary: Get Funding Rate History
-      description: |-
-        Mark Price and Funding Rate
+      description: |
+        Get funding rate history
 
         Weight: 1
       operationId: getFundingRateHistory
       parameters:
         - name: symbol
           in: query
+          description: |
+            Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols
           schema:
             type: string
             example: BTCUSDT
         - name: startTime
           in: query
+          description: |
+            Start time in milliseconds. If not sent, returns from earliest available
           schema:
             type: string
         - name: endTime
           in: query
+          description: |
+            End time in milliseconds. If not sent, returns until latest available
           schema:
             type: string
         - name: limit
           in: query
+          description: |
+            Number of records to return.
+            Default: 100
+            Max: 1000
           schema:
             type: string
             example: '100'
       responses:
         '200':
-          description: ''
+          description: |
+            Funding rate history
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/FundingRateResponse'
   /fapi/v1/ticker/24hr:
     get:
       tags:
         - Market
       summary: 24hr Ticker Price Change Statistics
-      description: |-
+      description: |
         24 hour rolling window price change statistics.
 
         Careful when accessing this with no symbol.
@@ -444,17 +512,25 @@ paths:
       parameters:
         - name: symbol
           in: query
+          description: Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols
           schema:
             type: string
             example: ''
+        - name: symbols
+          in: query
+          description: Array of trading pair symbols. Maximum of 100 symbols can be sent in a single request
+          schema:
+            type: array
+            items:
+              type: string
+            maxItems: 100
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/TickerPriceChangeResponse'
   /fapi/v2/ticker/price:
     get:
       tags:
@@ -465,17 +541,25 @@ paths:
       parameters:
         - name: symbol
           in: query
+          description: Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols
           schema:
             type: string
             example: ''
+        - name: symbols
+          in: query
+          description: Array of trading pair symbols. Maximum of 100 symbols can be sent in a single request
+          schema:
+            type: array
+            items:
+              type: string
+            maxItems: 100
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/SymbolPriceTickerResponse'
   /fapi/v1/ticker/bookTicker:
     get:
       tags:
@@ -486,17 +570,25 @@ paths:
       parameters:
         - name: symbol
           in: query
+          description: Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols
           schema:
             type: string
             example: ''
+        - name: symbols
+          in: query
+          description: Array of trading pair symbols. Maximum of 100 symbols can be sent in a single request
+          schema:
+            type: array
+            items:
+              type: string
+            maxItems: 100
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/BookTickerResponse'
   /fapi/v1/openInterest:
     get:
       tags:
@@ -790,8 +882,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/KlinesResponse'
   /fapi/v1/indexInfo:
     get:
       tags:
@@ -921,14 +1012,21 @@ paths:
       parameters:
         - name: recvWindow
           in: query
+          description: |
+            The value cannot be greater than 60000.
+            Defines how long an order request is valid for in milliseconds.
+            Default: 5000
           schema:
-            type: string
-            example: '5000'
+            type: integer
+            maximum: 60000
+            default: 5000
         - name: timestamp
           in: query
+          required: true
+          description: Current timestamp in milliseconds
           schema:
-            type: string
-            example: '{{timestamp}}'
+            type: integer
+            format: int64
         - name: signature
           in: query
           schema:
@@ -991,6 +1089,7 @@ paths:
           schema:
             type: string
             example: '5000'
+          description: The value cannot be greater than 60000
         - name: timestamp
           in: query
           schema:
@@ -1400,8 +1499,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/OrderResponse'
     put:
       tags:
         - Order
@@ -1489,8 +1587,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/OrderResponse'
     post:
       tags:
         - Order
@@ -1608,6 +1705,7 @@ paths:
           schema:
             type: string
             example: '5000'
+          description: The value cannot be greater than 60000
         - name: timestamp
           in: query
           schema:
@@ -1629,8 +1727,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/OrderResponse'
     delete:
       tags:
         - Order
@@ -1679,8 +1776,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/OrderResponse'
   /fapi/v1/batchOrders:
     put:
       tags:
@@ -1725,8 +1821,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/BatchOrdersResponse'
     post:
       tags:
         - Order
@@ -1769,8 +1864,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/BatchOrdersResponse'
     delete:
       tags:
         - Order
@@ -1821,8 +1915,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/BatchOrdersResponse'
   /fapi/v1/orderAmendment:
     get:
       tags:
@@ -1901,8 +1994,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/OrderAmendmentHistoryResponse'
   /fapi/v1/order/asyn:
     get:
       tags:
@@ -2157,54 +2249,6 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-  /fapi/v1/countdownCancelAll:
-    post:
-      tags:
-        - Order
-      summary: Auto-Cancel All Open Orders (TRADE)
-      description: Auto-Cancel All Open Orders (TRADE)
-      operationId: autoCancelAllOpenOrdersTrade
-      parameters:
-        - name: symbol
-          in: query
-          schema:
-            type: string
-            example: ''
-        - name: countdownTime
-          in: query
-          schema:
-            type: string
-            example: ''
-          description: countdown time, 1000 for 1 second. 0 to cancel the timer
-        - name: recvWindow
-          in: query
-          schema:
-            type: string
-            example: '5000'
-          description: The value cannot be greater than 60000
-        - name: timestamp
-          in: query
-          schema:
-            type: string
-            example: '{{timestamp}}'
-        - name: signature
-          in: query
-          schema:
-            type: string
-            example: '{{signature}}'
-        - name: x-mbx-apikey
-          in: header
-          schema:
-            type: string
-            example: '{{binance-api-key}}'
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties: true
   /fapi/v1/openOrders:
     get:
       tags:
@@ -2245,8 +2289,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/OpenOrdersResponse'
   /fapi/v1/openOrder:
     get:
       tags:
@@ -2296,8 +2339,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/OrderResponse'
   /fapi/v1/allOrders:
     get:
       tags:
@@ -2359,8 +2401,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/AllOrdersResponse'
   /fapi/v1/forceOrders:
     get:
       tags:
@@ -2433,14 +2474,19 @@ paths:
       parameters:
         - name: symbol
           in: query
+          required: true
+          description: Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
-            example: BTCUSDT
         - name: marginType
           in: query
+          required: true
+          description: |
+            Target margin type.
+            ISOLATED or CROSS
           schema:
             type: string
-            example: ISOLATED
+            enum: ["ISOLATED", "CROSS"]
         - name: recvWindow
           in: query
           schema:
@@ -2480,14 +2526,20 @@ paths:
       parameters:
         - name: symbol
           in: query
+          required: true
+          description: Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
-            example: BTCUSDT
         - name: leverage
           in: query
+          required: true
+          description: |
+            Target leverage value.
+            Must be between the minimum and maximum leverage allowed for the symbol.
           schema:
-            type: string
-            example: '20'
+            type: integer
+            minimum: 1
+            maximum: 125
         - name: recvWindow
           in: query
           schema:
@@ -2527,27 +2579,31 @@ paths:
       parameters:
         - name: symbol
           in: query
+          required: true
+          description: Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
-            example: BTCUSDT
         - name: positionSide
           in: query
+          required: true
+          description: Position side (BOTH/LONG/SHORT)
           schema:
             type: string
-            example: ''
-          description: |-
-            Default BOTH for One-way Mode ;
-            LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode.
+            enum: ["BOTH", "LONG", "SHORT"]
         - name: amount
           in: query
+          required: true
+          description: Amount of margin
           schema:
             type: string
-            example: '100'
         - name: type
           in: query
+          required: true
+          description: |
+            Margin type (1: Add, 2: Reduce)
           schema:
-            type: string
-            example: '1'
+            type: integer
+            enum: [1, 2]
         - name: recvWindow
           in: query
           schema:
@@ -2575,8 +2631,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/PositionMarginResponse'
   /fapi/v1/positionMargin/history:
     get:
       tags:
@@ -2587,14 +2642,18 @@ paths:
       parameters:
         - name: symbol
           in: query
+          required: true
+          description: Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
-            example: BTCUSDT
         - name: type
           in: query
+          required: true
+          description: |
+            Margin type (1: Add, 2: Reduce)
           schema:
-            type: string
-            example: '1'
+            type: integer
+            enum: [1, 2]
         - name: startTime
           in: query
           schema:
@@ -2637,8 +2696,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/PositionMarginHistoryResponse'
   /fapi/v1/positionSide/dual:
     get:
       tags:
@@ -2671,6 +2729,10 @@ paths:
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PositionModeResponse'
     post:
       tags:
         - Trade
@@ -2680,10 +2742,10 @@ paths:
       parameters:
         - name: dualSidePosition
           in: query
-          schema:
-            type: string
-            example: ''
+          required: true
           description: 'Boolean value. "true": Hedge Mode mode; "false": One-way Mode'
+          schema:
+            type: boolean
         - name: recvWindow
           in: query
           schema:
@@ -2711,50 +2773,48 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/PositionModeResponse'
   /fapi/v1/apiTradingStatus:
     get:
       tags:
-        - Trade
-      summary: User API Trading Quantitative Rules Indicators (USER_DATA)
-      description: User API Trading Quantitative Rules Indicators (USER_DATA)
-      operationId: userApiTradingQuantitativeRulesIndicatorsUserData
+        - Account
+      summary: Account API Trading Status
+      description: |
+        Get current account's trading status on futures.
+        Weight: 1
+      security:
+        - ApiKeyAuth: []
+        - SignatureAuth: []
       parameters:
         - name: symbol
           in: query
+          description: Trading pair symbol (e.g., BTCUSDT). If not sent, returns status for all symbols
           schema:
             type: string
-            example: ''
         - name: recvWindow
           in: query
+          description: |
+            The value cannot be greater than 60000.
+            Defines how long the request is valid for in milliseconds.
+            Default: 5000
           schema:
-            type: string
-            example: '5000'
-          description: The value cannot be greater than 60000
+            type: integer
+            maximum: 60000
+            default: 5000
         - name: timestamp
           in: query
+          required: true
+          description: Current timestamp in milliseconds
           schema:
-            type: string
-            example: '{{timestamp}}'
-        - name: signature
-          in: query
-          schema:
-            type: string
-            example: '{{signature}}'
-        - name: x-mbx-apikey
-          in: header
-          schema:
-            type: string
-            example: '{{binance-api-key}}'
+            type: integer
+            format: int64
       responses:
         '200':
-          description: ''
+          description: Trading status information
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/ApiTradingStatusResponse'
   /fapi/v1/listenKey:
     put:
       tags:
@@ -2774,8 +2834,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/ListenKeyResponse'
     post:
       tags:
         - Data Stream
@@ -2794,8 +2853,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/ListenKeyResponse'
     delete:
       tags:
         - Data Stream
@@ -2814,8 +2872,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/ListenKeyResponse'
   /fapi/v1/pmAccountInfo:
     get:
       tags:
@@ -2856,8 +2913,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/PortfolioMarginAccountResponse'
 tags:
   - name: Market
   - name: Account
@@ -2996,3 +3052,707 @@ components:
                 type: string
         timezone:
           type: string
+    HistoricalTradesResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+            description: Trade ID
+          price:
+            type: string
+            description: Price
+          qty:
+            type: string
+            description: Quantity
+          quoteQty:
+            type: string
+            description: Quote quantity
+          time:
+            type: integer
+            format: int64
+            description: Trade executed timestamp
+          isBuyerMaker:
+            type: boolean
+            description: Was the buyer the maker?
+    AggregateTradesResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          a:
+            type: integer
+            format: int64
+            description: Aggregate trade ID
+          p:
+            type: string
+            description: Price
+          q:
+            type: string
+            description: Quantity (aggregated)
+          f:
+            type: integer
+            format: int64
+            description: First trade ID in the aggregate
+          l:
+            type: integer
+            format: int64
+            description: Last trade ID in the aggregate
+          T:
+            type: integer
+            format: int64
+            description: Timestamp
+          m:
+            type: boolean
+            description: Was the buyer the maker?
+    OrderResponse:
+      type: object
+      properties:
+        clientOrderId:
+          type: string
+          description: Client order ID
+        cumQty:
+          type: string
+          description: Cumulative filled quantity
+        cumQuote:
+          type: string
+          description: Cumulative quote asset filled quantity
+        executedQty:
+          type: string
+          description: Executed quantity
+        orderId:
+          type: integer
+          format: int64
+          description: Order ID
+        avgPrice:
+          type: string
+          description: Average fill price
+        origQty:
+          type: string
+          description: Original quantity
+        price:
+          type: string
+          description: Order price
+        reduceOnly:
+          type: boolean
+          description: Reduce only flag
+        side:
+          type: string
+          description: Order side (BUY/SELL)
+          enum: ["BUY", "SELL"]
+        positionSide:
+          type: string
+          description: Position side (BOTH/LONG/SHORT)
+          enum: ["BOTH", "LONG", "SHORT"]
+        status:
+          type: string
+          description: Order status
+          enum: ["NEW", "PARTIALLY_FILLED", "FILLED", "CANCELED", "REJECTED", "EXPIRED"]
+        stopPrice:
+          type: string
+          description: Stop price
+        closePosition:
+          type: boolean
+          description: Close position flag
+        symbol:
+          type: string
+          description: Trading pair symbol
+        timeInForce:
+          type: string
+          description: Time in force
+          enum: ["GTC", "IOC", "FOK", "GTX"]
+        type:
+          type: string
+          description: Order type
+          enum: ["LIMIT", "MARKET", "STOP", "STOP_MARKET", "TAKE_PROFIT", "TAKE_PROFIT_MARKET", "TRAILING_STOP_MARKET"]
+        origType:
+          type: string
+          description: Original order type
+          enum: ["LIMIT", "MARKET", "STOP", "STOP_MARKET", "TAKE_PROFIT", "TAKE_PROFIT_MARKET", "TRAILING_STOP_MARKET"]
+        activatePrice:
+          type: string
+          description: Activation price for trailing stop orders
+        priceRate:
+          type: string
+          description: Callback rate for trailing stop orders
+        updateTime:
+          type: integer
+          format: int64
+          description: Last update timestamp
+        workingType:
+          type: string
+          description: Working type (MARK_PRICE/CONTRACT_PRICE)
+          enum: ["MARK_PRICE", "CONTRACT_PRICE"]
+        priceProtect:
+          type: boolean
+          description: Price protection flag
+    BatchOrdersResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/OrderResponse'
+    OrderAmendmentHistoryResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          amendId:
+            type: integer
+            format: int64
+            description: Amendment ID
+          symbol:
+            type: string
+            description: Trading pair symbol
+          orderId:
+            type: integer
+            format: int64
+            description: Order ID
+          clientOrderId:
+            type: string
+            description: Client order ID
+          oldClientOrderId:
+            type: string
+            description: Previous client order ID
+          oldPrice:
+            type: string
+            description: Previous price
+          oldQty:
+            type: string
+            description: Previous quantity
+          price:
+            type: string
+            description: New price
+          qty:
+            type: string
+            description: New quantity
+          amendTime:
+            type: integer
+            format: int64
+            description: Amendment timestamp
+          amendStatus:
+            type: string
+            description: Amendment status
+            enum: ["ACCEPTED", "REJECTED"]
+          rejectReason:
+            type: string
+            description: Rejection reason if amendment was rejected
+    UserTradesResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          buyer:
+            type: boolean
+            description: True if the trade was a buy
+          commission:
+            type: string
+            description: Commission charged for the trade
+          commissionAsset:
+            type: string
+            description: Asset in which commission was charged
+          id:
+            type: integer
+            format: int64
+            description: Trade ID
+          maker:
+            type: boolean
+            description: True if the trade was a maker trade
+          orderId:
+            type: integer
+            format: int64
+            description: Order ID
+          price:
+            type: string
+            description: Trade price
+          qty:
+            type: string
+            description: Trade quantity
+          quoteQty:
+            type: string
+            description: Quote quantity
+          realizedPnl:
+            type: string
+            description: Realized profit and loss
+          side:
+            type: string
+            description: Trade side (BUY/SELL)
+            enum: ["BUY", "SELL"]
+          positionSide:
+            type: string
+            description: Position side (BOTH/LONG/SHORT)
+            enum: ["BOTH", "LONG", "SHORT"]
+          symbol:
+            type: string
+            description: Trading pair symbol
+          time:
+            type: integer
+            format: int64
+            description: Trade timestamp
+    OpenOrdersResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/OrderResponse'
+    AllOrdersResponse:
+      type: array
+      items:
+        allOf:
+          - $ref: '#/components/schemas/OrderResponse'
+          - type: object
+            properties:
+              time:
+                type: integer
+                format: int64
+                description: Order creation time
+              updateTime:
+                type: integer
+                format: int64
+                description: Last update time
+    LeverageResponse:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Trading pair symbol
+        leverage:
+          type: integer
+          description: Leverage value
+        maxNotionalValue:
+          type: string
+          description: Maximum notional value
+    PositionMarginResponse:
+      type: object
+      properties:
+        amount:
+          type: string
+          description: Amount of margin
+        code:
+          type: integer
+          description: Response code
+        msg:
+          type: string
+          description: Response message
+        type:
+          type: integer
+          description: |
+            Margin type (1: Add, 2: Reduce)
+    PositionMarginHistoryResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          amount:
+            type: string
+            description: Amount of margin
+          asset:
+            type: string
+            description: Asset used for margin
+          symbol:
+            type: string
+            description: Trading pair symbol
+          time:
+            type: integer
+            format: int64
+            description: Operation time
+          type:
+            type: integer
+            description: |
+              Margin type (1: Add, 2: Reduce)
+          positionSide:
+            type: string
+            description: Position side (BOTH/LONG/SHORT)
+    PositionModeResponse:
+      type: object
+      properties:
+        dualSidePosition:
+          type: boolean
+          description: true-hedge mode, false-one-way mode
+    PositionRiskResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          entryPrice:
+            type: string
+            description: Entry price
+          marginType:
+            type: string
+            description: Margin type (isolated or cross)
+          isAutoAddMargin:
+            type: boolean
+            description: Is auto add margin enabled
+          isolatedMargin:
+            type: string
+            description: Isolated margin
+          leverage:
+            type: string
+            description: Current leverage
+          liquidationPrice:
+            type: string
+            description: Liquidation price
+          markPrice:
+            type: string
+            description: Mark price
+          maxNotionalValue:
+            type: string
+            description: Maximum notional value
+          positionAmt:
+            type: string
+            description: Position amount
+          symbol:
+            type: string
+            description: Trading pair symbol
+          unRealizedProfit:
+            type: string
+            description: Unrealized profit
+          positionSide:
+            type: string
+            description: Position side (BOTH/LONG/SHORT)
+          updateTime:
+            type: integer
+            format: int64
+            description: Update time
+    ApiTradingStatusResponse:
+      type: object
+      properties:
+        isLocked:
+          type: boolean
+          description: API trading function is locked or not
+        plannedRecoverTime:
+          type: integer
+          format: int64
+          description: If API trading function is locked, this is the planned recover time
+        triggerCondition:
+          type: object
+          properties:
+            GCR:
+              type: integer
+              description: Number of GTC orders
+            IFER:
+              type: integer
+              description: Number of FOK/IOC orders
+            UFR:
+              type: integer
+              description: Number of orders
+        updateTime:
+          type: integer
+          format: int64
+          description: Last update time
+        indicators:
+          type: object
+          properties:
+            BTCUSDT:
+              type: object
+              properties:
+                IFER:
+                  type: integer
+                  description: FOK/IOC order count of the symbol
+                GCR:
+                  type: integer
+                  description: GTC order count of the symbol
+                UFR:
+                  type: integer
+                  description: Order count of the symbol
+    ListenKeyResponse:
+      type: object
+      properties:
+        listenKey:
+          type: string
+          description: User data stream listen key
+    PortfolioMarginAccountResponse:
+      type: object
+      properties:
+        totalCollateral:
+          type: string
+          description: Total collateral value in USD
+        totalMarginBalance:
+          type: string
+          description: Total margin balance in USD
+        totalInitialMargin:
+          type: string
+          description: Total initial margin required in USD
+        totalMaintenanceMargin:
+          type: string
+          description: Total maintenance margin required in USD
+        totalPositionInitialMargin:
+          type: string
+          description: Total position initial margin in USD
+        totalOpenOrderInitialMargin:
+          type: string
+          description: Total open order initial margin in USD
+        totalUnrealizedProfit:
+          type: string
+          description: Total unrealized profit in USD
+        totalLiabilities:
+          type: string
+          description: Total liabilities in USD
+        availableBalance:
+          type: string
+          description: Available balance in USD
+        assets:
+          type: array
+          description: List of asset details
+          items:
+            type: object
+            properties:
+              asset:
+                type: string
+                description: Asset name
+              walletBalance:
+                type: string
+                description: Wallet balance
+              unrealizedProfit:
+                type: string
+                description: Unrealized profit
+              marginBalance:
+                type: string
+                description: Margin balance
+              maintMargin:
+                type: string
+                description: Maintenance margin
+              initialMargin:
+                type: string
+                description: Initial margin
+              positionInitialMargin:
+                type: string
+                description: Position initial margin
+              openOrderInitialMargin:
+                type: string
+                description: Open order initial margin
+              maxWithdrawAmount:
+                type: string
+                description: Maximum withdrawable amount
+        positions:
+          type: array
+          description: List of positions
+          items:
+            type: object
+            properties:
+              symbol:
+                type: string
+                description: Trading pair symbol
+              positionAmount:
+                type: string
+                description: Position amount
+              entryPrice:
+                type: string
+                description: Entry price
+              markPrice:
+                type: string
+                description: Mark price
+              unRealizedProfit:
+                type: string
+                description: Unrealized profit
+              liquidationPrice:
+                type: string
+                description: Liquidation price
+              leverage:
+                type: string
+                description: Position leverage
+              marginType:
+                type: string
+                description: Margin type (isolated or cross)
+              isolatedMargin:
+                type: string
+                description: Isolated margin
+              positionSide:
+                type: string
+                description: Position side (BOTH/LONG/SHORT)
+    KlinesResponse:
+      type: array
+      items:
+        type: array
+        description: Kline/candlestick data
+        items:
+          oneOf:
+            - type: integer
+              format: int64
+              description: Kline open time
+            - type: string
+              description: Open price
+            - type: string
+              description: High price
+            - type: string
+              description: Low price
+            - type: string
+              description: Close price
+            - type: string
+              description: Volume
+            - type: integer
+              format: int64
+              description: Kline close time
+            - type: string
+              description: Quote asset volume
+            - type: integer
+              description: Number of trades
+            - type: string
+              description: Taker buy base asset volume
+            - type: string
+              description: Taker buy quote asset volume
+    PremiumIndexResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          symbol:
+            type: string
+            description: Trading pair symbol
+          markPrice:
+            type: string
+            description: Mark price
+          indexPrice:
+            type: string
+            description: Index price
+          estimatedSettlePrice:
+            type: string
+            description: Estimated settle price
+          lastFundingRate:
+            type: string
+            description: Last funding rate
+          nextFundingTime:
+            type: integer
+            format: int64
+            description: Next funding time
+          interestRate:
+            type: string
+            description: Interest rate
+          time:
+            type: integer
+            format: int64
+            description: Update time
+    FundingRateResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          symbol:
+            type: string
+            description: Trading pair symbol
+          fundingRate:
+            type: string
+            description: Funding rate
+          fundingTime:
+            type: integer
+            format: int64
+            description: Funding time
+    TickerPriceChangeResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          symbol:
+            type: string
+            description: Trading pair symbol
+          priceChange:
+            type: string
+            description: Price change
+          priceChangePercent:
+            type: string
+            description: Price change percent
+          weightedAvgPrice:
+            type: string
+            description: Weighted average price
+          lastPrice:
+            type: string
+            description: Last price
+          lastQty:
+            type: string
+            description: Last quantity
+          openPrice:
+            type: string
+            description: Open price
+          highPrice:
+            type: string
+            description: High price
+          lowPrice:
+            type: string
+            description: Low price
+          volume:
+            type: string
+            description: Total volume
+          quoteVolume:
+            type: string
+            description: Total quote volume
+          openTime:
+            type: integer
+            format: int64
+            description: Open time
+          closeTime:
+            type: integer
+            format: int64
+            description: Close time
+          firstId:
+            type: integer
+            format: int64
+            description: First trade ID
+          lastId:
+            type: integer
+            format: int64
+            description: Last trade ID
+          count:
+            type: integer
+            description: Total number of trades
+    SymbolPriceTickerResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          symbol:
+            type: string
+            description: Trading pair symbol
+          price:
+            type: string
+            description: Latest price
+          time:
+            type: integer
+            format: int64
+            description: Update time
+    BookTickerResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          symbol:
+            type: string
+            description: Trading pair symbol
+          bidPrice:
+            type: string
+            description: Best bid price
+          bidQty:
+            type: string
+            description: Best bid quantity
+          askPrice:
+            type: string
+            description: Best ask price
+          askQty:
+            type: string
+            description: Best ask quantity
+          time:
+            type: integer
+            format: int64
+            description: Update time
+    MarkPriceResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          symbol:
+            type: string
+            description: Trading pair symbol
+          markPrice:
+            type: string
+            description: Mark price
+          indexPrice:
+            type: string
+            description: Index price
+          lastFundingRate:
+            type: string
+            description: Last funding rate
+          nextFundingTime:
+            type: integer
+            format: int64
+            description: Next funding time
+          time:
+            type: integer
+            format: int64
+            description: Update time

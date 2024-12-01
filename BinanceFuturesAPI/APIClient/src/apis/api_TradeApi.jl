@@ -15,10 +15,13 @@ const _returntypes_change_initial_leverage_TradeApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
-function _oacinternal_change_initial_leverage(_api::TradeApi; symbol=nothing, leverage=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_change_initial_leverage(_api::TradeApi, symbol::String, leverage::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    OpenAPI.validate_param("leverage", "change_initial_leverage", :maximum, leverage, 125, false)
+    OpenAPI.validate_param("leverage", "change_initial_leverage", :minimum, leverage, 1, false)
+
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_change_initial_leverage_TradeApi, "/fapi/v1/leverage", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "leverage", leverage)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "leverage", leverage)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
@@ -33,8 +36,8 @@ end
 Change Initial Leverage
 
 Params:
-- symbol::String
-- leverage::String
+- symbol::String (required)
+- leverage::Int64 (required)
 - recv_window::String
 - timestamp::String
 - signature::String
@@ -42,13 +45,13 @@ Params:
 
 Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
-function change_initial_leverage(_api::TradeApi; symbol=nothing, leverage=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_change_initial_leverage(_api; symbol=symbol, leverage=leverage, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function change_initial_leverage(_api::TradeApi, symbol::String, leverage::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_change_initial_leverage(_api, symbol, leverage; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function change_initial_leverage(_api::TradeApi, response_stream::Channel; symbol=nothing, leverage=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_change_initial_leverage(_api; symbol=symbol, leverage=leverage, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function change_initial_leverage(_api::TradeApi, response_stream::Channel, symbol::String, leverage::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_change_initial_leverage(_api, symbol, leverage; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -56,7 +59,7 @@ const _returntypes_change_margin_type_TradeApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
-function _oacinternal_change_margin_type(_api::TradeApi; symbol=nothing, margin_type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_change_margin_type(_api::TradeApi, symbol::String, margin_type::String; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_change_margin_type_TradeApi, "/fapi/v1/marginType", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "marginType", margin_type)  # type String
@@ -74,8 +77,8 @@ end
 Change Margin Type
 
 Params:
-- symbol::String
-- margin_type::String
+- symbol::String (required)
+- margin_type::String (required)
 - recv_window::String
 - timestamp::String
 - signature::String
@@ -83,13 +86,13 @@ Params:
 
 Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
-function change_margin_type(_api::TradeApi; symbol=nothing, margin_type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_change_margin_type(_api; symbol=symbol, margin_type=margin_type, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function change_margin_type(_api::TradeApi, symbol::String, margin_type::String; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_change_margin_type(_api, symbol, margin_type; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function change_margin_type(_api::TradeApi, response_stream::Channel; symbol=nothing, margin_type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_change_margin_type(_api; symbol=symbol, margin_type=margin_type, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function change_margin_type(_api::TradeApi, response_stream::Channel, symbol::String, margin_type::String; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_change_margin_type(_api, symbol, margin_type; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -133,12 +136,12 @@ function change_multi_assets_mode(_api::TradeApi, response_stream::Channel; mult
 end
 
 const _returntypes_change_position_mode_trade_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => PositionModeResponse,
 )
 
-function _oacinternal_change_position_mode_trade(_api::TradeApi; dual_side_position=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_change_position_mode_trade(_api::TradeApi, dual_side_position::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_change_position_mode_trade_TradeApi, "/fapi/v1/positionSide/dual", [])
-    OpenAPI.Clients.set_param(_ctx.query, "dualSidePosition", dual_side_position)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "dualSidePosition", dual_side_position)  # type Bool
     OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
@@ -153,21 +156,21 @@ end
 Change Position Mode（TRADE）
 
 Params:
-- dual_side_position::String
+- dual_side_position::Bool (required)
 - recv_window::String
 - timestamp::String
 - signature::String
 - x_mbx_apikey::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: PositionModeResponse, OpenAPI.Clients.ApiResponse
 """
-function change_position_mode_trade(_api::TradeApi; dual_side_position=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_change_position_mode_trade(_api; dual_side_position=dual_side_position, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function change_position_mode_trade(_api::TradeApi, dual_side_position::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_change_position_mode_trade(_api, dual_side_position; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function change_position_mode_trade(_api::TradeApi, response_stream::Channel; dual_side_position=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_change_position_mode_trade(_api; dual_side_position=dual_side_position, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function change_position_mode_trade(_api::TradeApi, response_stream::Channel, dual_side_position::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_change_position_mode_trade(_api, dual_side_position; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -209,7 +212,7 @@ function get_current_multi_assets_mode(_api::TradeApi, response_stream::Channel;
 end
 
 const _returntypes_get_current_position_mode_user_data_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Nothing,
+    Regex("^" * replace("200", "x"=>".") * "\$") => PositionModeResponse,
 )
 
 function _oacinternal_get_current_position_mode_user_data(_api::TradeApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -218,7 +221,7 @@ function _oacinternal_get_current_position_mode_user_data(_api::TradeApi; recv_w
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, [])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
@@ -233,7 +236,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Nothing, OpenAPI.Clients.ApiResponse
+Return: PositionModeResponse, OpenAPI.Clients.ApiResponse
 """
 function get_current_position_mode_user_data(_api::TradeApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_get_current_position_mode_user_data(_api; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -246,13 +249,13 @@ function get_current_position_mode_user_data(_api::TradeApi, response_stream::Ch
 end
 
 const _returntypes_get_postion_margin_change_history_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{PositionMarginHistoryResponseInner},
 )
 
-function _oacinternal_get_postion_margin_change_history(_api::TradeApi; symbol=nothing, type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_get_postion_margin_change_history(_api::TradeApi, symbol::String, type::Int64; start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_postion_margin_change_history_TradeApi, "/fapi/v1/positionMargin/history", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "type", type)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "type", type)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
@@ -270,8 +273,8 @@ end
 Get Postion Margin Change History
 
 Params:
-- symbol::String
-- type::String
+- symbol::String (required)
+- type::Int64 (required)
 - start_time::String
 - end_time::String
 - limit::String
@@ -280,28 +283,28 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{PositionMarginHistoryResponseInner}, OpenAPI.Clients.ApiResponse
 """
-function get_postion_margin_change_history(_api::TradeApi; symbol=nothing, type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_get_postion_margin_change_history(_api; symbol=symbol, type=type, start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function get_postion_margin_change_history(_api::TradeApi, symbol::String, type::Int64; start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_get_postion_margin_change_history(_api, symbol, type; start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function get_postion_margin_change_history(_api::TradeApi, response_stream::Channel; symbol=nothing, type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_get_postion_margin_change_history(_api; symbol=symbol, type=type, start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function get_postion_margin_change_history(_api::TradeApi, response_stream::Channel, symbol::String, type::Int64; start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_get_postion_margin_change_history(_api, symbol, type; start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
 const _returntypes_modify_isolated_position_margin_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => PositionMarginResponse,
 )
 
-function _oacinternal_modify_isolated_position_margin(_api::TradeApi; symbol=nothing, position_side=nothing, amount=nothing, type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_modify_isolated_position_margin(_api::TradeApi, symbol::String, position_side::String, amount::String, type::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_modify_isolated_position_margin_TradeApi, "/fapi/v1/positionMargin", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "positionSide", position_side)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "amount", amount)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "type", type)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "type", type)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
@@ -316,63 +319,24 @@ end
 Modify Isolated Position Margin
 
 Params:
-- symbol::String
-- position_side::String
-- amount::String
-- type::String
+- symbol::String (required)
+- position_side::String (required)
+- amount::String (required)
+- type::Int64 (required)
 - recv_window::String
 - timestamp::String
 - signature::String
 - x_mbx_apikey::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: PositionMarginResponse, OpenAPI.Clients.ApiResponse
 """
-function modify_isolated_position_margin(_api::TradeApi; symbol=nothing, position_side=nothing, amount=nothing, type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_modify_isolated_position_margin(_api; symbol=symbol, position_side=position_side, amount=amount, type=type, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function modify_isolated_position_margin(_api::TradeApi, symbol::String, position_side::String, amount::String, type::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_modify_isolated_position_margin(_api, symbol, position_side, amount, type; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function modify_isolated_position_margin(_api::TradeApi, response_stream::Channel; symbol=nothing, position_side=nothing, amount=nothing, type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_modify_isolated_position_margin(_api; symbol=symbol, position_side=position_side, amount=amount, type=type, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
-const _returntypes_user_api_trading_quantitative_rules_indicators_user_data_TradeApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
-)
-
-function _oacinternal_user_api_trading_quantitative_rules_indicators_user_data(_api::TradeApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_user_api_trading_quantitative_rules_indicators_user_data_TradeApi, "/fapi/v1/apiTradingStatus", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
-    OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""User API Trading Quantitative Rules Indicators (USER_DATA)
-
-User API Trading Quantitative Rules Indicators (USER_DATA)
-
-Params:
-- symbol::String
-- recv_window::String
-- timestamp::String
-- signature::String
-- x_mbx_apikey::String
-
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
-"""
-function user_api_trading_quantitative_rules_indicators_user_data(_api::TradeApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_user_api_trading_quantitative_rules_indicators_user_data(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function user_api_trading_quantitative_rules_indicators_user_data(_api::TradeApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_user_api_trading_quantitative_rules_indicators_user_data(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function modify_isolated_position_margin(_api::TradeApi, response_stream::Channel, symbol::String, position_side::String, amount::String, type::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_modify_isolated_position_margin(_api, symbol, position_side, amount, type; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -384,4 +348,3 @@ export get_current_multi_assets_mode
 export get_current_position_mode_user_data
 export get_postion_margin_change_history
 export modify_isolated_position_margin
-export user_api_trading_quantitative_rules_indicators_user_data

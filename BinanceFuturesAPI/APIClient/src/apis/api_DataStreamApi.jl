@@ -12,7 +12,7 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 basepath(::Type{ DataStreamApi }) = "http://}"
 
 const _returntypes_create_new_listen_key_DataStreamApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => ListenKeyResponse,
 )
 
 function _oacinternal_create_new_listen_key(_api::DataStreamApi; x_mbx_apikey=nothing, _mediaType=nothing)
@@ -30,7 +30,7 @@ Create New Listen Key
 Params:
 - x_mbx_apikey::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: ListenKeyResponse, OpenAPI.Clients.ApiResponse
 """
 function create_new_listen_key(_api::DataStreamApi; x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_create_new_listen_key(_api; x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -43,7 +43,7 @@ function create_new_listen_key(_api::DataStreamApi, response_stream::Channel; x_
 end
 
 const _returntypes_delete_listen_key_DataStreamApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => ListenKeyResponse,
 )
 
 function _oacinternal_delete_listen_key(_api::DataStreamApi; x_mbx_apikey=nothing, _mediaType=nothing)
@@ -61,7 +61,7 @@ Delete Listen Key
 Params:
 - x_mbx_apikey::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: ListenKeyResponse, OpenAPI.Clients.ApiResponse
 """
 function delete_listen_key(_api::DataStreamApi; x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_delete_listen_key(_api; x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -74,7 +74,7 @@ function delete_listen_key(_api::DataStreamApi, response_stream::Channel; x_mbx_
 end
 
 const _returntypes_renew_listen_key_DataStreamApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => ListenKeyResponse,
 )
 
 function _oacinternal_renew_listen_key(_api::DataStreamApi; x_mbx_apikey=nothing, _mediaType=nothing)
@@ -92,7 +92,7 @@ Renew Listen Key
 Params:
 - x_mbx_apikey::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: ListenKeyResponse, OpenAPI.Clients.ApiResponse
 """
 function renew_listen_key(_api::DataStreamApi; x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_renew_listen_key(_api; x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)

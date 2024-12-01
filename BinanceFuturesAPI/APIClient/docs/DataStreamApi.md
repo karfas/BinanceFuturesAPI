@@ -10,8 +10,8 @@ Method | HTTP request | Description
 
 
 # **create_new_listen_key**
-> create_new_listen_key(_api::DataStreamApi; x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> create_new_listen_key(_api::DataStreamApi, response_stream::Channel; x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> create_new_listen_key(_api::DataStreamApi; x_mbx_apikey=nothing, _mediaType=nothing) -> ListenKeyResponse, OpenAPI.Clients.ApiResponse <br/>
+> create_new_listen_key(_api::DataStreamApi, response_stream::Channel; x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ ListenKeyResponse }, OpenAPI.Clients.ApiResponse
 
 Create New Listen Key
 
@@ -31,7 +31,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**ListenKeyResponse**](ListenKeyResponse.md)
 
 ### Authorization
 
@@ -45,8 +45,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **delete_listen_key**
-> delete_listen_key(_api::DataStreamApi; x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> delete_listen_key(_api::DataStreamApi, response_stream::Channel; x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> delete_listen_key(_api::DataStreamApi; x_mbx_apikey=nothing, _mediaType=nothing) -> ListenKeyResponse, OpenAPI.Clients.ApiResponse <br/>
+> delete_listen_key(_api::DataStreamApi, response_stream::Channel; x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ ListenKeyResponse }, OpenAPI.Clients.ApiResponse
 
 Delete Listen Key
 
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**ListenKeyResponse**](ListenKeyResponse.md)
 
 ### Authorization
 
@@ -80,8 +80,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **renew_listen_key**
-> renew_listen_key(_api::DataStreamApi; x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> renew_listen_key(_api::DataStreamApi, response_stream::Channel; x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> renew_listen_key(_api::DataStreamApi; x_mbx_apikey=nothing, _mediaType=nothing) -> ListenKeyResponse, OpenAPI.Clients.ApiResponse <br/>
+> renew_listen_key(_api::DataStreamApi, response_stream::Channel; x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ ListenKeyResponse }, OpenAPI.Clients.ApiResponse
 
 Renew Listen Key
 
@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**ListenKeyResponse**](ListenKeyResponse.md)
 
 ### Authorization
 

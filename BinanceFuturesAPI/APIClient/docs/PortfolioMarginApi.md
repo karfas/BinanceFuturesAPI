@@ -8,8 +8,8 @@ Method | HTTP request | Description
 
 
 # **portfolio_margin_account_information**
-> portfolio_margin_account_information(_api::PortfolioMarginApi; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> portfolio_margin_account_information(_api::PortfolioMarginApi, response_stream::Channel; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> portfolio_margin_account_information(_api::PortfolioMarginApi; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> PortfolioMarginAccountResponse, OpenAPI.Clients.ApiResponse <br/>
+> portfolio_margin_account_information(_api::PortfolioMarginApi, response_stream::Channel; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ PortfolioMarginAccountResponse }, OpenAPI.Clients.ApiResponse
 
 Portfolio Margin Account Information
 
@@ -33,7 +33,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**PortfolioMarginAccountResponse**](PortfolioMarginAccountResponse.md)
 
 ### Authorization
 

@@ -65,7 +65,7 @@ end
 
 @doc raw"""Check Server Time
 
-Check Server Time
+Check Server Time 
 
 Params:
 
@@ -115,16 +115,18 @@ function composite_index_symbol_information(_api::MarketApi, response_stream::Ch
 end
 
 const _returntypes_compressed_aggregate_trades_list_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{AggregateTradesResponseInner},
 )
 
-function _oacinternal_compressed_aggregate_trades_list(_api::MarketApi; symbol=nothing, from_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
+function _oacinternal_compressed_aggregate_trades_list(_api::MarketApi, symbol::String; from_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
+    OpenAPI.validate_param("limit", "compressed_aggregate_trades_list", :maximum, limit, 1000, false)
+
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_compressed_aggregate_trades_list_MarketApi, "/fapi/v1/aggTrades", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "fromId", from_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "fromId", from_id)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type Int64
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -132,29 +134,29 @@ end
 
 @doc raw"""Compressed/Aggregate Trades List
 
-Compressed/Aggregate Trades List
+Get compressed, aggregate trades. Trades that fill at the same time, from the same order, with the same price will have the quantity aggregated.
 
 Params:
-- symbol::String
-- from_id::String
-- start_time::String
-- end_time::String
-- limit::String
+- symbol::String (required)
+- from_id::Int64
+- start_time::Int64
+- end_time::Int64
+- limit::Int64
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{AggregateTradesResponseInner}, OpenAPI.Clients.ApiResponse
 """
-function compressed_aggregate_trades_list(_api::MarketApi; symbol=nothing, from_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_compressed_aggregate_trades_list(_api; symbol=symbol, from_id=from_id, start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
+function compressed_aggregate_trades_list(_api::MarketApi, symbol::String; from_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_compressed_aggregate_trades_list(_api, symbol; from_id=from_id, start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function compressed_aggregate_trades_list(_api::MarketApi, response_stream::Channel; symbol=nothing, from_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_compressed_aggregate_trades_list(_api; symbol=symbol, from_id=from_id, start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
+function compressed_aggregate_trades_list(_api::MarketApi, response_stream::Channel, symbol::String; from_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_compressed_aggregate_trades_list(_api, symbol; from_id=from_id, start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
 const _returntypes_continuous_contract_kline_candlestick_data_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{Vector{KlinesResponseInnerInner}},
 )
 
 function _oacinternal_continuous_contract_kline_candlestick_data(_api::MarketApi; pair=nothing, contract_type=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
@@ -182,7 +184,7 @@ Params:
 - end_time::String
 - limit::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse
 """
 function continuous_contract_kline_candlestick_data(_api::MarketApi; pair=nothing, contract_type=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
     _ctx = _oacinternal_continuous_contract_kline_candlestick_data(_api; pair=pair, contract_type=contract_type, interval=interval, start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
@@ -198,8 +200,10 @@ const _returntypes_exchange_information_MarketApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => ExchangeInfoResponse,
 )
 
-function _oacinternal_exchange_information(_api::MarketApi; _mediaType=nothing)
+function _oacinternal_exchange_information(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_exchange_information_MarketApi, "/fapi/v1/exchangeInfo", [])
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbols", symbols)  # type Vector{String}
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -207,24 +211,26 @@ end
 
 @doc raw"""Exchange Information
 
-Exchange Information
+Exchange Information 
 
 Params:
+- symbol::String
+- symbols::Vector{String}
 
 Return: ExchangeInfoResponse, OpenAPI.Clients.ApiResponse
 """
-function exchange_information(_api::MarketApi; _mediaType=nothing)
-    _ctx = _oacinternal_exchange_information(_api; _mediaType=_mediaType)
+function exchange_information(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_exchange_information(_api; symbol=symbol, symbols=symbols, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function exchange_information(_api::MarketApi, response_stream::Channel; _mediaType=nothing)
-    _ctx = _oacinternal_exchange_information(_api; _mediaType=_mediaType)
+function exchange_information(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_exchange_information(_api; symbol=symbol, symbols=symbols, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
 const _returntypes_get_funding_rate_history_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{FundingRateResponseInner},
 )
 
 function _oacinternal_get_funding_rate_history(_api::MarketApi; symbol=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
@@ -240,7 +246,7 @@ end
 
 @doc raw"""Get Funding Rate History
 
-Mark Price and Funding Rate  Weight: 1
+Get funding rate history  Weight: 1 
 
 Params:
 - symbol::String
@@ -248,7 +254,7 @@ Params:
 - end_time::String
 - limit::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{FundingRateResponseInner}, OpenAPI.Clients.ApiResponse
 """
 function get_funding_rate_history(_api::MarketApi; symbol=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
     _ctx = _oacinternal_get_funding_rate_history(_api; symbol=symbol, start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
@@ -261,7 +267,7 @@ function get_funding_rate_history(_api::MarketApi, response_stream::Channel; sym
 end
 
 const _returntypes_historical_blvt_nav_kline_candlestick_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{Vector{KlinesResponseInnerInner}},
 )
 
 function _oacinternal_historical_blvt_nav_kline_candlestick(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -289,7 +295,7 @@ Params:
 - limit::String
 - x_mbx_apikey::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse
 """
 function historical_blvt_nav_kline_candlestick(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_historical_blvt_nav_kline_candlestick(_api; symbol=symbol, interval=interval, start_time=start_time, end_time=end_time, limit=limit, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
@@ -302,7 +308,7 @@ function historical_blvt_nav_kline_candlestick(_api::MarketApi, response_stream:
 end
 
 const _returntypes_index_price_kline_candlestick_data_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{Vector{KlinesResponseInnerInner}},
 )
 
 function _oacinternal_index_price_kline_candlestick_data(_api::MarketApi; pair=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
@@ -328,7 +334,7 @@ Params:
 - end_time::String
 - limit::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse
 """
 function index_price_kline_candlestick_data(_api::MarketApi; pair=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
     _ctx = _oacinternal_index_price_kline_candlestick_data(_api; pair=pair, interval=interval, start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
@@ -341,16 +347,19 @@ function index_price_kline_candlestick_data(_api::MarketApi, response_stream::Ch
 end
 
 const _returntypes_kline_candlestick_data_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{Vector{KlinesResponseInnerInner}},
 )
 
-function _oacinternal_kline_candlestick_data(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
+function _oacinternal_kline_candlestick_data(_api::MarketApi, symbol::String, interval::String; start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
+    OpenAPI.validate_param("limit", "kline_candlestick_data", :maximum, limit, 1500, false)
+    OpenAPI.validate_param("limit", "kline_candlestick_data", :minimum, limit, 1, false)
+
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_kline_candlestick_data_MarketApi, "/fapi/v1/klines", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "interval", interval)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type Int64
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -361,21 +370,21 @@ end
 Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time.
 
 Params:
-- symbol::String
-- interval::String
-- start_time::String
-- end_time::String
-- limit::String
+- symbol::String (required)
+- interval::String (required)
+- start_time::Int64
+- end_time::Int64
+- limit::Int64
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse
 """
-function kline_candlestick_data(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_kline_candlestick_data(_api; symbol=symbol, interval=interval, start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
+function kline_candlestick_data(_api::MarketApi, symbol::String, interval::String; start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_kline_candlestick_data(_api, symbol, interval; start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function kline_candlestick_data(_api::MarketApi, response_stream::Channel; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_kline_candlestick_data(_api; symbol=symbol, interval=interval, start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
+function kline_candlestick_data(_api::MarketApi, response_stream::Channel, symbol::String, interval::String; start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_kline_candlestick_data(_api, symbol, interval; start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -421,7 +430,7 @@ function long_short_ratio(_api::MarketApi, response_stream::Channel; symbol=noth
 end
 
 const _returntypes_mark_price_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{PremiumIndexResponseInner},
 )
 
 function _oacinternal_mark_price(_api::MarketApi; symbol=nothing, _mediaType=nothing)
@@ -434,12 +443,12 @@ end
 
 @doc raw"""Mark Price
 
-Mark Price and Funding Rate  Weight: 1
+Mark Price and Funding Rate  Weight: 1 
 
 Params:
 - symbol::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{PremiumIndexResponseInner}, OpenAPI.Clients.ApiResponse
 """
 function mark_price(_api::MarketApi; symbol=nothing, _mediaType=nothing)
     _ctx = _oacinternal_mark_price(_api; symbol=symbol, _mediaType=_mediaType)
@@ -452,7 +461,7 @@ function mark_price(_api::MarketApi, response_stream::Channel; symbol=nothing, _
 end
 
 const _returntypes_mark_price_kline_candlestick_data_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{Vector{KlinesResponseInnerInner}},
 )
 
 function _oacinternal_mark_price_kline_candlestick_data(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
@@ -478,7 +487,7 @@ Params:
 - end_time::String
 - limit::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse
 """
 function mark_price_kline_candlestick_data(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
     _ctx = _oacinternal_mark_price_kline_candlestick_data(_api; symbol=symbol, interval=interval, start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
@@ -522,15 +531,16 @@ function multi_assets_mode_asset_index(_api::MarketApi, response_stream::Channel
 end
 
 const _returntypes_old_trades_lookup_market_data_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{HistoricalTradesResponseInner},
 )
 
-function _oacinternal_old_trades_lookup_market_data(_api::MarketApi; symbol=nothing, limit=nothing, from_id=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_old_trades_lookup_market_data(_api::MarketApi, symbol::String; limit=nothing, from_id=nothing, _mediaType=nothing)
+    OpenAPI.validate_param("limit", "old_trades_lookup_market_data", :maximum, limit, 1000, false)
+
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_old_trades_lookup_market_data_MarketApi, "/fapi/v1/historicalTrades", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "fromId", from_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "fromId", from_id)  # type Int64
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -541,20 +551,19 @@ end
 This endpoint need your API key only, not the secret key.
 
 Params:
-- symbol::String
-- limit::String
-- from_id::String
-- x_mbx_apikey::String
+- symbol::String (required)
+- limit::Int64
+- from_id::Int64
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{HistoricalTradesResponseInner}, OpenAPI.Clients.ApiResponse
 """
-function old_trades_lookup_market_data(_api::MarketApi; symbol=nothing, limit=nothing, from_id=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_old_trades_lookup_market_data(_api; symbol=symbol, limit=limit, from_id=from_id, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function old_trades_lookup_market_data(_api::MarketApi, symbol::String; limit=nothing, from_id=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_old_trades_lookup_market_data(_api, symbol; limit=limit, from_id=from_id, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function old_trades_lookup_market_data(_api::MarketApi, response_stream::Channel; symbol=nothing, limit=nothing, from_id=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_old_trades_lookup_market_data(_api; symbol=symbol, limit=limit, from_id=from_id, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function old_trades_lookup_market_data(_api::MarketApi, response_stream::Channel, symbol::String; limit=nothing, from_id=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_old_trades_lookup_market_data(_api, symbol; limit=limit, from_id=from_id, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -634,10 +643,10 @@ const _returntypes_order_book_MarketApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
-function _oacinternal_order_book(_api::MarketApi; symbol=nothing, limit=nothing, _mediaType=nothing)
+function _oacinternal_order_book(_api::MarketApi, symbol::String; limit=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_order_book_MarketApi, "/fapi/v1/depth", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type Int64
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -645,21 +654,21 @@ end
 
 @doc raw"""Order Book
 
-Order Book
+Order Book 
 
 Params:
-- symbol::String
-- limit::String
+- symbol::String (required)
+- limit::Int64
 
 Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
-function order_book(_api::MarketApi; symbol=nothing, limit=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_order_book(_api; symbol=symbol, limit=limit, _mediaType=_mediaType)
+function order_book(_api::MarketApi, symbol::String; limit=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_order_book(_api, symbol; limit=limit, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function order_book(_api::MarketApi, response_stream::Channel; symbol=nothing, limit=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_order_book(_api; symbol=symbol, limit=limit, _mediaType=_mediaType)
+function order_book(_api::MarketApi, response_stream::Channel, symbol::String; limit=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_order_book(_api, symbol; limit=limit, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -700,10 +709,13 @@ const _returntypes_recent_trades_list_MarketApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
-function _oacinternal_recent_trades_list(_api::MarketApi; symbol=nothing, limit=nothing, _mediaType=nothing)
+function _oacinternal_recent_trades_list(_api::MarketApi, symbol::String; limit=nothing, _mediaType=nothing)
+    OpenAPI.validate_param("limit", "recent_trades_list", :maximum, limit, 1000, false)
+    OpenAPI.validate_param("limit", "recent_trades_list", :minimum, limit, 1, false)
+
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_recent_trades_list_MarketApi, "/fapi/v1/trades", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type Int64
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -714,28 +726,31 @@ end
 Recent Trades List
 
 Params:
-- symbol::String
-- limit::String
+- symbol::String (required)
+- limit::Int64
 
 Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
-function recent_trades_list(_api::MarketApi; symbol=nothing, limit=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_recent_trades_list(_api; symbol=symbol, limit=limit, _mediaType=_mediaType)
+function recent_trades_list(_api::MarketApi, symbol::String; limit=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_recent_trades_list(_api, symbol; limit=limit, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function recent_trades_list(_api::MarketApi, response_stream::Channel; symbol=nothing, limit=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_recent_trades_list(_api; symbol=symbol, limit=limit, _mediaType=_mediaType)
+function recent_trades_list(_api::MarketApi, response_stream::Channel, symbol::String; limit=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_recent_trades_list(_api, symbol; limit=limit, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
 const _returntypes_symbol_order_book_ticker_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{BookTickerResponseInner},
 )
 
-function _oacinternal_symbol_order_book_ticker(_api::MarketApi; symbol=nothing, _mediaType=nothing)
+function _oacinternal_symbol_order_book_ticker(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing)
+    OpenAPI.validate_param("symbols", "symbol_order_book_ticker", :maxItems, symbols, 100)
+
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_symbol_order_book_ticker_MarketApi, "/fapi/v1/ticker/bookTicker", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbols", symbols)  # type Vector{String}
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -747,26 +762,30 @@ Best price/qty on the order book for a symbol or symbols.
 
 Params:
 - symbol::String
+- symbols::Vector{String}
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{BookTickerResponseInner}, OpenAPI.Clients.ApiResponse
 """
-function symbol_order_book_ticker(_api::MarketApi; symbol=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_symbol_order_book_ticker(_api; symbol=symbol, _mediaType=_mediaType)
+function symbol_order_book_ticker(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_symbol_order_book_ticker(_api; symbol=symbol, symbols=symbols, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function symbol_order_book_ticker(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_symbol_order_book_ticker(_api; symbol=symbol, _mediaType=_mediaType)
+function symbol_order_book_ticker(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_symbol_order_book_ticker(_api; symbol=symbol, symbols=symbols, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
 const _returntypes_symbol_price_ticker_v2_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{SymbolPriceTickerResponseInner},
 )
 
-function _oacinternal_symbol_price_ticker_v2(_api::MarketApi; symbol=nothing, _mediaType=nothing)
+function _oacinternal_symbol_price_ticker_v2(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing)
+    OpenAPI.validate_param("symbols", "symbol_price_ticker_v2", :maxItems, symbols, 100)
+
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_symbol_price_ticker_v2_MarketApi, "/fapi/v2/ticker/price", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbols", symbols)  # type Vector{String}
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -778,16 +797,17 @@ Latest price for a symbol or symbols.
 
 Params:
 - symbol::String
+- symbols::Vector{String}
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{SymbolPriceTickerResponseInner}, OpenAPI.Clients.ApiResponse
 """
-function symbol_price_ticker_v2(_api::MarketApi; symbol=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_symbol_price_ticker_v2(_api; symbol=symbol, _mediaType=_mediaType)
+function symbol_price_ticker_v2(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_symbol_price_ticker_v2(_api; symbol=symbol, symbols=symbols, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function symbol_price_ticker_v2(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_symbol_price_ticker_v2(_api; symbol=symbol, _mediaType=_mediaType)
+function symbol_price_ticker_v2(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_symbol_price_ticker_v2(_api; symbol=symbol, symbols=symbols, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -845,7 +865,7 @@ end
 
 @doc raw"""Test Connectivity
 
-Test connectivity to the Rest API.
+Test connectivity to the Rest API. 
 
 Params:
 
@@ -862,12 +882,15 @@ function test_connectivity(_api::MarketApi, response_stream::Channel; _mediaType
 end
 
 const _returntypes_ticker_price_change_statistics24hr_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{TickerPriceChangeResponseInner},
 )
 
-function _oacinternal_ticker_price_change_statistics24hr(_api::MarketApi; symbol=nothing, _mediaType=nothing)
+function _oacinternal_ticker_price_change_statistics24hr(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing)
+    OpenAPI.validate_param("symbols", "ticker_price_change_statistics24hr", :maxItems, symbols, 100)
+
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_ticker_price_change_statistics24hr_MarketApi, "/fapi/v1/ticker/24hr", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbols", symbols)  # type Vector{String}
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -875,20 +898,21 @@ end
 
 @doc raw"""24hr Ticker Price Change Statistics
 
-24 hour rolling window price change statistics.  Careful when accessing this with no symbol.  Weight:  1 for a single symbol;  40 when the symbol parameter is omitted
+24 hour rolling window price change statistics.  Careful when accessing this with no symbol.  Weight:  1 for a single symbol;  40 when the symbol parameter is omitted 
 
 Params:
 - symbol::String
+- symbols::Vector{String}
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{TickerPriceChangeResponseInner}, OpenAPI.Clients.ApiResponse
 """
-function ticker_price_change_statistics24hr(_api::MarketApi; symbol=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_ticker_price_change_statistics24hr(_api; symbol=symbol, _mediaType=_mediaType)
+function ticker_price_change_statistics24hr(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_ticker_price_change_statistics24hr(_api; symbol=symbol, symbols=symbols, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function ticker_price_change_statistics24hr(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_ticker_price_change_statistics24hr(_api; symbol=symbol, _mediaType=_mediaType)
+function ticker_price_change_statistics24hr(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_ticker_price_change_statistics24hr(_api; symbol=symbol, symbols=symbols, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 

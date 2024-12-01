@@ -5,7 +5,6 @@ All URIs are relative to *http://}*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**all_orders**](OrderApi.md#all_orders) | **GET** /fapi/v1/allOrders | All Orders
-[**auto_cancel_all_open_orders_trade**](OrderApi.md#auto_cancel_all_open_orders_trade) | **POST** /fapi/v1/countdownCancelAll | Auto-Cancel All Open Orders (TRADE)
 [**cancel_all_open_orders**](OrderApi.md#cancel_all_open_orders) | **DELETE** /fapi/v1/allOpenOrders | Cancel All Open Orders
 [**cancel_multiple_orders_trade**](OrderApi.md#cancel_multiple_orders_trade) | **DELETE** /fapi/v1/batchOrders | Cancel Multiple Orders (TRADE)
 [**cancel_order**](OrderApi.md#cancel_order) | **DELETE** /fapi/v1/order | Cancel Order
@@ -25,8 +24,8 @@ Method | HTTP request | Description
 
 
 # **all_orders**
-> all_orders(_api::OrderApi; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> all_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> all_orders(_api::OrderApi; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{AllOrdersResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> all_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{AllOrdersResponseInner} }, OpenAPI.Clients.ApiResponse
 
 All Orders
 
@@ -54,47 +53,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **auto_cancel_all_open_orders_trade**
-> auto_cancel_all_open_orders_trade(_api::OrderApi; symbol=nothing, countdown_time=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> auto_cancel_all_open_orders_trade(_api::OrderApi, response_stream::Channel; symbol=nothing, countdown_time=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
-
-Auto-Cancel All Open Orders (TRADE)
-
-Auto-Cancel All Open Orders (TRADE)
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **OrderApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**|  | [default to nothing]
- **countdown_time** | **String**| countdown time, 1000 for 1 second. 0 to cancel the timer | [default to nothing]
- **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**|  | [default to nothing]
- **x_mbx_apikey** | **String**|  | [default to nothing]
-
-### Return type
-
-**Dict{String, Any}**
+[**Vector{AllOrdersResponseInner}**](AllOrdersResponseInner.md)
 
 ### Authorization
 
@@ -147,8 +106,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **cancel_multiple_orders_trade**
-> cancel_multiple_orders_trade(_api::OrderApi; symbol=nothing, order_id_list=nothing, orig_client_order_id_list=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> cancel_multiple_orders_trade(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id_list=nothing, orig_client_order_id_list=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> cancel_multiple_orders_trade(_api::OrderApi; symbol=nothing, order_id_list=nothing, orig_client_order_id_list=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderResponse}, OpenAPI.Clients.ApiResponse <br/>
+> cancel_multiple_orders_trade(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id_list=nothing, orig_client_order_id_list=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderResponse} }, OpenAPI.Clients.ApiResponse
 
 Cancel Multiple Orders (TRADE)
 
@@ -174,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**Vector{OrderResponse}**](OrderResponse.md)
 
 ### Authorization
 
@@ -188,8 +147,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **cancel_order**
-> cancel_order(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> cancel_order(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> cancel_order(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
+> cancel_order(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
 
 Cancel Order
 
@@ -215,7 +174,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**OrderResponse**](OrderResponse.md)
 
 ### Authorization
 
@@ -229,8 +188,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **current_all_open_orders_user_data**
-> current_all_open_orders_user_data(_api::OrderApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> current_all_open_orders_user_data(_api::OrderApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> current_all_open_orders_user_data(_api::OrderApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderResponse}, OpenAPI.Clients.ApiResponse <br/>
+> current_all_open_orders_user_data(_api::OrderApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderResponse} }, OpenAPI.Clients.ApiResponse
 
 Current All Open Orders (USER_DATA)
 
@@ -254,7 +213,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**Vector{OrderResponse}**](OrderResponse.md)
 
 ### Authorization
 
@@ -426,8 +385,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **get_order_modify_history_user_data**
-> get_order_modify_history_user_data(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> get_order_modify_history_user_data(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> get_order_modify_history_user_data(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderAmendmentHistoryResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> get_order_modify_history_user_data(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderAmendmentHistoryResponseInner} }, OpenAPI.Clients.ApiResponse
 
 Get Order Modify History (USER_DATA)
 
@@ -456,7 +415,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**Vector{OrderAmendmentHistoryResponseInner}**](OrderAmendmentHistoryResponseInner.md)
 
 ### Authorization
 
@@ -470,8 +429,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **modify_multiple_orders_trade**
-> modify_multiple_orders_trade(_api::OrderApi; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> modify_multiple_orders_trade(_api::OrderApi, response_stream::Channel; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> modify_multiple_orders_trade(_api::OrderApi; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderResponse}, OpenAPI.Clients.ApiResponse <br/>
+> modify_multiple_orders_trade(_api::OrderApi, response_stream::Channel; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderResponse} }, OpenAPI.Clients.ApiResponse
 
 Modify Multiple Orders (TRADE)
 
@@ -495,7 +454,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**Vector{OrderResponse}**](OrderResponse.md)
 
 ### Authorization
 
@@ -509,8 +468,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **modify_order_trade**
-> modify_order_trade(_api::OrderApi; order_id=nothing, orig_client_order_id=nothing, symbol=nothing, side=nothing, quantity=nothing, price=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> modify_order_trade(_api::OrderApi, response_stream::Channel; order_id=nothing, orig_client_order_id=nothing, symbol=nothing, side=nothing, quantity=nothing, price=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> modify_order_trade(_api::OrderApi; order_id=nothing, orig_client_order_id=nothing, symbol=nothing, side=nothing, quantity=nothing, price=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
+> modify_order_trade(_api::OrderApi, response_stream::Channel; order_id=nothing, orig_client_order_id=nothing, symbol=nothing, side=nothing, quantity=nothing, price=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
 
 Modify Order (TRADE)
 
@@ -539,7 +498,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**OrderResponse**](OrderResponse.md)
 
 ### Authorization
 
@@ -553,8 +512,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **new_order_trade**
-> new_order_trade(_api::OrderApi; symbol=nothing, side=nothing, position_side=nothing, type=nothing, time_in_force=nothing, quantity=nothing, reduce_only=nothing, price=nothing, new_client_order_id=nothing, stop_price=nothing, close_position=nothing, activation_price=nothing, callback_rate=nothing, working_type=nothing, price_protect=nothing, new_order_resp_type=nothing, price_match=nothing, self_trade_prevention_mode=nothing, good_till_date=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> new_order_trade(_api::OrderApi, response_stream::Channel; symbol=nothing, side=nothing, position_side=nothing, type=nothing, time_in_force=nothing, quantity=nothing, reduce_only=nothing, price=nothing, new_client_order_id=nothing, stop_price=nothing, close_position=nothing, activation_price=nothing, callback_rate=nothing, working_type=nothing, price_protect=nothing, new_order_resp_type=nothing, price_match=nothing, self_trade_prevention_mode=nothing, good_till_date=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> new_order_trade(_api::OrderApi; symbol=nothing, side=nothing, position_side=nothing, type=nothing, time_in_force=nothing, quantity=nothing, reduce_only=nothing, price=nothing, new_client_order_id=nothing, stop_price=nothing, close_position=nothing, activation_price=nothing, callback_rate=nothing, working_type=nothing, price_protect=nothing, new_order_resp_type=nothing, price_match=nothing, self_trade_prevention_mode=nothing, good_till_date=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
+> new_order_trade(_api::OrderApi, response_stream::Channel; symbol=nothing, side=nothing, position_side=nothing, type=nothing, time_in_force=nothing, quantity=nothing, reduce_only=nothing, price=nothing, new_client_order_id=nothing, stop_price=nothing, close_position=nothing, activation_price=nothing, callback_rate=nothing, working_type=nothing, price_protect=nothing, new_order_resp_type=nothing, price_match=nothing, self_trade_prevention_mode=nothing, good_till_date=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
 
 New Order (TRADE)
 
@@ -589,14 +548,14 @@ Name | Type | Description  | Notes
  **price_match** | **String**|  | [default to nothing]
  **self_trade_prevention_mode** | **String**|  | [default to nothing]
  **good_till_date** | **String**|  | [default to nothing]
- **recv_window** | **String**|  | [default to nothing]
+ **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
  **timestamp** | **String**|  | [default to nothing]
  **signature** | **String**|  | [default to nothing]
  **x_mbx_apikey** | **String**|  | [default to nothing]
 
 ### Return type
 
-**Dict{String, Any}**
+[**OrderResponse**](OrderResponse.md)
 
 ### Authorization
 
@@ -610,8 +569,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **place_multiple_orders_trade**
-> place_multiple_orders_trade(_api::OrderApi; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> place_multiple_orders_trade(_api::OrderApi, response_stream::Channel; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> place_multiple_orders_trade(_api::OrderApi; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderResponse}, OpenAPI.Clients.ApiResponse <br/>
+> place_multiple_orders_trade(_api::OrderApi, response_stream::Channel; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderResponse} }, OpenAPI.Clients.ApiResponse
 
 Place Multiple Orders (TRADE)
 
@@ -635,7 +594,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**Vector{OrderResponse}**](OrderResponse.md)
 
 ### Authorization
 
@@ -649,8 +608,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **query_current_open_order_user_data**
-> query_current_open_order_user_data(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> query_current_open_order_user_data(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> query_current_open_order_user_data(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
+> query_current_open_order_user_data(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
 
 Query Current Open Order (USER_DATA)
 
@@ -676,7 +635,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**OrderResponse**](OrderResponse.md)
 
 ### Authorization
 
@@ -690,8 +649,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **query_order**
-> query_order(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> query_order(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> query_order(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
+> query_order(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
 
 Query Order
 
@@ -717,7 +676,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**OrderResponse**](OrderResponse.md)
 
 ### Authorization
 

@@ -15,10 +15,12 @@ const _returntypes_account_information_AccountApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
-function _oacinternal_account_information(_api::AccountApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_account_information(_api::AccountApi, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    OpenAPI.validate_param("recv_window", "account_information", :maximum, recv_window, 60000, false)
+
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_account_information_AccountApi, "/fapi/v2/account", [])
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
@@ -31,20 +33,20 @@ end
 Account information
 
 Params:
-- recv_window::String
-- timestamp::String
+- timestamp::Int64 (required)
+- recv_window::Int64
 - signature::String
 - x_mbx_apikey::String
 
 Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
-function account_information(_api::AccountApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_account_information(_api; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function account_information(_api::AccountApi, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_account_information(_api, timestamp; recv_window=recv_window, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function account_information(_api::AccountApi, response_stream::Channel; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_account_information(_api; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function account_information(_api::AccountApi, response_stream::Channel, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_account_information(_api, timestamp; recv_window=recv_window, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -92,6 +94,43 @@ end
 
 function account_trade_list(_api::AccountApi, response_stream::Channel; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_account_trade_list(_api; symbol=symbol, start_time=start_time, end_time=end_time, from_id=from_id, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx, response_stream)
+end
+
+const _returntypes_fapi_v1_api_trading_status_get_AccountApi = Dict{Regex,Type}(
+    Regex("^" * replace("200", "x"=>".") * "\$") => ApiTradingStatusResponse,
+)
+
+function _oacinternal_fapi_v1_api_trading_status_get(_api::AccountApi, timestamp::Int64; symbol=nothing, recv_window=nothing, _mediaType=nothing)
+    OpenAPI.validate_param("recv_window", "fapi_v1_api_trading_status_get", :maximum, recv_window, 60000, false)
+
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_fapi_v1_api_trading_status_get_AccountApi, "/fapi/v1/apiTradingStatus", [])
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
+    return _ctx
+end
+
+@doc raw"""Account API Trading Status
+
+Get current account's trading status on futures. Weight: 1 
+
+Params:
+- timestamp::Int64 (required)
+- symbol::String
+- recv_window::Int64
+
+Return: ApiTradingStatusResponse, OpenAPI.Clients.ApiResponse
+"""
+function fapi_v1_api_trading_status_get(_api::AccountApi, timestamp::Int64; symbol=nothing, recv_window=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_fapi_v1_api_trading_status_get(_api, timestamp; symbol=symbol, recv_window=recv_window, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx)
+end
+
+function fapi_v1_api_trading_status_get(_api::AccountApi, response_stream::Channel, timestamp::Int64; symbol=nothing, recv_window=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_fapi_v1_api_trading_status_get(_api, timestamp; symbol=symbol, recv_window=recv_window, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -339,6 +378,7 @@ end
 
 export account_information
 export account_trade_list
+export fapi_v1_api_trading_status_get
 export future_account_balance
 export get_income_history
 export notional_and_leverage_brackets_user_data
