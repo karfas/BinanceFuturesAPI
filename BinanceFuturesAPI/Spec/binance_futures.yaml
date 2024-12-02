@@ -21,7 +21,7 @@ paths:
       summary: Test Connectivity
       description: |
         Test connectivity to the Rest API.
-      operationId: testConnectivity
+      operationId: ping
       responses:
         '200':
           description: ''
@@ -37,7 +37,7 @@ paths:
       summary: Check Server Time
       description: |
         Check Server Time
-      operationId: checkServerTime
+      operationId: time
       responses:
         '200':
           description: ''
@@ -53,7 +53,7 @@ paths:
       summary: Exchange Information
       description: |
         Exchange Information
-      operationId: exchangeInformation
+      operationId: exchangeInfo
       parameters:
         - name: symbol
           in: query
@@ -84,7 +84,7 @@ paths:
       summary: Order Book
       description: |
         Order Book
-      operationId: orderBook
+      operationId: depth
       parameters:
         - name: symbol
           in: query
@@ -117,7 +117,7 @@ paths:
         - Market
       summary: Recent Trades List
       description: Recent Trades List
-      operationId: recentTradesList
+      operationId: trades
       parameters:
         - name: symbol
           in: query
@@ -150,7 +150,7 @@ paths:
         - Market
       summary: Old Trades Lookup (MARKET_DATA)
       description: This endpoint need your API key only, not the secret key.
-      operationId: oldTradesLookupMarketData
+      operationId: historicalTrades
       parameters:
         - name: symbol
           in: query
@@ -182,7 +182,7 @@ paths:
         - Market
       summary: Compressed/Aggregate Trades List
       description: Get compressed, aggregate trades. Trades that fill at the same time, from the same order, with the same price will have the quantity aggregated.
-      operationId: compressedAggregateTradesList
+      operationId: aggTrades
       parameters:
         - name: symbol
           in: query
@@ -228,7 +228,7 @@ paths:
       description: >-
         Kline/candlestick bars for a symbol. Klines are uniquely identified by
         their open time.
-      operationId: klineCandlestickData
+      operationId: klines
       parameters:
         - name: symbol
           in: query
@@ -657,13 +657,13 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-  /futures/data/topLongShortAccountRatio:
+  /fapi/v1/topLongShortAccountRatio:
     get:
       tags:
         - Market
       summary: Top Trader Long/Short Ratio (Accounts)
       description: Get present open interest of a specific symbol.
-      operationId: topTraderLongShortRatioAccounts
+      operationId: topLongShortAccountRatio
       parameters:
         - name: symbol
           in: query
@@ -699,13 +699,13 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-  /futures/data/topLongShortPositionRatio:
+  /fapi/v1/topLongShortPositionRatio:
     get:
       tags:
         - Market
       summary: Top Trader Long/Short Ratio (Positions)
       description: Get present open interest of a specific symbol.
-      operationId: topTraderLongShortRatioPositions
+      operationId: topLongShortPositionRatio
       parameters:
         - name: symbol
           in: query
@@ -741,13 +741,13 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-  /futures/data/globalLongShortAccountRatio:
+  /fapi/v1/globalLongShortAccountRatio:
     get:
       tags:
         - Market
       summary: Long/Short Ratio
       description: Get present open interest of a specific symbol.
-      operationId: longShortRatio
+      operationId: globalLongShortAccountRatio
       parameters:
         - name: symbol
           in: query
@@ -788,13 +788,13 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-  /futures/data/takerlongshortRatio:
+  /fapi/v1/takerlongshortRatio:
     get:
       tags:
         - Market
       summary: Taker Buy/Sell Volume
       description: Taker Buy/Sell Volume
-      operationId: takerBuySellVolume
+      operationId: takerlongshortRatio
       parameters:
         - name: symbol
           in: query
@@ -842,7 +842,7 @@ paths:
         - Market
       summary: Historical BLVT NAV Kline/Candlestick
       description: Historical BLVT NAV Kline/Candlestick
-      operationId: historicalBlvtNavKlineCandlestick
+      operationId: lvtKlines
       parameters:
         - name: symbol
           in: query
@@ -889,7 +889,7 @@ paths:
         - Market
       summary: Composite Index Symbol Information
       description: Composite Index Symbol Information
-      operationId: compositeIndexSymbolInformation
+      operationId: indexInfo
       parameters:
         - name: symbol
           in: query
@@ -938,7 +938,7 @@ paths:
         - Market
       summary: Query Index Price Constituents
       description: Query Index Price Constituents
-      operationId: queryIndexPriceConstituents
+      operationId: constituents
       parameters:
         - name: symbol
           in: query
@@ -956,7 +956,7 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-  /futures/data/basis:
+  /fapi/v1/basis:
     get:
       tags:
         - Market
@@ -1008,7 +1008,7 @@ paths:
         - Account
       summary: Account information
       description: Account information
-      operationId: accountInformation
+      operationId: account
       parameters:
         - name: recvWindow
           in: query
@@ -1158,7 +1158,7 @@ paths:
         - Account
       summary: Account Trade List
       description: Account Trade List
-      operationId: accountTradeList
+      operationId: userTrades
       parameters:
         - name: symbol
           in: query
@@ -1339,7 +1339,7 @@ paths:
         - Account
       summary: User Commission Rate (USER_DATA)
       description: User Commission Rate (USER_DATA)
-      operationId: userCommissionRateUserData
+      operationId: commissionRate
       parameters:
         - name: symbol
           in: query
@@ -1456,7 +1456,7 @@ paths:
         - Order
       summary: Query Order
       description: Query Order
-      operationId: queryOrder
+      operationId: getOrder
       parameters:
         - name: symbol
           in: query
@@ -1528,7 +1528,7 @@ paths:
 
 
         Weight: 1
-      operationId: modifyOrderTrade
+      operationId: putOrder
       parameters:
         - name: orderId
           in: query
@@ -1593,7 +1593,7 @@ paths:
         - Order
       summary: New Order (TRADE)
       description: https://binance-docs.github.io/apidocs/futures/en/#new-order-trade
-      operationId: newOrderTrade
+      operationId: postOrder
       parameters:
         - name: symbol
           in: query
@@ -1733,7 +1733,7 @@ paths:
         - Order
       summary: Cancel Order
       description: Cancel Order
-      operationId: cancelOrder
+      operationId: deleteOrder
       parameters:
         - name: symbol
           in: query
@@ -1783,7 +1783,7 @@ paths:
         - Order
       summary: Modify Multiple Orders (TRADE)
       description: Modify Multiple Orders (TRADE)
-      operationId: modifyMultipleOrdersTrade
+      operationId: putBatchOrders
       parameters:
         - name: batchOrders
           in: query
@@ -1827,7 +1827,7 @@ paths:
         - Order
       summary: Place Multiple Orders (TRADE)
       description: Place Multiple Orders (TRADE)
-      operationId: placeMultipleOrdersTrade
+      operationId: postBatchOrders
       parameters:
         - name: batchOrders
           in: query
@@ -1870,7 +1870,7 @@ paths:
         - Order
       summary: Cancel Multiple Orders (TRADE)
       description: Cancel Multiple Orders (TRADE)
-      operationId: cancelMultipleOrdersTrade
+      operationId: deleteBatchOrders
       parameters:
         - name: symbol
           in: query
@@ -1929,7 +1929,7 @@ paths:
 
 
         Weight: 1
-      operationId: getOrderModifyHistoryUserData
+      operationId: getOrderAmendment
       parameters:
         - name: symbol
           in: query
@@ -2007,7 +2007,7 @@ paths:
         The time between startTime and endTime can not be longer than 1 year
 
         Weight: 5
-      operationId: getDownloadIdForFuturesOrderHistoryUserData
+      operationId: getOrderDownloadId
       parameters:
         - name: startTime
           in: query
@@ -2061,7 +2061,7 @@ paths:
       description: |-
         Download link expiration: 24h
         Weight: 5
-      operationId: getFuturesOrderHistoryDownloadLinkByIdUserData
+      operationId: getOrderDownloadLinkId
       parameters:
         - name: downloadId
           in: query
@@ -2113,7 +2113,7 @@ paths:
         The time between startTime and endTime can not be longer than 1 year
 
         Weight: 5
-      operationId: getDownloadIdForFuturesTradeHistoryUserData
+      operationId: getTradeDownloadId
       parameters:
         - name: startTime
           in: query
@@ -2167,7 +2167,7 @@ paths:
       description: |-
         Download link expiration: 24h
         Weight: 5
-      operationId: getFuturesTradeDownloadLinkByIdUserData
+      operationId: getTradeDownloadLinkId
       parameters:
         - name: downloadId
           in: query
@@ -2213,7 +2213,7 @@ paths:
         - Order
       summary: Cancel All Open Orders
       description: Cancel All Open Orders
-      operationId: cancelAllOpenOrders
+      operationId: deleteAllOpenOrders
       parameters:
         - name: symbol
           in: query
@@ -2255,7 +2255,7 @@ paths:
         - Order
       summary: Current All Open Orders (USER_DATA)
       description: Current All Open Orders (USER_DATA)
-      operationId: currentAllOpenOrdersUserData
+      operationId: getOpenOrders
       parameters:
         - name: symbol
           in: query
@@ -2296,7 +2296,7 @@ paths:
         - Order
       summary: Query Current Open Order (USER_DATA)
       description: Query Current Open Order (USER_DATA)
-      operationId: queryCurrentOpenOrderUserData
+      operationId: getOpenOrder
       parameters:
         - name: symbol
           in: query
@@ -2346,7 +2346,7 @@ paths:
         - Order
       summary: All Orders
       description: All Orders
-      operationId: allOrders
+      operationId: getAllOrders
       parameters:
         - name: symbol
           in: query
@@ -2408,7 +2408,7 @@ paths:
         - Order
       summary: User's Force Orders (USER_DATA)
       description: User's Force Orders (USER_DATA)
-      operationId: userSForceOrdersUserData
+      operationId: getUserSForceOrders
       parameters:
         - name: symbol
           in: query
@@ -2470,7 +2470,7 @@ paths:
         - Trade
       summary: Change Margin Type
       description: Change Margin Type
-      operationId: changeMarginType
+      operationId: postMarginType
       parameters:
         - name: symbol
           in: query
@@ -2522,7 +2522,7 @@ paths:
         - Trade
       summary: Change Initial Leverage
       description: Change Initial Leverage
-      operationId: changeInitialLeverage
+      operationId: postLeverage
       parameters:
         - name: symbol
           in: query
@@ -2575,7 +2575,7 @@ paths:
         - Trade
       summary: Modify Isolated Position Margin
       description: Modify Isolated Position Margin
-      operationId: modifyIsolatedPositionMargin
+      operationId: postPositionMargin
       parameters:
         - name: symbol
           in: query
@@ -2638,7 +2638,7 @@ paths:
         - Trade
       summary: Get Postion Margin Change History
       description: Get Postion Margin Change History
-      operationId: getPostionMarginChangeHistory
+      operationId: getPositionMarginHistory
       parameters:
         - name: symbol
           in: query
@@ -2703,7 +2703,7 @@ paths:
         - Trade
       summary: Get Current Position Mode（USER_DATA）
       description: Get Current Position Mode（USER_DATA）
-      operationId: getCurrentPositionModeUserData
+      operationId: getPositionSideDual
       parameters:
         - name: recvWindow
           in: query
@@ -2738,7 +2738,7 @@ paths:
         - Trade
       summary: Change Position Mode（TRADE）
       description: Change Position Mode（TRADE）
-      operationId: changePositionModeTrade
+      operationId: postPositionSideDual
       parameters:
         - name: dualSidePosition
           in: query
@@ -2821,7 +2821,7 @@ paths:
         - Data Stream
       summary: Renew Listen Key
       description: Renew Listen Key
-      operationId: renewListenKey
+      operationId: putListenKey
       parameters:
         - name: x-mbx-apikey
           in: header
@@ -2840,7 +2840,7 @@ paths:
         - Data Stream
       summary: Create New Listen Key
       description: Create New Listen Key
-      operationId: createNewListenKey
+      operationId: postListenKey
       parameters:
         - name: x-mbx-apikey
           in: header
@@ -2879,7 +2879,7 @@ paths:
         - Portfolio Margin
       summary: Portfolio Margin Account Information
       description: Portfolio Margin Account Information
-      operationId: portfolioMarginAccountInformation
+      operationId: getPMAccountInfo
       parameters:
         - name: asset
           in: query

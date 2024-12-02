@@ -11,12 +11,12 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
 basepath(::Type{ PortfolioMarginApi }) = "https://fapi.binance.com"
 
-const _returntypes_portfolio_margin_account_information_PortfolioMarginApi = Dict{Regex,Type}(
+const _returntypes_get_p_m_account_info_PortfolioMarginApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => PortfolioMarginAccountResponse,
 )
 
-function _oacinternal_portfolio_margin_account_information(_api::PortfolioMarginApi; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_portfolio_margin_account_information_PortfolioMarginApi, "/fapi/v1/pmAccountInfo", [])
+function _oacinternal_get_p_m_account_info(_api::PortfolioMarginApi; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_p_m_account_info_PortfolioMarginApi, "/fapi/v1/pmAccountInfo", [])
     OpenAPI.Clients.set_param(_ctx.query, "asset", asset)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
@@ -40,14 +40,14 @@ Params:
 
 Return: PortfolioMarginAccountResponse, OpenAPI.Clients.ApiResponse
 """
-function portfolio_margin_account_information(_api::PortfolioMarginApi; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_portfolio_margin_account_information(_api; asset=asset, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function get_p_m_account_info(_api::PortfolioMarginApi; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_get_p_m_account_info(_api; asset=asset, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function portfolio_margin_account_information(_api::PortfolioMarginApi, response_stream::Channel; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_portfolio_margin_account_information(_api; asset=asset, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function get_p_m_account_info(_api::PortfolioMarginApi, response_stream::Channel; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_get_p_m_account_info(_api; asset=asset, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-export portfolio_margin_account_information
+export get_p_m_account_info

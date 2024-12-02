@@ -4,20 +4,20 @@ All URIs are relative to *https://fapi.binance.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**account_information**](AccountApi.md#account_information) | **GET** /fapi/v2/account | Account information
-[**account_trade_list**](AccountApi.md#account_trade_list) | **GET** /fapi/v1/userTrades | Account Trade List
+[**account**](AccountApi.md#account) | **GET** /fapi/v2/account | Account information
+[**commission_rate**](AccountApi.md#commission_rate) | **GET** /fapi/v1/commissionRate | User Commission Rate (USER_DATA)
 [**fapi_v1_api_trading_status_get**](AccountApi.md#fapi_v1_api_trading_status_get) | **GET** /fapi/v1/apiTradingStatus | Account API Trading Status
 [**future_account_balance**](AccountApi.md#future_account_balance) | **GET** /fapi/v2/balance | Future Account Balance
 [**get_income_history**](AccountApi.md#get_income_history) | **GET** /fapi/v1/income | Get Income History
 [**notional_and_leverage_brackets_user_data**](AccountApi.md#notional_and_leverage_brackets_user_data) | **GET** /fapi/v1/leverageBracket | Notional and Leverage Brackets (USER_DATA)
 [**position_adl_quantile_estimation_user_data**](AccountApi.md#position_adl_quantile_estimation_user_data) | **GET** /fapi/v1/adlQuantile | Position ADL Quantile Estimation (USER_DATA)
 [**position_information**](AccountApi.md#position_information) | **GET** /fapi/v2/positionRisk | Position Information
-[**user_commission_rate_user_data**](AccountApi.md#user_commission_rate_user_data) | **GET** /fapi/v1/commissionRate | User Commission Rate (USER_DATA)
+[**user_trades**](AccountApi.md#user_trades) | **GET** /fapi/v1/userTrades | Account Trade List
 
 
-# **account_information**
-> account_information(_api::AccountApi, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> account_information(_api::AccountApi, response_stream::Channel, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+# **account**
+> account(_api::AccountApi, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> account(_api::AccountApi, response_stream::Channel, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
 
 Account information
 
@@ -53,13 +53,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **account_trade_list**
-> account_trade_list(_api::AccountApi; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> account_trade_list(_api::AccountApi, response_stream::Channel; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+# **commission_rate**
+> commission_rate(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> commission_rate(_api::AccountApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
 
-Account Trade List
+User Commission Rate (USER_DATA)
 
-Account Trade List
+User Commission Rate (USER_DATA)
 
 ### Required Parameters
 
@@ -72,10 +72,6 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**|  | [default to nothing]
- **start_time** | **String**|  | [default to nothing]
- **end_time** | **String**|  | [default to nothing]
- **from_id** | **String**|  | [default to nothing]
- **limit** | **String**|  | [default to nothing]
  **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
  **timestamp** | **String**|  | [default to nothing]
  **signature** | **String**|  | [default to nothing]
@@ -332,13 +328,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **user_commission_rate_user_data**
-> user_commission_rate_user_data(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> user_commission_rate_user_data(_api::AccountApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+# **user_trades**
+> user_trades(_api::AccountApi; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> user_trades(_api::AccountApi, response_stream::Channel; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
 
-User Commission Rate (USER_DATA)
+Account Trade List
 
-User Commission Rate (USER_DATA)
+Account Trade List
 
 ### Required Parameters
 
@@ -351,6 +347,10 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**|  | [default to nothing]
+ **start_time** | **String**|  | [default to nothing]
+ **end_time** | **String**|  | [default to nothing]
+ **from_id** | **String**|  | [default to nothing]
+ **limit** | **String**|  | [default to nothing]
  **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
  **timestamp** | **String**|  | [default to nothing]
  **signature** | **String**|  | [default to nothing]

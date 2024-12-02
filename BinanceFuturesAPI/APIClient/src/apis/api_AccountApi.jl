@@ -11,14 +11,14 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
 basepath(::Type{ AccountApi }) = "https://fapi.binance.com"
 
-const _returntypes_account_information_AccountApi = Dict{Regex,Type}(
+const _returntypes_account_AccountApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
-function _oacinternal_account_information(_api::AccountApi, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    OpenAPI.validate_param("recv_window", "account_information", :maximum, recv_window, 60000, false)
+function _oacinternal_account(_api::AccountApi, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    OpenAPI.validate_param("recv_window", "account", :maximum, recv_window, 60000, false)
 
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_account_information_AccountApi, "/fapi/v2/account", [])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_account_AccountApi, "/fapi/v2/account", [])
     OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
@@ -40,27 +40,23 @@ Params:
 
 Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
-function account_information(_api::AccountApi, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_account_information(_api, timestamp; recv_window=recv_window, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function account(_api::AccountApi, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_account(_api, timestamp; recv_window=recv_window, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function account_information(_api::AccountApi, response_stream::Channel, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_account_information(_api, timestamp; recv_window=recv_window, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function account(_api::AccountApi, response_stream::Channel, timestamp::Int64; recv_window=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_account(_api, timestamp; recv_window=recv_window, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-const _returntypes_account_trade_list_AccountApi = Dict{Regex,Type}(
+const _returntypes_commission_rate_AccountApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
-function _oacinternal_account_trade_list(_api::AccountApi; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_account_trade_list_AccountApi, "/fapi/v1/userTrades", [])
+function _oacinternal_commission_rate(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_commission_rate_AccountApi, "/fapi/v1/commissionRate", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "fromId", from_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
@@ -70,16 +66,12 @@ function _oacinternal_account_trade_list(_api::AccountApi; symbol=nothing, start
     return _ctx
 end
 
-@doc raw"""Account Trade List
+@doc raw"""User Commission Rate (USER_DATA)
 
-Account Trade List
+User Commission Rate (USER_DATA)
 
 Params:
 - symbol::String
-- start_time::String
-- end_time::String
-- from_id::String
-- limit::String
 - recv_window::String
 - timestamp::String
 - signature::String
@@ -87,13 +79,13 @@ Params:
 
 Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
-function account_trade_list(_api::AccountApi; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_account_trade_list(_api; symbol=symbol, start_time=start_time, end_time=end_time, from_id=from_id, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function commission_rate(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_commission_rate(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function account_trade_list(_api::AccountApi, response_stream::Channel; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_account_trade_list(_api; symbol=symbol, start_time=start_time, end_time=end_time, from_id=from_id, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function commission_rate(_api::AccountApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_commission_rate(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -337,13 +329,17 @@ function position_information(_api::AccountApi, response_stream::Channel; symbol
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-const _returntypes_user_commission_rate_user_data_AccountApi = Dict{Regex,Type}(
+const _returntypes_user_trades_AccountApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
-function _oacinternal_user_commission_rate_user_data(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_user_commission_rate_user_data_AccountApi, "/fapi/v1/commissionRate", [])
+function _oacinternal_user_trades(_api::AccountApi; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_user_trades_AccountApi, "/fapi/v1/userTrades", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "fromId", from_id)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
@@ -353,12 +349,16 @@ function _oacinternal_user_commission_rate_user_data(_api::AccountApi; symbol=no
     return _ctx
 end
 
-@doc raw"""User Commission Rate (USER_DATA)
+@doc raw"""Account Trade List
 
-User Commission Rate (USER_DATA)
+Account Trade List
 
 Params:
 - symbol::String
+- start_time::String
+- end_time::String
+- from_id::String
+- limit::String
 - recv_window::String
 - timestamp::String
 - signature::String
@@ -366,22 +366,22 @@ Params:
 
 Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
-function user_commission_rate_user_data(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_user_commission_rate_user_data(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function user_trades(_api::AccountApi; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_user_trades(_api; symbol=symbol, start_time=start_time, end_time=end_time, from_id=from_id, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function user_commission_rate_user_data(_api::AccountApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_user_commission_rate_user_data(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function user_trades(_api::AccountApi, response_stream::Channel; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_user_trades(_api; symbol=symbol, start_time=start_time, end_time=end_time, from_id=from_id, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-export account_information
-export account_trade_list
+export account
+export commission_rate
 export fapi_v1_api_trading_status_get
 export future_account_balance
 export get_income_history
 export notional_and_leverage_brackets_user_data
 export position_adl_quantile_estimation_user_data
 export position_information
-export user_commission_rate_user_data
+export user_trades

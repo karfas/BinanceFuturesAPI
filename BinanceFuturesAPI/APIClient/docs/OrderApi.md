@@ -4,28 +4,149 @@ All URIs are relative to *https://fapi.binance.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**all_orders**](OrderApi.md#all_orders) | **GET** /fapi/v1/allOrders | All Orders
-[**cancel_all_open_orders**](OrderApi.md#cancel_all_open_orders) | **DELETE** /fapi/v1/allOpenOrders | Cancel All Open Orders
-[**cancel_multiple_orders_trade**](OrderApi.md#cancel_multiple_orders_trade) | **DELETE** /fapi/v1/batchOrders | Cancel Multiple Orders (TRADE)
-[**cancel_order**](OrderApi.md#cancel_order) | **DELETE** /fapi/v1/order | Cancel Order
-[**current_all_open_orders_user_data**](OrderApi.md#current_all_open_orders_user_data) | **GET** /fapi/v1/openOrders | Current All Open Orders (USER_DATA)
-[**get_download_id_for_futures_order_history_user_data**](OrderApi.md#get_download_id_for_futures_order_history_user_data) | **GET** /fapi/v1/order/asyn | Get Download Id For Futures Order History (USER_DATA)
-[**get_download_id_for_futures_trade_history_user_data**](OrderApi.md#get_download_id_for_futures_trade_history_user_data) | **GET** /fapi/v1/trade/asyn | Get Download Id For Futures Trade History (USER_DATA)
-[**get_futures_order_history_download_link_by_id_user_data**](OrderApi.md#get_futures_order_history_download_link_by_id_user_data) | **GET** /fapi/v1/order/asyn/id | Get Futures Order History Download Link by Id (USER_DATA)
-[**get_futures_trade_download_link_by_id_user_data**](OrderApi.md#get_futures_trade_download_link_by_id_user_data) | **GET** /fapi/v1/trade/asyn/id | Get Futures Trade Download Link by Id (USER_DATA)
-[**get_order_modify_history_user_data**](OrderApi.md#get_order_modify_history_user_data) | **GET** /fapi/v1/orderAmendment | Get Order Modify History (USER_DATA)
-[**modify_multiple_orders_trade**](OrderApi.md#modify_multiple_orders_trade) | **PUT** /fapi/v1/batchOrders | Modify Multiple Orders (TRADE)
-[**modify_order_trade**](OrderApi.md#modify_order_trade) | **PUT** /fapi/v1/order | Modify Order (TRADE)
-[**new_order_trade**](OrderApi.md#new_order_trade) | **POST** /fapi/v1/order | New Order (TRADE)
-[**place_multiple_orders_trade**](OrderApi.md#place_multiple_orders_trade) | **POST** /fapi/v1/batchOrders | Place Multiple Orders (TRADE)
-[**query_current_open_order_user_data**](OrderApi.md#query_current_open_order_user_data) | **GET** /fapi/v1/openOrder | Query Current Open Order (USER_DATA)
-[**query_order**](OrderApi.md#query_order) | **GET** /fapi/v1/order | Query Order
-[**user_s_force_orders_user_data**](OrderApi.md#user_s_force_orders_user_data) | **GET** /fapi/v1/forceOrders | User&#39;s Force Orders (USER_DATA)
+[**delete_all_open_orders**](OrderApi.md#delete_all_open_orders) | **DELETE** /fapi/v1/allOpenOrders | Cancel All Open Orders
+[**delete_batch_orders**](OrderApi.md#delete_batch_orders) | **DELETE** /fapi/v1/batchOrders | Cancel Multiple Orders (TRADE)
+[**delete_order**](OrderApi.md#delete_order) | **DELETE** /fapi/v1/order | Cancel Order
+[**get_all_orders**](OrderApi.md#get_all_orders) | **GET** /fapi/v1/allOrders | All Orders
+[**get_open_order**](OrderApi.md#get_open_order) | **GET** /fapi/v1/openOrder | Query Current Open Order (USER_DATA)
+[**get_open_orders**](OrderApi.md#get_open_orders) | **GET** /fapi/v1/openOrders | Current All Open Orders (USER_DATA)
+[**get_order**](OrderApi.md#get_order) | **GET** /fapi/v1/order | Query Order
+[**get_order_amendment**](OrderApi.md#get_order_amendment) | **GET** /fapi/v1/orderAmendment | Get Order Modify History (USER_DATA)
+[**get_order_download_id**](OrderApi.md#get_order_download_id) | **GET** /fapi/v1/order/asyn | Get Download Id For Futures Order History (USER_DATA)
+[**get_order_download_link_id**](OrderApi.md#get_order_download_link_id) | **GET** /fapi/v1/order/asyn/id | Get Futures Order History Download Link by Id (USER_DATA)
+[**get_trade_download_id**](OrderApi.md#get_trade_download_id) | **GET** /fapi/v1/trade/asyn | Get Download Id For Futures Trade History (USER_DATA)
+[**get_trade_download_link_id**](OrderApi.md#get_trade_download_link_id) | **GET** /fapi/v1/trade/asyn/id | Get Futures Trade Download Link by Id (USER_DATA)
+[**get_user_s_force_orders**](OrderApi.md#get_user_s_force_orders) | **GET** /fapi/v1/forceOrders | User&#39;s Force Orders (USER_DATA)
+[**post_batch_orders**](OrderApi.md#post_batch_orders) | **POST** /fapi/v1/batchOrders | Place Multiple Orders (TRADE)
+[**post_order**](OrderApi.md#post_order) | **POST** /fapi/v1/order | New Order (TRADE)
+[**put_batch_orders**](OrderApi.md#put_batch_orders) | **PUT** /fapi/v1/batchOrders | Modify Multiple Orders (TRADE)
+[**put_order**](OrderApi.md#put_order) | **PUT** /fapi/v1/order | Modify Order (TRADE)
 
 
-# **all_orders**
-> all_orders(_api::OrderApi; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{AllOrdersResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> all_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{AllOrdersResponseInner} }, OpenAPI.Clients.ApiResponse
+# **delete_all_open_orders**
+> delete_all_open_orders(_api::OrderApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> delete_all_open_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+
+Cancel All Open Orders
+
+Cancel All Open Orders
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **OrderApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**|  | [default to nothing]
+ **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
+ **timestamp** | **String**|  | [default to nothing]
+ **signature** | **String**|  | [default to nothing]
+ **x_mbx_apikey** | **String**|  | [default to nothing]
+
+### Return type
+
+**Dict{String, Any}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **delete_batch_orders**
+> delete_batch_orders(_api::OrderApi; symbol=nothing, order_id_list=nothing, orig_client_order_id_list=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderResponse}, OpenAPI.Clients.ApiResponse <br/>
+> delete_batch_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id_list=nothing, orig_client_order_id_list=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderResponse} }, OpenAPI.Clients.ApiResponse
+
+Cancel Multiple Orders (TRADE)
+
+Cancel Multiple Orders (TRADE)
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **OrderApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**|  | [default to nothing]
+ **order_id_list** | **String**| [id,id]  no space in between | [default to nothing]
+ **orig_client_order_id_list** | **String**|  | [default to nothing]
+ **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
+ **timestamp** | **String**|  | [default to nothing]
+ **signature** | **String**|  | [default to nothing]
+ **x_mbx_apikey** | **String**|  | [default to nothing]
+
+### Return type
+
+[**Vector{OrderResponse}**](OrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **delete_order**
+> delete_order(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
+> delete_order(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
+
+Cancel Order
+
+Cancel Order
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **OrderApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**|  | [default to nothing]
+ **order_id** | **String**|  | [default to nothing]
+ **orig_client_order_id** | **String**|  | [default to nothing]
+ **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
+ **timestamp** | **String**|  | [default to nothing]
+ **signature** | **String**|  | [default to nothing]
+ **x_mbx_apikey** | **String**|  | [default to nothing]
+
+### Return type
+
+[**OrderResponse**](OrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **get_all_orders**
+> get_all_orders(_api::OrderApi; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{AllOrdersResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> get_all_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{AllOrdersResponseInner} }, OpenAPI.Clients.ApiResponse
 
 All Orders
 
@@ -66,93 +187,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **cancel_all_open_orders**
-> cancel_all_open_orders(_api::OrderApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> cancel_all_open_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+# **get_open_order**
+> get_open_order(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
+> get_open_order(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
 
-Cancel All Open Orders
+Query Current Open Order (USER_DATA)
 
-Cancel All Open Orders
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **OrderApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**|  | [default to nothing]
- **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**|  | [default to nothing]
- **x_mbx_apikey** | **String**|  | [default to nothing]
-
-### Return type
-
-**Dict{String, Any}**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **cancel_multiple_orders_trade**
-> cancel_multiple_orders_trade(_api::OrderApi; symbol=nothing, order_id_list=nothing, orig_client_order_id_list=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderResponse}, OpenAPI.Clients.ApiResponse <br/>
-> cancel_multiple_orders_trade(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id_list=nothing, orig_client_order_id_list=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderResponse} }, OpenAPI.Clients.ApiResponse
-
-Cancel Multiple Orders (TRADE)
-
-Cancel Multiple Orders (TRADE)
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **OrderApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**|  | [default to nothing]
- **order_id_list** | **String**| [id,id]  no space in between | [default to nothing]
- **orig_client_order_id_list** | **String**|  | [default to nothing]
- **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**|  | [default to nothing]
- **x_mbx_apikey** | **String**|  | [default to nothing]
-
-### Return type
-
-[**Vector{OrderResponse}**](OrderResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **cancel_order**
-> cancel_order(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
-> cancel_order(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
-
-Cancel Order
-
-Cancel Order
+Query Current Open Order (USER_DATA)
 
 ### Required Parameters
 
@@ -187,9 +228,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **current_all_open_orders_user_data**
-> current_all_open_orders_user_data(_api::OrderApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderResponse}, OpenAPI.Clients.ApiResponse <br/>
-> current_all_open_orders_user_data(_api::OrderApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderResponse} }, OpenAPI.Clients.ApiResponse
+# **get_open_orders**
+> get_open_orders(_api::OrderApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderResponse}, OpenAPI.Clients.ApiResponse <br/>
+> get_open_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderResponse} }, OpenAPI.Clients.ApiResponse
 
 Current All Open Orders (USER_DATA)
 
@@ -226,13 +267,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **get_download_id_for_futures_order_history_user_data**
-> get_download_id_for_futures_order_history_user_data(_api::OrderApi; start_time=nothing, end_time=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> get_download_id_for_futures_order_history_user_data(_api::OrderApi, response_stream::Channel; start_time=nothing, end_time=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+# **get_order**
+> get_order(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
+> get_order(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
 
-Get Download Id For Futures Order History (USER_DATA)
+Query Order
 
-Request Limitation is 10 times per month, shared by front end download page and rest api The time between startTime and endTime can not be longer than 1 year Weight: 5
+Query Order
 
 ### Required Parameters
 
@@ -244,16 +285,17 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start_time** | **String**| Timestamp in ms | [default to nothing]
- **end_time** | **String**| Timestamp in ms | [default to nothing]
+ **symbol** | **String**|  | [default to nothing]
+ **order_id** | **String**|  | [default to nothing]
+ **orig_client_order_id** | **String**|  | [default to nothing]
  **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
  **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**| Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode. | [default to nothing]
+ **signature** | **String**|  | [default to nothing]
  **x_mbx_apikey** | **String**|  | [default to nothing]
 
 ### Return type
 
-**Dict{String, Any}**
+[**OrderResponse**](OrderResponse.md)
 
 ### Authorization
 
@@ -266,127 +308,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **get_download_id_for_futures_trade_history_user_data**
-> get_download_id_for_futures_trade_history_user_data(_api::OrderApi; start_time=nothing, end_time=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> get_download_id_for_futures_trade_history_user_data(_api::OrderApi, response_stream::Channel; start_time=nothing, end_time=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
-
-Get Download Id For Futures Trade History (USER_DATA)
-
-Request Limitation is 5 times per month, shared by front end download page and rest api The time between startTime and endTime can not be longer than 1 year Weight: 5
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **OrderApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **start_time** | **String**| Timestamp in ms | [default to nothing]
- **end_time** | **String**| Timestamp in ms | [default to nothing]
- **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**| Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode. | [default to nothing]
- **x_mbx_apikey** | **String**|  | [default to nothing]
-
-### Return type
-
-**Dict{String, Any}**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **get_futures_order_history_download_link_by_id_user_data**
-> get_futures_order_history_download_link_by_id_user_data(_api::OrderApi; download_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> get_futures_order_history_download_link_by_id_user_data(_api::OrderApi, response_stream::Channel; download_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
-
-Get Futures Order History Download Link by Id (USER_DATA)
-
-Download link expiration: 24h Weight: 5
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **OrderApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **download_id** | **String**| get by download id api | [default to nothing]
- **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**| Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode. | [default to nothing]
- **x_mbx_apikey** | **String**|  | [default to nothing]
-
-### Return type
-
-**Dict{String, Any}**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **get_futures_trade_download_link_by_id_user_data**
-> get_futures_trade_download_link_by_id_user_data(_api::OrderApi; download_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> get_futures_trade_download_link_by_id_user_data(_api::OrderApi, response_stream::Channel; download_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
-
-Get Futures Trade Download Link by Id (USER_DATA)
-
-Download link expiration: 24h Weight: 5
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **OrderApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **download_id** | **String**| Timestamp in ms | [default to nothing]
- **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**| Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode. | [default to nothing]
- **x_mbx_apikey** | **String**|  | [default to nothing]
-
-### Return type
-
-**Dict{String, Any}**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **get_order_modify_history_user_data**
-> get_order_modify_history_user_data(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderAmendmentHistoryResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> get_order_modify_history_user_data(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderAmendmentHistoryResponseInner} }, OpenAPI.Clients.ApiResponse
+# **get_order_amendment**
+> get_order_amendment(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderAmendmentHistoryResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> get_order_amendment(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderAmendmentHistoryResponseInner} }, OpenAPI.Clients.ApiResponse
 
 Get Order Modify History (USER_DATA)
 
@@ -428,13 +352,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **modify_multiple_orders_trade**
-> modify_multiple_orders_trade(_api::OrderApi; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderResponse}, OpenAPI.Clients.ApiResponse <br/>
-> modify_multiple_orders_trade(_api::OrderApi, response_stream::Channel; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderResponse} }, OpenAPI.Clients.ApiResponse
+# **get_order_download_id**
+> get_order_download_id(_api::OrderApi; start_time=nothing, end_time=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> get_order_download_id(_api::OrderApi, response_stream::Channel; start_time=nothing, end_time=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
 
-Modify Multiple Orders (TRADE)
+Get Download Id For Futures Order History (USER_DATA)
 
-Modify Multiple Orders (TRADE)
+Request Limitation is 10 times per month, shared by front end download page and rest api The time between startTime and endTime can not be longer than 1 year Weight: 5
 
 ### Required Parameters
 
@@ -446,7 +370,208 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **batch_orders** | **String**| order list. Max 5 orders | [default to nothing]
+ **start_time** | **String**| Timestamp in ms | [default to nothing]
+ **end_time** | **String**| Timestamp in ms | [default to nothing]
+ **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
+ **timestamp** | **String**|  | [default to nothing]
+ **signature** | **String**| Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode. | [default to nothing]
+ **x_mbx_apikey** | **String**|  | [default to nothing]
+
+### Return type
+
+**Dict{String, Any}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **get_order_download_link_id**
+> get_order_download_link_id(_api::OrderApi; download_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> get_order_download_link_id(_api::OrderApi, response_stream::Channel; download_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+
+Get Futures Order History Download Link by Id (USER_DATA)
+
+Download link expiration: 24h Weight: 5
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **OrderApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **download_id** | **String**| get by download id api | [default to nothing]
+ **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
+ **timestamp** | **String**|  | [default to nothing]
+ **signature** | **String**| Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode. | [default to nothing]
+ **x_mbx_apikey** | **String**|  | [default to nothing]
+
+### Return type
+
+**Dict{String, Any}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **get_trade_download_id**
+> get_trade_download_id(_api::OrderApi; start_time=nothing, end_time=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> get_trade_download_id(_api::OrderApi, response_stream::Channel; start_time=nothing, end_time=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+
+Get Download Id For Futures Trade History (USER_DATA)
+
+Request Limitation is 5 times per month, shared by front end download page and rest api The time between startTime and endTime can not be longer than 1 year Weight: 5
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **OrderApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start_time** | **String**| Timestamp in ms | [default to nothing]
+ **end_time** | **String**| Timestamp in ms | [default to nothing]
+ **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
+ **timestamp** | **String**|  | [default to nothing]
+ **signature** | **String**| Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode. | [default to nothing]
+ **x_mbx_apikey** | **String**|  | [default to nothing]
+
+### Return type
+
+**Dict{String, Any}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **get_trade_download_link_id**
+> get_trade_download_link_id(_api::OrderApi; download_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> get_trade_download_link_id(_api::OrderApi, response_stream::Channel; download_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+
+Get Futures Trade Download Link by Id (USER_DATA)
+
+Download link expiration: 24h Weight: 5
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **OrderApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **download_id** | **String**| Timestamp in ms | [default to nothing]
+ **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
+ **timestamp** | **String**|  | [default to nothing]
+ **signature** | **String**| Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode. | [default to nothing]
+ **x_mbx_apikey** | **String**|  | [default to nothing]
+
+### Return type
+
+**Dict{String, Any}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **get_user_s_force_orders**
+> get_user_s_force_orders(_api::OrderApi; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> get_user_s_force_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+
+User's Force Orders (USER_DATA)
+
+User's Force Orders (USER_DATA)
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **OrderApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**|  | [default to nothing]
+ **auto_close_type** | **String**|  | [default to nothing]
+ **start_time** | **String**|  | [default to nothing]
+ **end_time** | **String**|  | [default to nothing]
+ **limit** | **String**|  | [default to nothing]
+ **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
+ **timestamp** | **String**|  | [default to nothing]
+ **signature** | **String**|  | [default to nothing]
+ **x_mbx_apikey** | **String**|  | [default to nothing]
+
+### Return type
+
+**Dict{String, Any}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **post_batch_orders**
+> post_batch_orders(_api::OrderApi; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderResponse}, OpenAPI.Clients.ApiResponse <br/>
+> post_batch_orders(_api::OrderApi, response_stream::Channel; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderResponse} }, OpenAPI.Clients.ApiResponse
+
+Place Multiple Orders (TRADE)
+
+Place Multiple Orders (TRADE)
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **OrderApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batch_orders** | **String**|  | [default to nothing]
  **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
  **timestamp** | **String**|  | [default to nothing]
  **signature** | **String**| Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode. | [default to nothing]
@@ -467,53 +592,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **modify_order_trade**
-> modify_order_trade(_api::OrderApi; order_id=nothing, orig_client_order_id=nothing, symbol=nothing, side=nothing, quantity=nothing, price=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
-> modify_order_trade(_api::OrderApi, response_stream::Channel; order_id=nothing, orig_client_order_id=nothing, symbol=nothing, side=nothing, quantity=nothing, price=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
-
-Modify Order (TRADE)
-
-Either orderId or origClientOrderId must be sent, and the orderId will prevail if both are sent. Both quantity and price must be sent, which is different from dapi modify order endpoint. When the new quantity or price doesn't satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order will stay as it is. However the order will be cancelled by the amendment in the following situations: - when the order is in partially filled status and the new quantity <= executedQty - When the order is GTX and the new price will cause it to be executed immediately One order can only be modfied for less than 10000 times  Weight: 1
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **OrderApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **order_id** | **String**|  | [default to nothing]
- **orig_client_order_id** | **String**|  | [default to nothing]
- **symbol** | **String**|  | [default to nothing]
- **side** | **String**|  | [default to nothing]
- **quantity** | **String**|  | [default to nothing]
- **price** | **String**|  | [default to nothing]
- **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**|  | [default to nothing]
- **x_mbx_apikey** | **String**|  | [default to nothing]
-
-### Return type
-
-[**OrderResponse**](OrderResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **new_order_trade**
-> new_order_trade(_api::OrderApi; symbol=nothing, side=nothing, position_side=nothing, type=nothing, time_in_force=nothing, quantity=nothing, reduce_only=nothing, price=nothing, new_client_order_id=nothing, stop_price=nothing, close_position=nothing, activation_price=nothing, callback_rate=nothing, working_type=nothing, price_protect=nothing, new_order_resp_type=nothing, price_match=nothing, self_trade_prevention_mode=nothing, good_till_date=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
-> new_order_trade(_api::OrderApi, response_stream::Channel; symbol=nothing, side=nothing, position_side=nothing, type=nothing, time_in_force=nothing, quantity=nothing, reduce_only=nothing, price=nothing, new_client_order_id=nothing, stop_price=nothing, close_position=nothing, activation_price=nothing, callback_rate=nothing, working_type=nothing, price_protect=nothing, new_order_resp_type=nothing, price_match=nothing, self_trade_prevention_mode=nothing, good_till_date=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
+# **post_order**
+> post_order(_api::OrderApi; symbol=nothing, side=nothing, position_side=nothing, type=nothing, time_in_force=nothing, quantity=nothing, reduce_only=nothing, price=nothing, new_client_order_id=nothing, stop_price=nothing, close_position=nothing, activation_price=nothing, callback_rate=nothing, working_type=nothing, price_protect=nothing, new_order_resp_type=nothing, price_match=nothing, self_trade_prevention_mode=nothing, good_till_date=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
+> post_order(_api::OrderApi, response_stream::Channel; symbol=nothing, side=nothing, position_side=nothing, type=nothing, time_in_force=nothing, quantity=nothing, reduce_only=nothing, price=nothing, new_client_order_id=nothing, stop_price=nothing, close_position=nothing, activation_price=nothing, callback_rate=nothing, working_type=nothing, price_protect=nothing, new_order_resp_type=nothing, price_match=nothing, self_trade_prevention_mode=nothing, good_till_date=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
 
 New Order (TRADE)
 
@@ -568,13 +649,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **place_multiple_orders_trade**
-> place_multiple_orders_trade(_api::OrderApi; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderResponse}, OpenAPI.Clients.ApiResponse <br/>
-> place_multiple_orders_trade(_api::OrderApi, response_stream::Channel; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderResponse} }, OpenAPI.Clients.ApiResponse
+# **put_batch_orders**
+> put_batch_orders(_api::OrderApi; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{OrderResponse}, OpenAPI.Clients.ApiResponse <br/>
+> put_batch_orders(_api::OrderApi, response_stream::Channel; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{OrderResponse} }, OpenAPI.Clients.ApiResponse
 
-Place Multiple Orders (TRADE)
+Modify Multiple Orders (TRADE)
 
-Place Multiple Orders (TRADE)
+Modify Multiple Orders (TRADE)
 
 ### Required Parameters
 
@@ -586,7 +667,7 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **batch_orders** | **String**|  | [default to nothing]
+ **batch_orders** | **String**| order list. Max 5 orders | [default to nothing]
  **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
  **timestamp** | **String**|  | [default to nothing]
  **signature** | **String**| Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode. | [default to nothing]
@@ -607,13 +688,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **query_current_open_order_user_data**
-> query_current_open_order_user_data(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
-> query_current_open_order_user_data(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
+# **put_order**
+> put_order(_api::OrderApi; order_id=nothing, orig_client_order_id=nothing, symbol=nothing, side=nothing, quantity=nothing, price=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
+> put_order(_api::OrderApi, response_stream::Channel; order_id=nothing, orig_client_order_id=nothing, symbol=nothing, side=nothing, quantity=nothing, price=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
 
-Query Current Open Order (USER_DATA)
+Modify Order (TRADE)
 
-Query Current Open Order (USER_DATA)
+Either orderId or origClientOrderId must be sent, and the orderId will prevail if both are sent. Both quantity and price must be sent, which is different from dapi modify order endpoint. When the new quantity or price doesn't satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order will stay as it is. However the order will be cancelled by the amendment in the following situations: - when the order is in partially filled status and the new quantity <= executedQty - When the order is GTX and the new price will cause it to be executed immediately One order can only be modfied for less than 10000 times  Weight: 1
 
 ### Required Parameters
 
@@ -625,9 +706,12 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **String**|  | [default to nothing]
  **order_id** | **String**|  | [default to nothing]
  **orig_client_order_id** | **String**|  | [default to nothing]
+ **symbol** | **String**|  | [default to nothing]
+ **side** | **String**|  | [default to nothing]
+ **quantity** | **String**|  | [default to nothing]
+ **price** | **String**|  | [default to nothing]
  **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
  **timestamp** | **String**|  | [default to nothing]
  **signature** | **String**|  | [default to nothing]
@@ -636,90 +720,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OrderResponse**](OrderResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **query_order**
-> query_order(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> OrderResponse, OpenAPI.Clients.ApiResponse <br/>
-> query_order(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ OrderResponse }, OpenAPI.Clients.ApiResponse
-
-Query Order
-
-Query Order
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **OrderApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**|  | [default to nothing]
- **order_id** | **String**|  | [default to nothing]
- **orig_client_order_id** | **String**|  | [default to nothing]
- **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**|  | [default to nothing]
- **x_mbx_apikey** | **String**|  | [default to nothing]
-
-### Return type
-
-[**OrderResponse**](OrderResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **user_s_force_orders_user_data**
-> user_s_force_orders_user_data(_api::OrderApi; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> user_s_force_orders_user_data(_api::OrderApi, response_stream::Channel; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
-
-User's Force Orders (USER_DATA)
-
-User's Force Orders (USER_DATA)
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **OrderApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**|  | [default to nothing]
- **auto_close_type** | **String**|  | [default to nothing]
- **start_time** | **String**|  | [default to nothing]
- **end_time** | **String**|  | [default to nothing]
- **limit** | **String**|  | [default to nothing]
- **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**|  | [default to nothing]
- **x_mbx_apikey** | **String**|  | [default to nothing]
-
-### Return type
-
-**Dict{String, Any}**
 
 ### Authorization
 
