@@ -49,7 +49,7 @@ module BinanceFuturesAPI
     info = exchange_information(market)
     ```
     """
-    const MarketApi = APIClient.MarketApi
+    MarketApi(url::String) = APIClient.MarketApi(Client(url))
 
     """
         TradeApi(base_url::String, api_key::String, api_secret::String)
@@ -70,7 +70,7 @@ module BinanceFuturesAPI
     order = new_order_trade(trade, symbol="BTCUSDT", side="BUY", order_type="LIMIT", quantity=0.001, price=50000.0)
     ```
     """
-    const TradeApi = APIClient.TradeApi
+    TradeApi(url::String, api_key::String, api_secret::String) = APIClient.TradeApi(Client(url), api_key, api_secret)
 
     """
         AccountApi(base_url::String, api_key::String, api_secret::String)
@@ -88,15 +88,15 @@ module BinanceFuturesAPI
     # Example
     ```julia
     account = AccountApi("https://fapi.binance.com", "your_api_key", "your_api_secret")
-    
+
     # Get account information
     info = account_information(account, timestamp=Int64(time() * 1000))
-    
+
     # Get position information
     positions = position_information(account, timestamp=Int64(time() * 1000))
     ```
     """
-    const AccountApi = APIClient.AccountApi
+    AccountApi(url::String, api_key::String, api_secret::String) = APIClient.AccountApi(Client(url), api_key, api_secret)
 
     """
         DataStreamApi(base_url::String, api_key::String="", api_secret::String="")
@@ -116,13 +116,13 @@ module BinanceFuturesAPI
     ```julia
     # For public streams
     stream = DataStreamApi("https://fapi.binance.com")
-    
+
     # For user data streams
     stream = DataStreamApi("https://fapi.binance.com", "your_api_key", "your_api_secret")
     listen_key = start_user_data_stream(stream)
     ```
     """
-    const DataStreamApi = APIClient.DataStreamApi
+    DataStreamApi(url::String, api_key::String="", api_secret::String="") = APIClient.DataStreamApi(Client(url), api_key, api_secret)
 
     """
         PortfolioMarginApi(base_url::String, api_key::String, api_secret::String)
@@ -141,11 +141,13 @@ module BinanceFuturesAPI
     # Example
     ```julia
     portfolio = PortfolioMarginApi("https://fapi.binance.com", "your_api_key", "your_api_secret")
-    
+
     # Get portfolio margin account info
     info = portfolio_margin_account_information(portfolio, timestamp=Int64(time() * 1000))
     ```
     """
-    const PortfolioMarginApi = APIClient.PortfolioMarginApi
+    PortfolioMarginApi(url::String, api_key::String, api_secret::String) = APIClient.PortfolioMarginApi(Client(url), api_key, api_secret)
+
+    export MarketApi, TradeApi, AccountApi, DataStreamApi, PortfolioMarginApi
 
 end

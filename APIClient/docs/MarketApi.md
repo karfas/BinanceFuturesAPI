@@ -5,29 +5,29 @@ All URIs are relative to *https://fapi.binance.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**agg_trades**](MarketApi.md#agg_trades) | **GET** /fapi/v1/aggTrades | Compressed/Aggregate Trades List
+[**asset_index**](MarketApi.md#asset_index) | **GET** /fapi/v1/assetIndex | Multi-Assets Mode Asset Index
 [**basis**](MarketApi.md#basis) | **GET** /fapi/v1/basis | Basis
+[**book_ticker**](MarketApi.md#book_ticker) | **GET** /fapi/v1/ticker/bookTicker | Symbol Order Book Ticker
 [**constituents**](MarketApi.md#constituents) | **GET** /fapi/v1/constituents | Query Index Price Constituents
-[**continuous_contract_kline_candlestick_data**](MarketApi.md#continuous_contract_kline_candlestick_data) | **GET** /fapi/v1/continuousKlines | Continuous Contract Kline/Candlestick Data
+[**continuous_klines**](MarketApi.md#continuous_klines) | **GET** /fapi/v1/continuousKlines | Continuous Contract Kline/Candlestick Data
 [**depth**](MarketApi.md#depth) | **GET** /fapi/v1/depth | Order Book
 [**exchange_info**](MarketApi.md#exchange_info) | **GET** /fapi/v1/exchangeInfo | Exchange Information
-[**get_funding_rate_history**](MarketApi.md#get_funding_rate_history) | **GET** /fapi/v1/fundingRate | Get Funding Rate History
+[**funding_rate**](MarketApi.md#funding_rate) | **GET** /fapi/v1/fundingRate | Get Funding Rate History
 [**global_long_short_account_ratio**](MarketApi.md#global_long_short_account_ratio) | **GET** /fapi/v1/globalLongShortAccountRatio | Long/Short Ratio
 [**historical_trades**](MarketApi.md#historical_trades) | **GET** /fapi/v1/historicalTrades | Old Trades Lookup (MARKET_DATA)
 [**index_info**](MarketApi.md#index_info) | **GET** /fapi/v1/indexInfo | Composite Index Symbol Information
-[**index_price_kline_candlestick_data**](MarketApi.md#index_price_kline_candlestick_data) | **GET** /fapi/v1/indexPriceKlines | Index Price Kline/Candlestick Data
+[**index_price_klines**](MarketApi.md#index_price_klines) | **GET** /fapi/v1/indexPriceKlines | Index Price Kline/Candlestick Data
 [**klines**](MarketApi.md#klines) | **GET** /fapi/v1/klines | Kline/Candlestick Data
 [**lvt_klines**](MarketApi.md#lvt_klines) | **GET** /fapi/v1/lvtKlines | Historical BLVT NAV Kline/Candlestick
-[**mark_price**](MarketApi.md#mark_price) | **GET** /fapi/v1/premiumIndex | Mark Price
-[**mark_price_kline_candlestick_data**](MarketApi.md#mark_price_kline_candlestick_data) | **GET** /fapi/v1/markPriceKlines | Mark Price Kline/Candlestick Data
-[**multi_assets_mode_asset_index**](MarketApi.md#multi_assets_mode_asset_index) | **GET** /fapi/v1/assetIndex | Multi-Assets Mode Asset Index
+[**mark_price_klines**](MarketApi.md#mark_price_klines) | **GET** /fapi/v1/markPriceKlines | Mark Price Kline/Candlestick Data
 [**open_interest**](MarketApi.md#open_interest) | **GET** /fapi/v1/openInterest | Open Interest
-[**open_interest_statistics**](MarketApi.md#open_interest_statistics) | **GET** /futures/data/openInterestHist | Open Interest Statistics
+[**open_interest_hist**](MarketApi.md#open_interest_hist) | **GET** /futures/data/openInterestHist | Open Interest Statistics
 [**ping**](MarketApi.md#ping) | **GET** /fapi/v1/ping | Test Connectivity
-[**symbol_order_book_ticker**](MarketApi.md#symbol_order_book_ticker) | **GET** /fapi/v1/ticker/bookTicker | Symbol Order Book Ticker
-[**symbol_price_ticker_v2**](MarketApi.md#symbol_price_ticker_v2) | **GET** /fapi/v2/ticker/price | Symbol Price Ticker V2
-[**takerlongshort_ratio**](MarketApi.md#takerlongshort_ratio) | **GET** /fapi/v1/takerlongshortRatio | Taker Buy/Sell Volume
-[**ticker_price_change_statistics24hr**](MarketApi.md#ticker_price_change_statistics24hr) | **GET** /fapi/v1/ticker/24hr | 24hr Ticker Price Change Statistics
-[**time**](MarketApi.md#time) | **GET** /fapi/v1/time | Check Server Time
+[**premium_index**](MarketApi.md#premium_index) | **GET** /fapi/v1/premiumIndex | Mark Price
+[**server_time**](MarketApi.md#server_time) | **GET** /fapi/v1/time | Check Server Time
+[**taker_long_short_ratio**](MarketApi.md#taker_long_short_ratio) | **GET** /fapi/v1/takerlongshortRatio | Taker Buy/Sell Volume
+[**ticker24hr**](MarketApi.md#ticker24hr) | **GET** /fapi/v1/ticker/24hr | 24hr Ticker Price Change Statistics
+[**ticker_price**](MarketApi.md#ticker_price) | **GET** /fapi/v2/ticker/price | Symbol Price Ticker V2
 [**top_long_short_account_ratio**](MarketApi.md#top_long_short_account_ratio) | **GET** /fapi/v1/topLongShortAccountRatio | Top Trader Long/Short Ratio (Accounts)
 [**top_long_short_position_ratio**](MarketApi.md#top_long_short_position_ratio) | **GET** /fapi/v1/topLongShortPositionRatio | Top Trader Long/Short Ratio (Positions)
 [**trades**](MarketApi.md#trades) | **GET** /fapi/v1/trades | Recent Trades List
@@ -60,6 +60,41 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Vector{AggregateTradesResponseInner}**](AggregateTradesResponseInner.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **asset_index**
+> asset_index(_api::MarketApi; symbol=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> asset_index(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+
+Multi-Assets Mode Asset Index
+
+Multi-Assets Mode Asset Index
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **MarketApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Asset pair | [default to nothing]
+
+### Return type
+
+**Dict{String, Any}**
 
 ### Authorization
 
@@ -112,6 +147,42 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
+# **book_ticker**
+> book_ticker(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Vector{BookTickerResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> book_ticker(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Channel{ Vector{BookTickerResponseInner} }, OpenAPI.Clients.ApiResponse
+
+Symbol Order Book Ticker
+
+Best price/qty on the order book for a symbol or symbols.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **MarketApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols | [default to nothing]
+ **symbols** | [**Vector{String}**](String.md)| Array of trading pair symbols. Maximum of 100 symbols can be sent in a single request | [default to nothing]
+
+### Return type
+
+[**Vector{BookTickerResponseInner}**](BookTickerResponseInner.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
 # **constituents**
 > constituents(_api::MarketApi; symbol=nothing, pair=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
 > constituents(_api::MarketApi, response_stream::Channel; symbol=nothing, pair=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
@@ -148,9 +219,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **continuous_contract_kline_candlestick_data**
-> continuous_contract_kline_candlestick_data(_api::MarketApi; pair=nothing, contract_type=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse <br/>
-> continuous_contract_kline_candlestick_data(_api::MarketApi, response_stream::Channel; pair=nothing, contract_type=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{Vector{KlinesResponseInnerInner}} }, OpenAPI.Clients.ApiResponse
+# **continuous_klines**
+> continuous_klines(_api::MarketApi; pair=nothing, contract_type=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse <br/>
+> continuous_klines(_api::MarketApi, response_stream::Channel; pair=nothing, contract_type=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{Vector{KlinesResponseInnerInner}} }, OpenAPI.Clients.ApiResponse
 
 Continuous Contract Kline/Candlestick Data
 
@@ -189,8 +260,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **depth**
-> depth(_api::MarketApi, symbol::String; limit=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> depth(_api::MarketApi, response_stream::Channel, symbol::String; limit=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> depth(_api::MarketApi, symbol::String; limit=nothing, _mediaType=nothing) -> Depth200Response, OpenAPI.Clients.ApiResponse <br/>
+> depth(_api::MarketApi, response_stream::Channel, symbol::String; limit=nothing, _mediaType=nothing) -> Channel{ Depth200Response }, OpenAPI.Clients.ApiResponse
 
 Order Book
 
@@ -211,7 +282,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**Depth200Response**](Depth200Response.md)
 
 ### Authorization
 
@@ -260,9 +331,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **get_funding_rate_history**
-> get_funding_rate_history(_api::MarketApi; symbol=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{FundingRateResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> get_funding_rate_history(_api::MarketApi, response_stream::Channel; symbol=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{FundingRateResponseInner} }, OpenAPI.Clients.ApiResponse
+# **funding_rate**
+> funding_rate(_api::MarketApi; symbol=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{FundingRateResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> funding_rate(_api::MarketApi, response_stream::Channel; symbol=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{FundingRateResponseInner} }, OpenAPI.Clients.ApiResponse
 
 Get Funding Rate History
 
@@ -411,9 +482,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **index_price_kline_candlestick_data**
-> index_price_kline_candlestick_data(_api::MarketApi; pair=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse <br/>
-> index_price_kline_candlestick_data(_api::MarketApi, response_stream::Channel; pair=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{Vector{KlinesResponseInnerInner}} }, OpenAPI.Clients.ApiResponse
+# **index_price_klines**
+> index_price_klines(_api::MarketApi; pair=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse <br/>
+> index_price_klines(_api::MarketApi, response_stream::Channel; pair=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{Vector{KlinesResponseInnerInner}} }, OpenAPI.Clients.ApiResponse
 
 Index Price Kline/Candlestick Data
 
@@ -529,44 +600,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **mark_price**
-> mark_price(_api::MarketApi; symbol=nothing, _mediaType=nothing) -> Vector{PremiumIndexResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> mark_price(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing) -> Channel{ Vector{PremiumIndexResponseInner} }, OpenAPI.Clients.ApiResponse
-
-Mark Price
-
-Mark Price and Funding Rate  Weight: 1 
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **MarketApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols  | [default to nothing]
-
-### Return type
-
-[**Vector{PremiumIndexResponseInner}**](PremiumIndexResponseInner.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **mark_price_kline_candlestick_data**
-> mark_price_kline_candlestick_data(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse <br/>
-> mark_price_kline_candlestick_data(_api::MarketApi, response_stream::Channel; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{Vector{KlinesResponseInnerInner}} }, OpenAPI.Clients.ApiResponse
+# **mark_price_klines**
+> mark_price_klines(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse <br/>
+> mark_price_klines(_api::MarketApi, response_stream::Channel; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{Vector{KlinesResponseInnerInner}} }, OpenAPI.Clients.ApiResponse
 
 Mark Price Kline/Candlestick Data
 
@@ -591,41 +627,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 **Vector{Vector{KlinesResponseInnerInner}}**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **multi_assets_mode_asset_index**
-> multi_assets_mode_asset_index(_api::MarketApi; symbol=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> multi_assets_mode_asset_index(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
-
-Multi-Assets Mode Asset Index
-
-Multi-Assets Mode Asset Index
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **MarketApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**| Asset pair | [default to nothing]
-
-### Return type
-
-**Dict{String, Any}**
 
 ### Authorization
 
@@ -673,9 +674,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **open_interest_statistics**
-> open_interest_statistics(_api::MarketApi; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> open_interest_statistics(_api::MarketApi, response_stream::Channel; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+# **open_interest_hist**
+> open_interest_hist(_api::MarketApi; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> open_interest_hist(_api::MarketApi, response_stream::Channel; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
 
 Open Interest Statistics
 
@@ -739,13 +740,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **symbol_order_book_ticker**
-> symbol_order_book_ticker(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Vector{BookTickerResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> symbol_order_book_ticker(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Channel{ Vector{BookTickerResponseInner} }, OpenAPI.Clients.ApiResponse
+# **premium_index**
+> premium_index(_api::MarketApi; symbol=nothing, _mediaType=nothing) -> Vector{PremiumIndexResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> premium_index(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing) -> Channel{ Vector{PremiumIndexResponseInner} }, OpenAPI.Clients.ApiResponse
 
-Symbol Order Book Ticker
+Mark Price
 
-Best price/qty on the order book for a symbol or symbols.
+Mark Price and Funding Rate  Weight: 1 
 
 ### Required Parameters
 
@@ -757,12 +758,11 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols | [default to nothing]
- **symbols** | [**Vector{String}**](String.md)| Array of trading pair symbols. Maximum of 100 symbols can be sent in a single request | [default to nothing]
+ **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols  | [default to nothing]
 
 ### Return type
 
-[**Vector{BookTickerResponseInner}**](BookTickerResponseInner.md)
+[**Vector{PremiumIndexResponseInner}**](PremiumIndexResponseInner.md)
 
 ### Authorization
 
@@ -775,30 +775,20 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **symbol_price_ticker_v2**
-> symbol_price_ticker_v2(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Vector{SymbolPriceTickerResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> symbol_price_ticker_v2(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Channel{ Vector{SymbolPriceTickerResponseInner} }, OpenAPI.Clients.ApiResponse
+# **server_time**
+> server_time(_api::MarketApi; _mediaType=nothing) -> ServerTime200Response, OpenAPI.Clients.ApiResponse <br/>
+> server_time(_api::MarketApi, response_stream::Channel; _mediaType=nothing) -> Channel{ ServerTime200Response }, OpenAPI.Clients.ApiResponse
 
-Symbol Price Ticker V2
+Check Server Time
 
-Latest price for a symbol or symbols.
+Check Server Time 
 
 ### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **MarketApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols | [default to nothing]
- **symbols** | [**Vector{String}**](String.md)| Array of trading pair symbols. Maximum of 100 symbols can be sent in a single request | [default to nothing]
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vector{SymbolPriceTickerResponseInner}**](SymbolPriceTickerResponseInner.md)
+[**ServerTime200Response**](ServerTime200Response.md)
 
 ### Authorization
 
@@ -811,9 +801,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **takerlongshort_ratio**
-> takerlongshort_ratio(_api::MarketApi; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> takerlongshort_ratio(_api::MarketApi, response_stream::Channel; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+# **taker_long_short_ratio**
+> taker_long_short_ratio(_api::MarketApi; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> taker_long_short_ratio(_api::MarketApi, response_stream::Channel; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
 
 Taker Buy/Sell Volume
 
@@ -851,9 +841,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **ticker_price_change_statistics24hr**
-> ticker_price_change_statistics24hr(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Vector{TickerPriceChangeResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> ticker_price_change_statistics24hr(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Channel{ Vector{TickerPriceChangeResponseInner} }, OpenAPI.Clients.ApiResponse
+# **ticker24hr**
+> ticker24hr(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Ticker24hr200Response, OpenAPI.Clients.ApiResponse <br/>
+> ticker24hr(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Channel{ Ticker24hr200Response }, OpenAPI.Clients.ApiResponse
 
 24hr Ticker Price Change Statistics
 
@@ -874,7 +864,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Vector{TickerPriceChangeResponseInner}**](TickerPriceChangeResponseInner.md)
+[**Ticker24hr200Response**](Ticker24hr200Response.md)
 
 ### Authorization
 
@@ -887,20 +877,30 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **time**
-> time(_api::MarketApi; _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> time(_api::MarketApi, response_stream::Channel; _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+# **ticker_price**
+> ticker_price(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Vector{SymbolPriceTickerResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> ticker_price(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Channel{ Vector{SymbolPriceTickerResponseInner} }, OpenAPI.Clients.ApiResponse
 
-Check Server Time
+Symbol Price Ticker V2
 
-Check Server Time 
+Latest price for a symbol or symbols.
 
 ### Required Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **MarketApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols | [default to nothing]
+ **symbols** | [**Vector{String}**](String.md)| Array of trading pair symbols. Maximum of 100 symbols can be sent in a single request | [default to nothing]
 
 ### Return type
 
-**Dict{String, Any}**
+[**Vector{SymbolPriceTickerResponseInner}**](SymbolPriceTickerResponseInner.md)
 
 ### Authorization
 

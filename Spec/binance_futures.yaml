@@ -37,15 +37,22 @@ paths:
       summary: Check Server Time
       description: |
         Check Server Time
-      operationId: time
+      operationId: serverTime
       responses:
         '200':
-          description: ''
+          description: 'Server time in milliseconds'
           content:
             application/json:
               schema:
                 type: object
-                additionalProperties: true
+                properties:
+                  serverTime:
+                    type: integer
+                    format: int64
+                    description: Current server time in milliseconds
+                    example: 1499827319559
+                required:
+                  - serverTime
   /fapi/v1/exchangeInfo:
     get:
       tags:
@@ -105,12 +112,48 @@ paths:
             default: 100
       responses:
         '200':
-          description: ''
+          description: 'Order book for the specified symbol'
           content:
             application/json:
               schema:
                 type: object
-                additionalProperties: true
+                properties:
+                  lastUpdateId:
+                    type: integer
+                    format: int64
+                    description: Last update ID of the order book
+                  E:
+                    type: integer
+                    format: int64
+                    description: Event time
+                  T:
+                    type: integer
+                    format: int64
+                    description: Transaction time
+                  bids:
+                    type: array
+                    description: List of bids [price, quantity]
+                    items:
+                      type: array
+                      minItems: 2
+                      maxItems: 2
+                      items:
+                        type: string
+                        description: Price level and quantity as strings
+                  asks:
+                    type: array
+                    description: List of asks [price, quantity]
+                    items:
+                      type: array
+                      minItems: 2
+                      maxItems: 2
+                      items:
+                        type: string
+                        description: Price level and quantity as strings
+                required:
+                  - lastUpdateId
+                  - bids
+                  - asks
   /fapi/v1/trades:
     get:
       tags:
@@ -297,7 +340,7 @@ paths:
       description: >-
         Kline/candlestick bars for a symbol. Klines are uniquely identified by
         their open time.
-      operationId: continuousContractKlineCandlestickData
+      operationId: continuousKlines
       parameters:
         - name: pair
           in: query
@@ -344,7 +387,7 @@ paths:
       description: >-
         Kline/candlestick bars for the index price of a pair. Klines are
         uniquely identified by their open time.
-      operationId: indexPriceKlineCandlestickData
+      operationId: indexPriceKlines
       parameters:
         - name: pair
           in: query
@@ -386,7 +429,7 @@ paths:
       description: >-
         Kline/candlestick bars for the mark price of a symbol. Klines are
         uniquely identified by their open time.
-      operationId: markPriceKlineCandlestickData
+      operationId: markPriceKlines
       parameters:
         - name: symbol
           in: query
@@ -429,7 +472,7 @@ paths:
         Mark Price and Funding Rate
 
         Weight: 1
-      operationId: markPrice
+      operationId: premiumIndex
       parameters:
         - name: symbol
           in: query
@@ -455,7 +498,7 @@ paths:
         Get funding rate history
 
         Weight: 1
-      operationId: getFundingRateHistory
+      operationId: fundingRate
       parameters:
         - name: symbol
           in: query
@@ -508,7 +551,7 @@ paths:
         1 for a single symbol;
 
         40 when the symbol parameter is omitted
-      operationId: TickerPriceChangeStatistics24hr
+      operationId: ticker24hr
       parameters:
         - name: symbol
           in: query
@@ -530,14 +573,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TickerPriceChangeResponse'
+                oneOf:
+                - $ref: '#/components/schemas/TickerPriceChangeResponse'
+                - $ref: '#/components/schemas/SymbolPriceTickerResponse'
   /fapi/v2/ticker/price:
     get:
       tags:
         - Market
       summary: Symbol Price Ticker V2
       description: Latest price for a symbol or symbols.
-      operationId: symbolPriceTickerV2
+      operationId: tickerPrice
       parameters:
         - name: symbol
           in: query
@@ -566,7 +611,7 @@ paths:
         - Market
       summary: Symbol Order Book Ticker
       description: Best price/qty on the order book for a symbol or symbols.
-      operationId: symbolOrderBookTicker
+      operationId: bookTicker
       parameters:
         - name: symbol
           in: query
@@ -616,7 +661,7 @@ paths:
         - Market
       summary: Open Interest Statistics
       description: Get present open interest of a specific symbol.
-      operationId: openInterestStatistics
+      operationId: openInterestHist
       parameters:
         - name: symbol
           in: query
@@ -794,7 +839,7 @@ paths:
         - Market
       summary: Taker Buy/Sell Volume
       description: Taker Buy/Sell Volume
-      operationId: takerlongshortRatio
+      operationId: takerLongShortRatio
       parameters:
         - name: symbol
           in: query
@@ -916,7 +961,7 @@ paths:
         - Market
       summary: Multi-Assets Mode Asset Index
       description: Multi-Assets Mode Asset Index
-      operationId: multiAssetsModeAssetIndex
+      operationId: assetIndex
       parameters:
         - name: symbol
           in: query
@@ -1051,7 +1096,7 @@ paths:
         - Account
       summary: Get Income History
       description: Get Income History
-      operationId: getIncomeHistory
+      operationId: income
       parameters:
         - name: symbol
           in: query
@@ -1119,7 +1164,7 @@ paths:
         - Account
       summary: Position Information
       description: Position Information
-      operationId: positionInformation
+      operationId: positionRisk
       parameters:
         - name: symbol
           in: query
@@ -1220,7 +1265,7 @@ paths:
         - Account
       summary: Future Account Balance
       description: Future Account Balance
-      operationId: futureAccountBalance
+      operationId: balance
       parameters:
         - name: recvWindow
           in: query
@@ -1255,7 +1300,7 @@ paths:
         - Account
       summary: Notional and Leverage Brackets (USER_DATA)
       description: Get present open interest of a specific symbol.
-      operationId: notionalAndLeverageBracketsUserData
+      operationId: leverageBracket
       parameters:
         - name: symbol
           in: query
@@ -1297,7 +1342,7 @@ paths:
         - Account
       summary: Position ADL Quantile Estimation (USER_DATA)
       description: Position ADL Quantile Estimation (USER_DATA)
-      operationId: positionAdlQuantileEstimationUserData
+      operationId: adlQuantile
       parameters:
         - name: symbol
           in: query
@@ -1381,7 +1426,7 @@ paths:
         - Trade
       summary: Get Current Multi-Assets Mode
       description: Get Current Multi-Assets Mode
-      operationId: getCurrentMultiAssetsMode
+      operationId: multiAssetsMargin
       parameters:
         - name: recvWindow
           in: query
@@ -1416,7 +1461,7 @@ paths:
         - Trade
       summary: Change Multi-Assets Mode
       description: Change Multi-Assets Mode
-      operationId: changeMultiAssetsMode
+      operationId: postMultiAssetsMargin
       parameters:
         - name: multiAssetsMargin
           in: query

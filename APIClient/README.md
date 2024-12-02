@@ -28,41 +28,41 @@ Documentation is also embedded in Julia which can be used with a Julia specific 
 Class | Method
 ------------ | -------------
 *AccountApi* | [**account**](docs/AccountApi.md#account)<br/>**GET** /fapi/v2/account<br/>Account information
+*AccountApi* | [**adl_quantile**](docs/AccountApi.md#adl_quantile)<br/>**GET** /fapi/v1/adlQuantile<br/>Position ADL Quantile Estimation (USER_DATA)
+*AccountApi* | [**balance**](docs/AccountApi.md#balance)<br/>**GET** /fapi/v2/balance<br/>Future Account Balance
 *AccountApi* | [**commission_rate**](docs/AccountApi.md#commission_rate)<br/>**GET** /fapi/v1/commissionRate<br/>User Commission Rate (USER_DATA)
 *AccountApi* | [**fapi_v1_api_trading_status_get**](docs/AccountApi.md#fapi_v1_api_trading_status_get)<br/>**GET** /fapi/v1/apiTradingStatus<br/>Account API Trading Status
-*AccountApi* | [**future_account_balance**](docs/AccountApi.md#future_account_balance)<br/>**GET** /fapi/v2/balance<br/>Future Account Balance
-*AccountApi* | [**get_income_history**](docs/AccountApi.md#get_income_history)<br/>**GET** /fapi/v1/income<br/>Get Income History
-*AccountApi* | [**notional_and_leverage_brackets_user_data**](docs/AccountApi.md#notional_and_leverage_brackets_user_data)<br/>**GET** /fapi/v1/leverageBracket<br/>Notional and Leverage Brackets (USER_DATA)
-*AccountApi* | [**position_adl_quantile_estimation_user_data**](docs/AccountApi.md#position_adl_quantile_estimation_user_data)<br/>**GET** /fapi/v1/adlQuantile<br/>Position ADL Quantile Estimation (USER_DATA)
-*AccountApi* | [**position_information**](docs/AccountApi.md#position_information)<br/>**GET** /fapi/v2/positionRisk<br/>Position Information
+*AccountApi* | [**income**](docs/AccountApi.md#income)<br/>**GET** /fapi/v1/income<br/>Get Income History
+*AccountApi* | [**leverage_bracket**](docs/AccountApi.md#leverage_bracket)<br/>**GET** /fapi/v1/leverageBracket<br/>Notional and Leverage Brackets (USER_DATA)
+*AccountApi* | [**position_risk**](docs/AccountApi.md#position_risk)<br/>**GET** /fapi/v2/positionRisk<br/>Position Information
 *AccountApi* | [**user_trades**](docs/AccountApi.md#user_trades)<br/>**GET** /fapi/v1/userTrades<br/>Account Trade List
 *DataStreamApi* | [**delete_listen_key**](docs/DataStreamApi.md#delete_listen_key)<br/>**DELETE** /fapi/v1/listenKey<br/>Delete Listen Key
 *DataStreamApi* | [**post_listen_key**](docs/DataStreamApi.md#post_listen_key)<br/>**POST** /fapi/v1/listenKey<br/>Create New Listen Key
 *DataStreamApi* | [**put_listen_key**](docs/DataStreamApi.md#put_listen_key)<br/>**PUT** /fapi/v1/listenKey<br/>Renew Listen Key
 *MarketApi* | [**agg_trades**](docs/MarketApi.md#agg_trades)<br/>**GET** /fapi/v1/aggTrades<br/>Compressed/Aggregate Trades List
+*MarketApi* | [**asset_index**](docs/MarketApi.md#asset_index)<br/>**GET** /fapi/v1/assetIndex<br/>Multi-Assets Mode Asset Index
 *MarketApi* | [**basis**](docs/MarketApi.md#basis)<br/>**GET** /fapi/v1/basis<br/>Basis
+*MarketApi* | [**book_ticker**](docs/MarketApi.md#book_ticker)<br/>**GET** /fapi/v1/ticker/bookTicker<br/>Symbol Order Book Ticker
 *MarketApi* | [**constituents**](docs/MarketApi.md#constituents)<br/>**GET** /fapi/v1/constituents<br/>Query Index Price Constituents
-*MarketApi* | [**continuous_contract_kline_candlestick_data**](docs/MarketApi.md#continuous_contract_kline_candlestick_data)<br/>**GET** /fapi/v1/continuousKlines<br/>Continuous Contract Kline/Candlestick Data
+*MarketApi* | [**continuous_klines**](docs/MarketApi.md#continuous_klines)<br/>**GET** /fapi/v1/continuousKlines<br/>Continuous Contract Kline/Candlestick Data
 *MarketApi* | [**depth**](docs/MarketApi.md#depth)<br/>**GET** /fapi/v1/depth<br/>Order Book
 *MarketApi* | [**exchange_info**](docs/MarketApi.md#exchange_info)<br/>**GET** /fapi/v1/exchangeInfo<br/>Exchange Information
-*MarketApi* | [**get_funding_rate_history**](docs/MarketApi.md#get_funding_rate_history)<br/>**GET** /fapi/v1/fundingRate<br/>Get Funding Rate History
+*MarketApi* | [**funding_rate**](docs/MarketApi.md#funding_rate)<br/>**GET** /fapi/v1/fundingRate<br/>Get Funding Rate History
 *MarketApi* | [**global_long_short_account_ratio**](docs/MarketApi.md#global_long_short_account_ratio)<br/>**GET** /fapi/v1/globalLongShortAccountRatio<br/>Long/Short Ratio
 *MarketApi* | [**historical_trades**](docs/MarketApi.md#historical_trades)<br/>**GET** /fapi/v1/historicalTrades<br/>Old Trades Lookup (MARKET_DATA)
 *MarketApi* | [**index_info**](docs/MarketApi.md#index_info)<br/>**GET** /fapi/v1/indexInfo<br/>Composite Index Symbol Information
-*MarketApi* | [**index_price_kline_candlestick_data**](docs/MarketApi.md#index_price_kline_candlestick_data)<br/>**GET** /fapi/v1/indexPriceKlines<br/>Index Price Kline/Candlestick Data
+*MarketApi* | [**index_price_klines**](docs/MarketApi.md#index_price_klines)<br/>**GET** /fapi/v1/indexPriceKlines<br/>Index Price Kline/Candlestick Data
 *MarketApi* | [**klines**](docs/MarketApi.md#klines)<br/>**GET** /fapi/v1/klines<br/>Kline/Candlestick Data
 *MarketApi* | [**lvt_klines**](docs/MarketApi.md#lvt_klines)<br/>**GET** /fapi/v1/lvtKlines<br/>Historical BLVT NAV Kline/Candlestick
-*MarketApi* | [**mark_price**](docs/MarketApi.md#mark_price)<br/>**GET** /fapi/v1/premiumIndex<br/>Mark Price
-*MarketApi* | [**mark_price_kline_candlestick_data**](docs/MarketApi.md#mark_price_kline_candlestick_data)<br/>**GET** /fapi/v1/markPriceKlines<br/>Mark Price Kline/Candlestick Data
-*MarketApi* | [**multi_assets_mode_asset_index**](docs/MarketApi.md#multi_assets_mode_asset_index)<br/>**GET** /fapi/v1/assetIndex<br/>Multi-Assets Mode Asset Index
+*MarketApi* | [**mark_price_klines**](docs/MarketApi.md#mark_price_klines)<br/>**GET** /fapi/v1/markPriceKlines<br/>Mark Price Kline/Candlestick Data
 *MarketApi* | [**open_interest**](docs/MarketApi.md#open_interest)<br/>**GET** /fapi/v1/openInterest<br/>Open Interest
-*MarketApi* | [**open_interest_statistics**](docs/MarketApi.md#open_interest_statistics)<br/>**GET** /futures/data/openInterestHist<br/>Open Interest Statistics
+*MarketApi* | [**open_interest_hist**](docs/MarketApi.md#open_interest_hist)<br/>**GET** /futures/data/openInterestHist<br/>Open Interest Statistics
 *MarketApi* | [**ping**](docs/MarketApi.md#ping)<br/>**GET** /fapi/v1/ping<br/>Test Connectivity
-*MarketApi* | [**symbol_order_book_ticker**](docs/MarketApi.md#symbol_order_book_ticker)<br/>**GET** /fapi/v1/ticker/bookTicker<br/>Symbol Order Book Ticker
-*MarketApi* | [**symbol_price_ticker_v2**](docs/MarketApi.md#symbol_price_ticker_v2)<br/>**GET** /fapi/v2/ticker/price<br/>Symbol Price Ticker V2
-*MarketApi* | [**takerlongshort_ratio**](docs/MarketApi.md#takerlongshort_ratio)<br/>**GET** /fapi/v1/takerlongshortRatio<br/>Taker Buy/Sell Volume
-*MarketApi* | [**ticker_price_change_statistics24hr**](docs/MarketApi.md#ticker_price_change_statistics24hr)<br/>**GET** /fapi/v1/ticker/24hr<br/>24hr Ticker Price Change Statistics
-*MarketApi* | [**time**](docs/MarketApi.md#time)<br/>**GET** /fapi/v1/time<br/>Check Server Time
+*MarketApi* | [**premium_index**](docs/MarketApi.md#premium_index)<br/>**GET** /fapi/v1/premiumIndex<br/>Mark Price
+*MarketApi* | [**server_time**](docs/MarketApi.md#server_time)<br/>**GET** /fapi/v1/time<br/>Check Server Time
+*MarketApi* | [**taker_long_short_ratio**](docs/MarketApi.md#taker_long_short_ratio)<br/>**GET** /fapi/v1/takerlongshortRatio<br/>Taker Buy/Sell Volume
+*MarketApi* | [**ticker24hr**](docs/MarketApi.md#ticker24hr)<br/>**GET** /fapi/v1/ticker/24hr<br/>24hr Ticker Price Change Statistics
+*MarketApi* | [**ticker_price**](docs/MarketApi.md#ticker_price)<br/>**GET** /fapi/v2/ticker/price<br/>Symbol Price Ticker V2
 *MarketApi* | [**top_long_short_account_ratio**](docs/MarketApi.md#top_long_short_account_ratio)<br/>**GET** /fapi/v1/topLongShortAccountRatio<br/>Top Trader Long/Short Ratio (Accounts)
 *MarketApi* | [**top_long_short_position_ratio**](docs/MarketApi.md#top_long_short_position_ratio)<br/>**GET** /fapi/v1/topLongShortPositionRatio<br/>Top Trader Long/Short Ratio (Positions)
 *MarketApi* | [**trades**](docs/MarketApi.md#trades)<br/>**GET** /fapi/v1/trades<br/>Recent Trades List
@@ -84,12 +84,12 @@ Class | Method
 *OrderApi* | [**put_batch_orders**](docs/OrderApi.md#put_batch_orders)<br/>**PUT** /fapi/v1/batchOrders<br/>Modify Multiple Orders (TRADE)
 *OrderApi* | [**put_order**](docs/OrderApi.md#put_order)<br/>**PUT** /fapi/v1/order<br/>Modify Order (TRADE)
 *PortfolioMarginApi* | [**get_p_m_account_info**](docs/PortfolioMarginApi.md#get_p_m_account_info)<br/>**GET** /fapi/v1/pmAccountInfo<br/>Portfolio Margin Account Information
-*TradeApi* | [**change_multi_assets_mode**](docs/TradeApi.md#change_multi_assets_mode)<br/>**POST** /fapi/v1/multiAssetsMargin<br/>Change Multi-Assets Mode
-*TradeApi* | [**get_current_multi_assets_mode**](docs/TradeApi.md#get_current_multi_assets_mode)<br/>**GET** /fapi/v1/multiAssetsMargin<br/>Get Current Multi-Assets Mode
 *TradeApi* | [**get_position_margin_history**](docs/TradeApi.md#get_position_margin_history)<br/>**GET** /fapi/v1/positionMargin/history<br/>Get Postion Margin Change History
 *TradeApi* | [**get_position_side_dual**](docs/TradeApi.md#get_position_side_dual)<br/>**GET** /fapi/v1/positionSide/dual<br/>Get Current Position Mode（USER_DATA）
+*TradeApi* | [**multi_assets_margin**](docs/TradeApi.md#multi_assets_margin)<br/>**GET** /fapi/v1/multiAssetsMargin<br/>Get Current Multi-Assets Mode
 *TradeApi* | [**post_leverage**](docs/TradeApi.md#post_leverage)<br/>**POST** /fapi/v1/leverage<br/>Change Initial Leverage
 *TradeApi* | [**post_margin_type**](docs/TradeApi.md#post_margin_type)<br/>**POST** /fapi/v1/marginType<br/>Change Margin Type
+*TradeApi* | [**post_multi_assets_margin**](docs/TradeApi.md#post_multi_assets_margin)<br/>**POST** /fapi/v1/multiAssetsMargin<br/>Change Multi-Assets Mode
 *TradeApi* | [**post_position_margin**](docs/TradeApi.md#post_position_margin)<br/>**POST** /fapi/v1/positionMargin<br/>Modify Isolated Position Margin
 *TradeApi* | [**post_position_side_dual**](docs/TradeApi.md#post_position_side_dual)<br/>**POST** /fapi/v1/positionSide/dual<br/>Change Position Mode（TRADE）
 
@@ -103,6 +103,7 @@ Class | Method
  - [ApiTradingStatusResponseIndicatorsBTCUSDT](docs/ApiTradingStatusResponseIndicatorsBTCUSDT.md)
  - [ApiTradingStatusResponseTriggerCondition](docs/ApiTradingStatusResponseTriggerCondition.md)
  - [BookTickerResponseInner](docs/BookTickerResponseInner.md)
+ - [Depth200Response](docs/Depth200Response.md)
  - [ExchangeInfoResponse](docs/ExchangeInfoResponse.md)
  - [ExchangeInfoResponseAssetsInner](docs/ExchangeInfoResponseAssetsInner.md)
  - [ExchangeInfoResponseRateLimitsInner](docs/ExchangeInfoResponseRateLimitsInner.md)
@@ -124,7 +125,9 @@ Class | Method
  - [PositionModeResponse](docs/PositionModeResponse.md)
  - [PositionRiskResponseInner](docs/PositionRiskResponseInner.md)
  - [PremiumIndexResponseInner](docs/PremiumIndexResponseInner.md)
+ - [ServerTime200Response](docs/ServerTime200Response.md)
  - [SymbolPriceTickerResponseInner](docs/SymbolPriceTickerResponseInner.md)
+ - [Ticker24hr200Response](docs/Ticker24hr200Response.md)
  - [TickerPriceChangeResponseInner](docs/TickerPriceChangeResponseInner.md)
  - [UserTradesResponseInner](docs/UserTradesResponseInner.md)
 
