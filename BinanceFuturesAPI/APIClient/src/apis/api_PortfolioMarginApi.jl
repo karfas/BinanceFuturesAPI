@@ -9,7 +9,7 @@ end
 The default API base path for APIs in `PortfolioMarginApi`.
 This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
-basepath(::Type{ PortfolioMarginApi }) = "http://}"
+basepath(::Type{ PortfolioMarginApi }) = "https://fapi.binance.com"
 
 const _returntypes_portfolio_margin_account_information_PortfolioMarginApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => PortfolioMarginAccountResponse,

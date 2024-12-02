@@ -9,7 +9,7 @@ end
 The default API base path for APIs in `TradeApi`.
 This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
-basepath(::Type{ TradeApi }) = "http://}"
+basepath(::Type{ TradeApi }) = "https://fapi.binance.com"
 
 const _returntypes_change_initial_leverage_TradeApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},

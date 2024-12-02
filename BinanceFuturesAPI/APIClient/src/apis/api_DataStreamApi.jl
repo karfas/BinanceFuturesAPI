@@ -9,7 +9,7 @@ end
 The default API base path for APIs in `DataStreamApi`.
 This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
-basepath(::Type{ DataStreamApi }) = "http://}"
+basepath(::Type{ DataStreamApi }) = "https://fapi.binance.com"
 
 const _returntypes_create_new_listen_key_DataStreamApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => ListenKeyResponse,

@@ -9,7 +9,7 @@ end
 The default API base path for APIs in `OrderApi`.
 This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
-basepath(::Type{ OrderApi }) = "http://}"
+basepath(::Type{ OrderApi }) = "https://fapi.binance.com"
 
 const _returntypes_all_orders_OrderApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Vector{AllOrdersResponseInner},

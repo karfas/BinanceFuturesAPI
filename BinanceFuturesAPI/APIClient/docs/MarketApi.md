@@ -1,6 +1,6 @@
 # MarketApi
 
-All URIs are relative to *http://}*
+All URIs are relative to *https://fapi.binance.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

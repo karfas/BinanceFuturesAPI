@@ -9,7 +9,7 @@ end
 The default API base path for APIs in `AccountApi`.
 This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
-basepath(::Type{ AccountApi }) = "http://}"
+basepath(::Type{ AccountApi }) = "https://fapi.binance.com"
 
 const _returntypes_account_information_AccountApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},

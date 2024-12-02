@@ -2,7 +2,7 @@
 
 julia_version = "1.11.0"
 manifest_format = "2.0"
-project_hash = "a88d129acdbc8db60606ad01db9024e830491dcb"
+project_hash = "98a63379c307033800b87864e955a3e780c0c48d"
 
 [[deps.ANSIColoredPrinters]]
 git-tree-sha1 = "574baf8110975760d391c710b6341da1afa48d8c"
@@ -25,6 +25,12 @@ version = "1.11.0"
 [[deps.Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 version = "1.11.0"
+
+[[deps.BinanceFuturesAPI]]
+deps = ["Dates", "Documenter", "OpenAPI", "Reexport", "TimeZones"]
+path = "/home/wet/Development/BinanceLog2/BinanceFuturesAPI"
+uuid = "e7367a70-cccc-493b-bb7b-60e2dbc84416"
+version = "0.1.0"
 
 [[deps.BitFlags]]
 git-tree-sha1 = "0691e34b3bb8be9307330f88d1a3c3f25466c24d"

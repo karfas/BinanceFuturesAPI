@@ -9,7 +9,7 @@ end
 The default API base path for APIs in `MarketApi`.
 This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
-basepath(::Type{ MarketApi }) = "http://}"
+basepath(::Type{ MarketApi }) = "https://fapi.binance.com"
 
 const _returntypes_basis_MarketApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
