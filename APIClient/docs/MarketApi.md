@@ -148,8 +148,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **book_ticker**
-> book_ticker(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Vector{BookTickerResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> book_ticker(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Channel{ Vector{BookTickerResponseInner} }, OpenAPI.Clients.ApiResponse
+> book_ticker(_api::MarketApi; symbol=nothing, _mediaType=nothing) -> Vector{BookTickerResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> book_ticker(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing) -> Channel{ Vector{BookTickerResponseInner} }, OpenAPI.Clients.ApiResponse
 
 Symbol Order Book Ticker
 
@@ -166,7 +166,6 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols | [default to nothing]
- **symbols** | [**Vector{String}**](String.md)| Array of trading pair symbols. Maximum of 100 symbols can be sent in a single request | [default to nothing]
 
 ### Return type
 
@@ -296,25 +295,15 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **exchange_info**
-> exchange_info(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing) -> ExchangeInfoResponse, OpenAPI.Clients.ApiResponse <br/>
-> exchange_info(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing) -> Channel{ ExchangeInfoResponse }, OpenAPI.Clients.ApiResponse
+> exchange_info(_api::MarketApi; _mediaType=nothing) -> ExchangeInfoResponse, OpenAPI.Clients.ApiResponse <br/>
+> exchange_info(_api::MarketApi, response_stream::Channel; _mediaType=nothing) -> Channel{ ExchangeInfoResponse }, OpenAPI.Clients.ApiResponse
 
 Exchange Information
 
 Exchange Information 
 
 ### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **MarketApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols  | [default to nothing]
- **symbols** | [**Vector{String}**](String.md)| Array of trading pair symbols. Maximum of 100 symbols can be sent in a single request  | [default to nothing]
+This endpoint does not need any parameter.
 
 ### Return type
 

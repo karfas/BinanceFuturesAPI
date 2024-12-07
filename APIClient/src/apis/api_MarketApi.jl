@@ -128,12 +128,9 @@ const _returntypes_book_ticker_MarketApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Vector{BookTickerResponseInner},
 )
 
-function _oacinternal_book_ticker(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing)
-    OpenAPI.validate_param("symbols", "book_ticker", :maxItems, symbols, 100)
-
+function _oacinternal_book_ticker(_api::MarketApi; symbol=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_book_ticker_MarketApi, "/fapi/v1/ticker/bookTicker", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "symbols", symbols)  # type Vector{String}
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -145,17 +142,16 @@ Best price/qty on the order book for a symbol or symbols.
 
 Params:
 - symbol::String
-- symbols::Vector{String}
 
 Return: Vector{BookTickerResponseInner}, OpenAPI.Clients.ApiResponse
 """
-function book_ticker(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_book_ticker(_api; symbol=symbol, symbols=symbols, _mediaType=_mediaType)
+function book_ticker(_api::MarketApi; symbol=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_book_ticker(_api; symbol=symbol, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function book_ticker(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_book_ticker(_api; symbol=symbol, symbols=symbols, _mediaType=_mediaType)
+function book_ticker(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_book_ticker(_api; symbol=symbol, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -270,10 +266,8 @@ const _returntypes_exchange_info_MarketApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => ExchangeInfoResponse,
 )
 
-function _oacinternal_exchange_info(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing)
+function _oacinternal_exchange_info(_api::MarketApi; _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_exchange_info_MarketApi, "/fapi/v1/exchangeInfo", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "symbols", symbols)  # type Vector{String}
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -284,18 +278,16 @@ end
 Exchange Information 
 
 Params:
-- symbol::String
-- symbols::Vector{String}
 
 Return: ExchangeInfoResponse, OpenAPI.Clients.ApiResponse
 """
-function exchange_info(_api::MarketApi; symbol=nothing, symbols=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_exchange_info(_api; symbol=symbol, symbols=symbols, _mediaType=_mediaType)
+function exchange_info(_api::MarketApi; _mediaType=nothing)
+    _ctx = _oacinternal_exchange_info(_api; _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function exchange_info(_api::MarketApi, response_stream::Channel; symbol=nothing, symbols=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_exchange_info(_api; symbol=symbol, symbols=symbols, _mediaType=_mediaType)
+function exchange_info(_api::MarketApi, response_stream::Channel; _mediaType=nothing)
+    _ctx = _oacinternal_exchange_info(_api; _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 

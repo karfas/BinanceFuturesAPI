@@ -61,21 +61,6 @@ paths:
       description: |
         Exchange Information
       operationId: exchangeInfo
-      parameters:
-        - name: symbol
-          in: query
-          description: |
-            Trading pair symbol (e.g., BTCUSDT). If not sent, returns all symbols
-          schema:
-            type: string
-        - name: symbols
-          in: query
-          description: |
-            Array of trading pair symbols. Maximum of 100 symbols can be sent in a single request
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: |
@@ -619,14 +604,6 @@ paths:
           schema:
             type: string
             example: ''
-        - name: symbols
-          in: query
-          description: Array of trading pair symbols. Maximum of 100 symbols can be sent in a single request
-          schema:
-            type: array
-            items:
-              type: string
-            maxItems: 100
       responses:
         '200':
           description: ''

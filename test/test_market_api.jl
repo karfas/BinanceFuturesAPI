@@ -84,10 +84,10 @@ end
             !isempty(rates)
         end
 
-        # Test book ticker
+        # Test book ticker with symbol
         @test begin
             ticker = book_ticker(cl; symbol=symbol)
-            ticker.symbol == symbol
+            ticker.symbol == symbol && !isempty(ticker.bidPrice) && !isempty(ticker.askPrice)
         end
 
         # Test 24hr ticker
