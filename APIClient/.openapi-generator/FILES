@@ -6,7 +6,8 @@ docs/ApiTradingStatusResponse.md
 docs/ApiTradingStatusResponseIndicators.md
 docs/ApiTradingStatusResponseIndicatorsBTCUSDT.md
 docs/ApiTradingStatusResponseTriggerCondition.md
-docs/BookTickerResponseInner.md
+docs/BookTicker200Response.md
+docs/BookTickerResponseO.md
 docs/DataStreamApi.md
 docs/Depth200Response.md
 docs/ExchangeInfoResponse.md
@@ -53,7 +54,8 @@ src/models/model_ApiTradingStatusResponse.jl
 src/models/model_ApiTradingStatusResponseIndicators.jl
 src/models/model_ApiTradingStatusResponseIndicatorsBTCUSDT.jl
 src/models/model_ApiTradingStatusResponseTriggerCondition.jl
-src/models/model_BookTickerResponseInner.jl
+src/models/model_BookTicker200Response.jl
+src/models/model_BookTickerResponseO.jl
 src/models/model_Depth200Response.jl
 src/models/model_ExchangeInfoResponse.jl
 src/models/model_ExchangeInfoResponseAssetsInner.jl

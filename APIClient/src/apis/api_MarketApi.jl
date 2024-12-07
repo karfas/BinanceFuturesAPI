@@ -125,7 +125,7 @@ function basis(_api::MarketApi, response_stream::Channel; pair=nothing, contract
 end
 
 const _returntypes_book_ticker_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{BookTickerResponseInner},
+    Regex("^" * replace("200", "x"=>".") * "\$") => BookTicker200Response,
 )
 
 function _oacinternal_book_ticker(_api::MarketApi; symbol=nothing, _mediaType=nothing)
@@ -143,7 +143,7 @@ Best price/qty on the order book for a symbol or symbols.
 Params:
 - symbol::String
 
-Return: Vector{BookTickerResponseInner}, OpenAPI.Clients.ApiResponse
+Return: BookTicker200Response, OpenAPI.Clients.ApiResponse
 """
 function book_ticker(_api::MarketApi; symbol=nothing, _mediaType=nothing)
     _ctx = _oacinternal_book_ticker(_api; symbol=symbol, _mediaType=_mediaType)

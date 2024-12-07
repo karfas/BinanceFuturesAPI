@@ -148,8 +148,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **book_ticker**
-> book_ticker(_api::MarketApi; symbol=nothing, _mediaType=nothing) -> Vector{BookTickerResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> book_ticker(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing) -> Channel{ Vector{BookTickerResponseInner} }, OpenAPI.Clients.ApiResponse
+> book_ticker(_api::MarketApi; symbol=nothing, _mediaType=nothing) -> BookTicker200Response, OpenAPI.Clients.ApiResponse <br/>
+> book_ticker(_api::MarketApi, response_stream::Channel; symbol=nothing, _mediaType=nothing) -> Channel{ BookTicker200Response }, OpenAPI.Clients.ApiResponse
 
 Symbol Order Book Ticker
 
@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Vector{BookTickerResponseInner}**](BookTickerResponseInner.md)
+[**BookTicker200Response**](BookTicker200Response.md)
 
 ### Authorization
 
