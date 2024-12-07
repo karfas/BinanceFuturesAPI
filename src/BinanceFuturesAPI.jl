@@ -101,7 +101,7 @@ module BinanceFuturesAPI
 
     function book_ticker(cl::Client; kwargs...)
         (response, headers) = APIClient.book_ticker(cl.m_api; kwargs...)
-        response
+        response.value
     end
 
     function constituents(cl::Client; kwargs...)
@@ -179,9 +179,9 @@ module BinanceFuturesAPI
         response
     end
 
-    function ticker_24hr(cl::Client; kwargs...)
-        (response, headers) = APIClient.ticker_24hr(cl.m_api; kwargs...)
-        response
+    function ticker24hr(cl::Client; kwargs...)
+        (response, headers) = APIClient.ticker24hr(cl.m_api; kwargs...)
+        response.value
     end
 
     function ticker_price(cl::Client; kwargs...)
@@ -219,7 +219,7 @@ module BinanceFuturesAPI
     export agg_trades, asset_index, basis, book_ticker, constituents, continuous_klines,
            depth, exchange_info, funding_rate, global_long_short_account_ratio, historical_trades,
            index_info, index_price_klines, klines, lvt_klines, mark_price_klines, open_interest,
-           ping, price, ticker_24hr, ticker_price, server_time, top_long_short_account_ratio,
+           ping, price, ticker24hr, ticker_price, server_time, top_long_short_account_ratio,
            top_long_short_position_ratio, trades, ui_klines
 
     export MarketApi, TradeApi, AccountApi, DataStreamApi, PortfolioMarginApi, Client

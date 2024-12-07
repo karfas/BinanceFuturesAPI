@@ -83,24 +83,20 @@ end
             rates = funding_rate(cl; symbol=symbol, limit=100)
             !isempty(rates)
         end
-#=
-        # TODO: both book_ticker and ticker_24hr returns a oneOf model currently not handled correctly by OpenAPI.
         # Test book ticker without symbol (returns array)
         @test begin
             tickers = book_ticker(cl)
             isa(tickers, Vector) && !isempty(tickers)
         end
-
         # Test book ticker with symbol (returns single object)
         @test begin
             ticker = book_ticker(cl; symbol=symbol)
-            !isa(ticker, Vector) && ticker.symbol == symbol && !isempty(ticker.bidPrice) && !isempty(ticker.askPrice)
+            !isa(ticker, Vector) && ticker["symbol"] == symbol && !isempty(ticker["bidPrice"]) && !isempty(ticker["askPrice"])
         end
         # Test 24hr ticker
         @test begin
-            stats = ticker_24hr(cl; symbol=symbol)
-            stats.symbol == symbol
+            stats = ticker24hr(cl; symbol=symbol)
+            stats["symbol"] == symbol
         end
-=#
     end
 end
