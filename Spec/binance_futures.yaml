@@ -610,7 +610,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BookTickerResponse'
+                oneOf:
+                  - $ref: '#/components/schemas/BookTickerResponseA'
+                  - $ref: '#/components/schemas/BookTickerResponseO'
+
   /fapi/v1/openInterest:
     get:
       tags:
@@ -3729,30 +3732,35 @@ components:
             type: integer
             format: int64
             description: Update time
-    BookTickerResponse:
+
+    BookTickerResponseO:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Trading pair symbol
+        bidPrice:
+          type: string
+          description: Best bid price
+        bidQty:
+          type: string
+          description: Best bid quantity
+        askPrice:
+          type: string
+          description: Best ask price
+        askQty:
+          type: string
+          description: Best ask quantity
+        time:
+          type: integer
+          format: int64
+          description: Update time
+
+    BookTickerResponseA:
       type: array
       items:
-        type: object
-        properties:
-          symbol:
-            type: string
-            description: Trading pair symbol
-          bidPrice:
-            type: string
-            description: Best bid price
-          bidQty:
-            type: string
-            description: Best bid quantity
-          askPrice:
-            type: string
-            description: Best ask price
-          askQty:
-            type: string
-            description: Best ask quantity
-          time:
-            type: integer
-            format: int64
-            description: Update time
+        $ref: '#/components/schemas/BookTickerResponseO'
+
     MarkPriceResponse:
       type: array
       items:

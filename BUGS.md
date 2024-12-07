@@ -2,9 +2,14 @@
 
 ## Market
 
+OpenAPI doesn't handle oneOf models correctly.
+This happens in the `MarketApi` with the calls:
+- `book_ticker`
+- `Ticker24hr200Response`
+
 ### ticker24hr not working.
 
-API call returns 
+API call returns
 ```julia
 julia> ticker
 {
