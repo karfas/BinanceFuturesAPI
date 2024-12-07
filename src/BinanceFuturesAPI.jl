@@ -1,153 +1,227 @@
 """
-    BinanceFuturesAPI
+    module BinanceFuturesAPI
 
-A Julia package providing a type-safe interface to the Binance USDT-M Futures API.
-This package is generated from the official Binance Futures API OpenAPI specification
-and provides complete coverage of all API endpoints.
+A Julia module for interacting with the Binance Futures API.
 
-# Features
-- Complete coverage of Binance USDT-M Futures API
-- Type-safe API client
-- Support for all market data endpoints
-- Support for trading operations
-- Support for account and position management
-
-# Example
-```julia
-using BinanceFuturesAPI
-
-# Create a Market API client
-client = MarketApi("https://fapi.binance.com")
-
-# Get exchange information
-info = client.exchange_information()
-
-# Get klines (candlestick) data
-klines = client.klines("BTCUSDT"; interval="1m", limit=100)
-```
+This module provides a high-level interface to the Binance Futures API endpoints,
+organizing them into distinct API groups (Market, Trade, Account, etc.) for better usability.
 """
 module BinanceFuturesAPI
     include("../APIClient/src/APIClient.jl")
-    using Reexport
-    @reexport using .APIClient
-    using OpenAPI.Clients: Client
+    using .APIClient
+    using OpenAPI
+
+    default_config() = Dict{String, Any}(
+        "rest_api" => Dict{String, Any}(
+            "base_url" => "https://fapi.binance.com",
+            "key" => "",
+            "secret" => ""
+        ),
+        "ws_api" => Dict{String, Any}(
+            "base_url" => "wss://fstream.binance.com",
+            "key" => "",
+            "secret" => ""
+        )
+    )
+    default_test_config() = Dict{String, Any}(
+        "rest_api" => Dict{String, Any}(
+            "base_url" => "https://testnet.binancefuture.com",
+            "key" => "",
+            "secret" => ""
+        ),
+        "ws_api" => Dict{String, Any}(
+            "base_url" => "wss://testnet.binancefuture.com",
+            "key" => "",
+            "secret" => ""
+        )
+    )
+
 
     """
-        MarketApi(base_url::String)
+        struct Client
 
-    Creates a client for accessing Binance Futures Market API endpoints.
+    A client for interacting with the Binance Futures API.
+
+    # Fields
+    - `client::OpenAPI.Clients.Client`: The underlying OpenAPI client
+    - `api_key::String`: Binance API key for authenticated requests
+    - `api_secret::String`: Binance API secret for request signing
+
+    # Constructor
+        Client(url::String, api_key::String="", api_secret::String="")
+
+    Create a new Binance Futures API client.
 
     # Arguments
-    - `base_url::String`: The base URL for the Binance Futures API (e.g., "https://fapi.binance.com")
-
-    # Returns
-    - A `MarketApi` client instance that can be used to access market data endpoints
+    - `url::String`: Base URL for the Binance Futures API
+    - `api_key::String`: Optional API key for authenticated requests
+    - `api_secret::String`: Optional API secret for request signing
 
     # Example
     ```julia
-    market = MarketApi("https://fapi.binance.com")
-    info = exchange_information(market)
+    # Create a client for public endpoints
+    client = Client("https://fapi.binance.com")
+
+    # Create a client for authenticated endpoints
+    client = Client("https://fapi.binance.com", "your_api_key", "your_api_secret")
     ```
     """
-    MarketApi(url::String) = APIClient.MarketApi(Client(url))
+    struct Client
+        client::OpenAPI.Clients.Client
+        m_api::APIClient.MarketApi
+#        t_api::APIClient.TradeApi
+#        a_api::APIClient.AccountApi
 
-    """
-        TradeApi(base_url::String, api_key::String, api_secret::String)
+        function Client(url::String, api_key::String="", api_secret::String="")
+            client = OpenAPI.Clients.Client(url)
+            return new(client,
+                       APIClient.MarketApi(client)
+#                       APIClient.TradeApi(client, api_key, api_secret),
+#                       APIClient.AccountApi(client, api_key, api_secret)
+                    )
+        end
 
-    Creates an authenticated client for accessing Binance Futures Trade API endpoints.
+    end
 
-    # Arguments
-    - `base_url::String`: The base URL for the Binance Futures API (e.g., "https://fapi.binance.com")
-    - `api_key::String`: Your Binance API key
-    - `api_secret::String`: Your Binance API secret
+    # Market API wrapper functions
+    function agg_trades(cl::Client, symbol::String; kwargs...)
+        (response, headers) = APIClient.agg_trades(cl.m_api, symbol; kwargs...)
+        response
+    end
 
-    # Returns
-    - A `TradeApi` client instance that can be used for trading operations
+    function asset_index(cl::Client; kwargs...)
+        (response, headers) = APIClient.asset_index(cl.m_api; kwargs...)
+        response
+    end
 
-    # Example
-    ```julia
-    trade = TradeApi("https://fapi.binance.com", "your_api_key", "your_api_secret")
-    order = new_order_trade(trade, symbol="BTCUSDT", side="BUY", order_type="LIMIT", quantity=0.001, price=50000.0)
-    ```
-    """
-    TradeApi(url::String, api_key::String, api_secret::String) = APIClient.TradeApi(Client(url), api_key, api_secret)
+    function basis(cl::Client; kwargs...)
+        (response, headers) = APIClient.basis(cl.m_api; kwargs...)
+        response
+    end
 
-    """
-        AccountApi(base_url::String, api_key::String, api_secret::String)
+    function book_ticker(cl::Client; kwargs...)
+        (response, headers) = APIClient.book_ticker(cl.m_api; kwargs...)
+        response
+    end
 
-    Creates an authenticated client for accessing Binance Futures Account API endpoints.
+    function constituents(cl::Client; kwargs...)
+        (response, headers) = APIClient.constituents(cl.m_api; kwargs...)
+        response
+    end
 
-    # Arguments
-    - `base_url::String`: The base URL for the Binance Futures API (e.g., "https://fapi.binance.com")
-    - `api_key::String`: Your Binance API key
-    - `api_secret::String`: Your Binance API secret
+    function continuous_klines(cl::Client; kwargs...)
+        (response, headers) = APIClient.continuous_klines(cl.m_api; kwargs...)
+        response
+    end
 
-    # Returns
-    - An `AccountApi` client instance that can be used for account and position management
+    function depth(cl::Client, symbol::String; kwargs...)
+        (response, headers) = APIClient.depth(cl.m_api, symbol; kwargs...)
+        response
+    end
 
-    # Example
-    ```julia
-    account = AccountApi("https://fapi.binance.com", "your_api_key", "your_api_secret")
+    function exchange_info(cl::Client; kwargs...)
+        (response, headers) = APIClient.exchange_info(cl.m_api; kwargs...)
+        response
+    end
 
-    # Get account information
-    info = account_information(account, timestamp=Int64(time() * 1000))
+    function funding_rate(cl::Client; kwargs...)
+        (response, headers) = APIClient.funding_rate(cl.m_api; kwargs...)
+        response
+    end
 
-    # Get position information
-    positions = position_information(account, timestamp=Int64(time() * 1000))
-    ```
-    """
-    AccountApi(url::String, api_key::String, api_secret::String) = APIClient.AccountApi(Client(url), api_key, api_secret)
+    function global_long_short_account_ratio(cl::Client; kwargs...)
+        (response, headers) = APIClient.global_long_short_account_ratio(cl.m_api; kwargs...)
+        response
+    end
 
-    """
-        DataStreamApi(base_url::String, api_key::String="", api_secret::String="")
+    function historical_trades(cl::Client, symbol::String; kwargs...)
+        (response, headers) = APIClient.historical_trades(cl.m_api, symbol; kwargs...)
+        response
+    end
 
-    Creates a client for managing WebSocket data streams. The API key and secret are optional
-    for public streams but required for user data streams.
+    function index_info(cl::Client; kwargs...)
+        (response, headers) = APIClient.index_info(cl.m_api; kwargs...)
+        response
+    end
 
-    # Arguments
-    - `base_url::String`: The base URL for the Binance Futures API (e.g., "https://fapi.binance.com")
-    - `api_key::String`: (Optional) Your Binance API key, required for user data streams
-    - `api_secret::String`: (Optional) Your Binance API secret, required for user data streams
+    function index_price_klines(cl::Client; kwargs...)
+        (response, headers) = APIClient.index_price_klines(cl.m_api; kwargs...)
+        response
+    end
 
-    # Returns
-    - A `DataStreamApi` client instance that can be used to manage WebSocket streams
+    function klines(cl::Client, symbol::String, interval::String; kwargs...)
+        (response, headers) = APIClient.klines(cl.m_api, symbol, interval; kwargs...)
+        response
+    end
 
-    # Example
-    ```julia
-    # For public streams
-    stream = DataStreamApi("https://fapi.binance.com")
+    function lvt_klines(cl::Client; kwargs...)
+        (response, headers) = APIClient.lvt_klines(cl.m_api; kwargs...)
+        response
+    end
 
-    # For user data streams
-    stream = DataStreamApi("https://fapi.binance.com", "your_api_key", "your_api_secret")
-    listen_key = start_user_data_stream(stream)
-    ```
-    """
-    DataStreamApi(url::String, api_key::String="", api_secret::String="") = APIClient.DataStreamApi(Client(url), api_key, api_secret)
+    function mark_price_klines(cl::Client; kwargs...)
+        (response, headers) = APIClient.mark_price_klines(cl.m_api; kwargs...)
+        response
+    end
 
-    """
-        PortfolioMarginApi(base_url::String, api_key::String, api_secret::String)
+    function open_interest(cl::Client; kwargs...)
+        (response, headers) = APIClient.open_interest(cl.m_api; kwargs...)
+        response
+    end
 
-    Creates an authenticated client for accessing Binance Futures Portfolio Margin API endpoints.
-    Portfolio margin mode allows cross-margin across all positions.
+    function ping(cl::Client; kwargs...)
+        (response, headers) = APIClient.ping(cl.m_api; kwargs...)
+        response
+    end
 
-    # Arguments
-    - `base_url::String`: The base URL for the Binance Futures API (e.g., "https://fapi.binance.com")
-    - `api_key::String`: Your Binance API key
-    - `api_secret::String`: Your Binance API secret
+    function price(cl::Client; kwargs...)
+        (response, headers) = APIClient.price(cl.m_api; kwargs...)
+        response
+    end
 
-    # Returns
-    - A `PortfolioMarginApi` client instance that can be used for portfolio margin operations
+    function ticker_24hr(cl::Client; kwargs...)
+        (response, headers) = APIClient.ticker_24hr(cl.m_api; kwargs...)
+        response
+    end
 
-    # Example
-    ```julia
-    portfolio = PortfolioMarginApi("https://fapi.binance.com", "your_api_key", "your_api_secret")
+    function ticker_price(cl::Client; kwargs...)
+        (response, headers) = APIClient.ticker_price(cl.m_api; kwargs...)
+        response
+    end
 
-    # Get portfolio margin account info
-    info = portfolio_margin_account_information(portfolio, timestamp=Int64(time() * 1000))
-    ```
-    """
-    PortfolioMarginApi(url::String, api_key::String, api_secret::String) = APIClient.PortfolioMarginApi(Client(url), api_key, api_secret)
+    function server_time(cl::Client; kwargs...)
+        (response, headers) = APIClient.server_time(cl.m_api; kwargs...)
+        response
+    end
 
-    export MarketApi, TradeApi, AccountApi, DataStreamApi, PortfolioMarginApi
+    function top_long_short_account_ratio(cl::Client; kwargs...)
+        (response, headers) = APIClient.top_long_short_account_ratio(cl.m_api; kwargs...)
+        response
+    end
+
+    function top_long_short_position_ratio(cl::Client; kwargs...)
+        (response, headers) = APIClient.top_long_short_position_ratio(cl.m_api; kwargs...)
+        response
+    end
+
+    function trades(cl::Client, symbol::String; kwargs...)
+        (response, headers) = APIClient.trades(cl.m_api, symbol; kwargs...)
+        response
+    end
+
+    function ui_klines(cl::Client; kwargs...)
+        (response, headers) = APIClient.ui_klines(cl.m_api; kwargs...)
+        response
+    end
+
+    # Export market API functions
+
+    export agg_trades, asset_index, basis, book_ticker, constituents, continuous_klines,
+           depth, exchange_info, funding_rate, global_long_short_account_ratio, historical_trades,
+           index_info, index_price_klines, klines, lvt_klines, mark_price_klines, open_interest,
+           ping, price, ticker_24hr, ticker_price, server_time, top_long_short_account_ratio,
+           top_long_short_position_ratio, trades, ui_klines
+
+    export MarketApi, TradeApi, AccountApi, DataStreamApi, PortfolioMarginApi, Client
 
 end

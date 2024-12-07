@@ -33,3 +33,4 @@ ERROR: type Ticker24hr200Response has no field symbol
 julia> ticker["symbol"]
 ERROR: MethodError: no method matching getindex(::BinanceFuturesAPI.APIClient.Ticker24hr200Response, ::String)
 ```
+This is most likely a bug regarding the code generation for the oneOf models.
