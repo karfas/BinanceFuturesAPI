@@ -10,6 +10,48 @@ module BinanceFuturesAPI
     include("../APIClient/src/APIClient.jl")
     using .APIClient
     using OpenAPI
+    using Dates
+    using SHA
+    using Base64
+
+    timestamp() = Int64(round(datetime2unix(now(UTC)) * 1000))
+    timestamp!(d::Dict{Symbol, Any}) = begin d[:timestamp] = timestamp(); return d; end
+
+    function sign_params!(d::Dict{Symbol, Any}, secret::String)
+        timestamp!(d)
+        d[:signature] = sign_request(secret, d)
+        return d
+    end
+
+    function signed_kwargs(secret::String; kwargs...)
+        d = Dict{Symbol, Any}(kwargs...)
+        timestamp!(d)
+        d[:signature] = sign_request(secret, d)
+        return d
+    end
+
+    function sign_request(secret::String, params::Dict)
+        # Sort parameters alphabetically
+        sorted_params = sort(collect(params), by=x->x[1])
+
+        # Create query string
+        query_string = join(["$(k)=$(v)" for (k,v) in sorted_params], "&")
+
+        # Create HMAC SHA256 signature
+        hmac = hmac_sha256(Vector{UInt8}(secret), Vector{UInt8}(query_string))
+        ret = bytes2hex(hmac)
+        println("sign_request: $query_string -> $ret")
+        ret
+    end
+
+    # function sign_request(secret::String, kwargs::Base.Pairs)
+    #     # Convert kwargs to Dict
+    #     params = Dict{String,Any}()
+    #     for (k,v) in kwargs
+    #         params[string(k)] = v
+    #     end
+    #     sign_request(secret, params)
+    # end
 
     default_config() = Dict{String, Any}(
         "rest_api" => Dict{String, Any}(
@@ -69,158 +111,55 @@ module BinanceFuturesAPI
     struct Client
         client::OpenAPI.Clients.Client
         m_api::APIClient.MarketApi
-#        t_api::APIClient.TradeApi
-#        a_api::APIClient.AccountApi
+        t_api::APIClient.TradeApi
+        a_api::APIClient.AccountApi
+        api_key::String
+        api_secret::String
 
         function Client(url::String, api_key::String="", api_secret::String="")
-            client = OpenAPI.Clients.Client(url)
-            return new(client,
-                       APIClient.MarketApi(client)
-#                       APIClient.TradeApi(client, api_key, api_secret),
-#                       APIClient.AccountApi(client, api_key, api_secret)
-                    )
+            client = OpenAPI.Clients.Client(url; verbose=true, pre_request_hook=pre_request_hook)
+            new(client,
+                APIClient.MarketApi(client),
+                APIClient.TradeApi(client),
+                APIClient.AccountApi(client),
+                api_key,
+                api_secret
+            )
         end
 
     end
 
-    # Market API wrapper functions
-    function agg_trades(cl::Client, symbol::String; kwargs...)
-        (response, headers) = APIClient.agg_trades(cl.m_api, symbol; kwargs...)
-        response
+    function sign_hook(resource_path::AbstractString, body::Any)
+        pq = split(resource_path, '?', limit=2)
+        if length(pq) != 2
+            return resource_path, body
+        end
+        path, query = pq
+        tupels = split(query, '&') |> ( x -> split.(x, '=')) |> (x -> map(y -> (y[1], y[2]), x))
+        q = Dict{String,String}(tupels)
+        sig = get(q, "signature", nothing)
+        if sig !== nothing
+            delete!(q, "signature")
+            resource_path = string(path, "?", join(["$(k)=$(v)" for (k,v) in sort(collect(q), by=x->x[1])], "&"), "&signature=", sig)
+        end
+        resource_path, body
     end
 
-    function asset_index(cl::Client; kwargs...)
-        (response, headers) = APIClient.asset_index(cl.m_api; kwargs...)
-        response
+
+    function pre_request_hook(ctx::OpenAPI.Clients.Ctx)
+        ctx
+    end
+    function pre_request_hook(resource_path::AbstractString, body::Any, headers::Dict{String,String})
+        resource_path, body = sign_hook(resource_path, body)
+        resource_path, body, headers
     end
 
-    function basis(cl::Client; kwargs...)
-        (response, headers) = APIClient.basis(cl.m_api; kwargs...)
-        response
-    end
 
-    function book_ticker(cl::Client; kwargs...)
-        (response, headers) = APIClient.book_ticker(cl.m_api; kwargs...)
-        response.value
-    end
-
-    function constituents(cl::Client; kwargs...)
-        (response, headers) = APIClient.constituents(cl.m_api; kwargs...)
-        response
-    end
-
-    function continuous_klines(cl::Client; kwargs...)
-        (response, headers) = APIClient.continuous_klines(cl.m_api; kwargs...)
-        response
-    end
-
-    function depth(cl::Client, symbol::String; kwargs...)
-        (response, headers) = APIClient.depth(cl.m_api, symbol; kwargs...)
-        response
-    end
-
-    function exchange_info(cl::Client; kwargs...)
-        (response, headers) = APIClient.exchange_info(cl.m_api; kwargs...)
-        response
-    end
-
-    function funding_rate(cl::Client; kwargs...)
-        (response, headers) = APIClient.funding_rate(cl.m_api; kwargs...)
-        response
-    end
-
-    function global_long_short_account_ratio(cl::Client; kwargs...)
-        (response, headers) = APIClient.global_long_short_account_ratio(cl.m_api; kwargs...)
-        response
-    end
-
-    function historical_trades(cl::Client, symbol::String; kwargs...)
-        (response, headers) = APIClient.historical_trades(cl.m_api, symbol; kwargs...)
-        response
-    end
-
-    function index_info(cl::Client; kwargs...)
-        (response, headers) = APIClient.index_info(cl.m_api; kwargs...)
-        response
-    end
-
-    function index_price_klines(cl::Client; kwargs...)
-        (response, headers) = APIClient.index_price_klines(cl.m_api; kwargs...)
-        response
-    end
-
-    function klines(cl::Client, symbol::String, interval::String; kwargs...)
-        (response, headers) = APIClient.klines(cl.m_api, symbol, interval; kwargs...)
-        response
-    end
-
-    function lvt_klines(cl::Client; kwargs...)
-        (response, headers) = APIClient.lvt_klines(cl.m_api; kwargs...)
-        response
-    end
-
-    function mark_price_klines(cl::Client; kwargs...)
-        (response, headers) = APIClient.mark_price_klines(cl.m_api; kwargs...)
-        response
-    end
-
-    function open_interest(cl::Client; kwargs...)
-        (response, headers) = APIClient.open_interest(cl.m_api; kwargs...)
-        response
-    end
-
-    function ping(cl::Client; kwargs...)
-        (response, headers) = APIClient.ping(cl.m_api; kwargs...)
-        response
-    end
-
-    function price(cl::Client; kwargs...)
-        (response, headers) = APIClient.price(cl.m_api; kwargs...)
-        response
-    end
-
-    function ticker24hr(cl::Client; kwargs...)
-        (response, headers) = APIClient.ticker24hr(cl.m_api; kwargs...)
-        response.value
-    end
-
-    function ticker_price(cl::Client; kwargs...)
-        (response, headers) = APIClient.ticker_price(cl.m_api; kwargs...)
-        response
-    end
-
-    function server_time(cl::Client; kwargs...)
-        (response, headers) = APIClient.server_time(cl.m_api; kwargs...)
-        response
-    end
-
-    function top_long_short_account_ratio(cl::Client; kwargs...)
-        (response, headers) = APIClient.top_long_short_account_ratio(cl.m_api; kwargs...)
-        response
-    end
-
-    function top_long_short_position_ratio(cl::Client; kwargs...)
-        (response, headers) = APIClient.top_long_short_position_ratio(cl.m_api; kwargs...)
-        response
-    end
-
-    function trades(cl::Client, symbol::String; kwargs...)
-        (response, headers) = APIClient.trades(cl.m_api, symbol; kwargs...)
-        response
-    end
-
-    function ui_klines(cl::Client; kwargs...)
-        (response, headers) = APIClient.ui_klines(cl.m_api; kwargs...)
-        response
-    end
-
-    # Export market API functions
-
-    export agg_trades, asset_index, basis, book_ticker, constituents, continuous_klines,
-           depth, exchange_info, funding_rate, global_long_short_account_ratio, historical_trades,
-           index_info, index_price_klines, klines, lvt_klines, mark_price_klines, open_interest,
-           ping, price, ticker24hr, ticker_price, server_time, top_long_short_account_ratio,
-           top_long_short_position_ratio, trades, ui_klines
+    include("wrap_market_api.jl")
+    # include("trade_api_wrappers.jl")
+    include("wrap_account_api.jl")
+    # include("datastream_api_wrappers.jl")
+    # include("portfoliomargin_api_wrappers.jl")
 
     export MarketApi, TradeApi, AccountApi, DataStreamApi, PortfolioMarginApi, Client
 

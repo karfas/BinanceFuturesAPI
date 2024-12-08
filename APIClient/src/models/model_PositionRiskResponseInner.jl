@@ -12,7 +12,7 @@
         leverage=nothing,
         liquidationPrice=nothing,
         markPrice=nothing,
-        maxNotionalValue=nothing,
+        maxNotional=nothing,
         positionAmt=nothing,
         symbol=nothing,
         unRealizedProfit=nothing,
@@ -27,7 +27,7 @@
     - leverage::String : Current leverage
     - liquidationPrice::String : Liquidation price
     - markPrice::String : Mark price
-    - maxNotionalValue::String : Maximum notional value
+    - maxNotional::String : Maximum notional
     - positionAmt::String : Position amount
     - symbol::String : Trading pair symbol
     - unRealizedProfit::String : Unrealized profit
@@ -42,14 +42,14 @@ Base.@kwdef mutable struct PositionRiskResponseInner <: OpenAPI.APIModel
     leverage::Union{Nothing, String} = nothing
     liquidationPrice::Union{Nothing, String} = nothing
     markPrice::Union{Nothing, String} = nothing
-    maxNotionalValue::Union{Nothing, String} = nothing
+    maxNotional::Union{Nothing, String} = nothing
     positionAmt::Union{Nothing, String} = nothing
     symbol::Union{Nothing, String} = nothing
     unRealizedProfit::Union{Nothing, String} = nothing
     positionSide::Union{Nothing, String} = nothing
     updateTime::Union{Nothing, Int64} = nothing
 
-    function PositionRiskResponseInner(entryPrice, marginType, isAutoAddMargin, isolatedMargin, leverage, liquidationPrice, markPrice, maxNotionalValue, positionAmt, symbol, unRealizedProfit, positionSide, updateTime, )
+    function PositionRiskResponseInner(entryPrice, marginType, isAutoAddMargin, isolatedMargin, leverage, liquidationPrice, markPrice, maxNotional, positionAmt, symbol, unRealizedProfit, positionSide, updateTime, )
         OpenAPI.validate_property(PositionRiskResponseInner, Symbol("entryPrice"), entryPrice)
         OpenAPI.validate_property(PositionRiskResponseInner, Symbol("marginType"), marginType)
         OpenAPI.validate_property(PositionRiskResponseInner, Symbol("isAutoAddMargin"), isAutoAddMargin)
@@ -57,17 +57,17 @@ Base.@kwdef mutable struct PositionRiskResponseInner <: OpenAPI.APIModel
         OpenAPI.validate_property(PositionRiskResponseInner, Symbol("leverage"), leverage)
         OpenAPI.validate_property(PositionRiskResponseInner, Symbol("liquidationPrice"), liquidationPrice)
         OpenAPI.validate_property(PositionRiskResponseInner, Symbol("markPrice"), markPrice)
-        OpenAPI.validate_property(PositionRiskResponseInner, Symbol("maxNotionalValue"), maxNotionalValue)
+        OpenAPI.validate_property(PositionRiskResponseInner, Symbol("maxNotional"), maxNotional)
         OpenAPI.validate_property(PositionRiskResponseInner, Symbol("positionAmt"), positionAmt)
         OpenAPI.validate_property(PositionRiskResponseInner, Symbol("symbol"), symbol)
         OpenAPI.validate_property(PositionRiskResponseInner, Symbol("unRealizedProfit"), unRealizedProfit)
         OpenAPI.validate_property(PositionRiskResponseInner, Symbol("positionSide"), positionSide)
         OpenAPI.validate_property(PositionRiskResponseInner, Symbol("updateTime"), updateTime)
-        return new(entryPrice, marginType, isAutoAddMargin, isolatedMargin, leverage, liquidationPrice, markPrice, maxNotionalValue, positionAmt, symbol, unRealizedProfit, positionSide, updateTime, )
+        return new(entryPrice, marginType, isAutoAddMargin, isolatedMargin, leverage, liquidationPrice, markPrice, maxNotional, positionAmt, symbol, unRealizedProfit, positionSide, updateTime, )
     end
 end # type PositionRiskResponseInner
 
-const _property_types_PositionRiskResponseInner = Dict{Symbol,String}(Symbol("entryPrice")=>"String", Symbol("marginType")=>"String", Symbol("isAutoAddMargin")=>"Bool", Symbol("isolatedMargin")=>"String", Symbol("leverage")=>"String", Symbol("liquidationPrice")=>"String", Symbol("markPrice")=>"String", Symbol("maxNotionalValue")=>"String", Symbol("positionAmt")=>"String", Symbol("symbol")=>"String", Symbol("unRealizedProfit")=>"String", Symbol("positionSide")=>"String", Symbol("updateTime")=>"Int64", )
+const _property_types_PositionRiskResponseInner = Dict{Symbol,String}(Symbol("entryPrice")=>"String", Symbol("marginType")=>"String", Symbol("isAutoAddMargin")=>"Bool", Symbol("isolatedMargin")=>"String", Symbol("leverage")=>"String", Symbol("liquidationPrice")=>"String", Symbol("markPrice")=>"String", Symbol("maxNotional")=>"String", Symbol("positionAmt")=>"String", Symbol("symbol")=>"String", Symbol("unRealizedProfit")=>"String", Symbol("positionSide")=>"String", Symbol("updateTime")=>"Int64", )
 OpenAPI.property_type(::Type{ PositionRiskResponseInner }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_PositionRiskResponseInner[name]))}
 
 function check_required(o::PositionRiskResponseInner)

@@ -27,14 +27,14 @@ Documentation is also embedded in Julia which can be used with a Julia specific 
 
 Class | Method
 ------------ | -------------
-*AccountApi* | [**account**](docs/AccountApi.md#account)<br/>**GET** /fapi/v2/account<br/>Account information
+*AccountApi* | [**account**](docs/AccountApi.md#account)<br/>**GET** /fapi/v3/account<br/>Account information
 *AccountApi* | [**adl_quantile**](docs/AccountApi.md#adl_quantile)<br/>**GET** /fapi/v1/adlQuantile<br/>Position ADL Quantile Estimation (USER_DATA)
-*AccountApi* | [**balance**](docs/AccountApi.md#balance)<br/>**GET** /fapi/v2/balance<br/>Future Account Balance
+*AccountApi* | [**balance**](docs/AccountApi.md#balance)<br/>**GET** /fapi/v3/balance<br/>Future Account Balance
 *AccountApi* | [**commission_rate**](docs/AccountApi.md#commission_rate)<br/>**GET** /fapi/v1/commissionRate<br/>User Commission Rate (USER_DATA)
 *AccountApi* | [**fapi_v1_api_trading_status_get**](docs/AccountApi.md#fapi_v1_api_trading_status_get)<br/>**GET** /fapi/v1/apiTradingStatus<br/>Account API Trading Status
 *AccountApi* | [**income**](docs/AccountApi.md#income)<br/>**GET** /fapi/v1/income<br/>Get Income History
-*AccountApi* | [**leverage_bracket**](docs/AccountApi.md#leverage_bracket)<br/>**GET** /fapi/v1/leverageBracket<br/>Notional and Leverage Brackets (USER_DATA)
-*AccountApi* | [**position_risk**](docs/AccountApi.md#position_risk)<br/>**GET** /fapi/v2/positionRisk<br/>Position Information
+*AccountApi* | [**leverage_bracket**](docs/AccountApi.md#leverage_bracket)<br/>**GET** /fapi/v1/leverageBracket<br/>Notional and Leverage Brackets
+*AccountApi* | [**position_risk**](docs/AccountApi.md#position_risk)<br/>**GET** /fapi/v3/positionRisk<br/>Position Risk
 *AccountApi* | [**user_trades**](docs/AccountApi.md#user_trades)<br/>**GET** /fapi/v1/userTrades<br/>Account Trade List
 *DataStreamApi* | [**delete_listen_key**](docs/DataStreamApi.md#delete_listen_key)<br/>**DELETE** /fapi/v1/listenKey<br/>Delete Listen Key
 *DataStreamApi* | [**post_listen_key**](docs/DataStreamApi.md#post_listen_key)<br/>**POST** /fapi/v1/listenKey<br/>Create New Listen Key
@@ -96,12 +96,16 @@ Class | Method
 
 ## Models
 
+ - [Account200Response](docs/Account200Response.md)
+ - [Account200ResponseAssetsInner](docs/Account200ResponseAssetsInner.md)
+ - [Account200ResponsePositionsInner](docs/Account200ResponsePositionsInner.md)
  - [AggregateTradesResponseInner](docs/AggregateTradesResponseInner.md)
  - [AllOrdersResponseInner](docs/AllOrdersResponseInner.md)
  - [ApiTradingStatusResponse](docs/ApiTradingStatusResponse.md)
  - [ApiTradingStatusResponseIndicators](docs/ApiTradingStatusResponseIndicators.md)
  - [ApiTradingStatusResponseIndicatorsBTCUSDT](docs/ApiTradingStatusResponseIndicatorsBTCUSDT.md)
  - [ApiTradingStatusResponseTriggerCondition](docs/ApiTradingStatusResponseTriggerCondition.md)
+ - [Balance200ResponseInner](docs/Balance200ResponseInner.md)
  - [BookTicker200Response](docs/BookTicker200Response.md)
  - [BookTickerResponseO](docs/BookTickerResponseO.md)
  - [Depth200Response](docs/Depth200Response.md)
@@ -112,7 +116,10 @@ Class | Method
  - [ExchangeInfoResponseSymbolsInnerFiltersInner](docs/ExchangeInfoResponseSymbolsInnerFiltersInner.md)
  - [FundingRateResponseInner](docs/FundingRateResponseInner.md)
  - [HistoricalTradesResponseInner](docs/HistoricalTradesResponseInner.md)
+ - [Income200ResponseInner](docs/Income200ResponseInner.md)
  - [KlinesResponseInnerInner](docs/KlinesResponseInnerInner.md)
+ - [LeverageBracket200ResponseInner](docs/LeverageBracket200ResponseInner.md)
+ - [LeverageBracket200ResponseInnerBracketsInner](docs/LeverageBracket200ResponseInnerBracketsInner.md)
  - [LeverageResponse](docs/LeverageResponse.md)
  - [ListenKeyResponse](docs/ListenKeyResponse.md)
  - [MarkPriceResponseInner](docs/MarkPriceResponseInner.md)
@@ -124,6 +131,7 @@ Class | Method
  - [PositionMarginHistoryResponseInner](docs/PositionMarginHistoryResponseInner.md)
  - [PositionMarginResponse](docs/PositionMarginResponse.md)
  - [PositionModeResponse](docs/PositionModeResponse.md)
+ - [PositionRisk200ResponseInner](docs/PositionRisk200ResponseInner.md)
  - [PositionRiskResponseInner](docs/PositionRiskResponseInner.md)
  - [PremiumIndexResponseInner](docs/PremiumIndexResponseInner.md)
  - [ServerTime200Response](docs/ServerTime200Response.md)

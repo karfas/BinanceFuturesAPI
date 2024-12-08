@@ -1027,7 +1027,7 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-  /fapi/v2/account:
+  /fapi/v3/account:
     get:
       tags:
         - Account
@@ -1047,7 +1047,6 @@ paths:
             default: 5000
         - name: timestamp
           in: query
-          required: true
           description: Current timestamp in milliseconds
           schema:
             type: integer
@@ -1069,114 +1068,384 @@ paths:
             application/json:
               schema:
                 type: object
+                properties:
+                  feeTier:
+                    type: integer
+                    description: "Fee tier"
+                  canTrade:
+                    type: boolean
+                    description: "Can trade"
+                  canDeposit:
+                    type: boolean
+                    description: "Can deposit"
+                  canWithdraw:
+                    type: boolean
+                    description: "Can withdraw"
+                  updateTime:
+                    type: integer
+                    description: "Update time"
+                  totalInitialMargin:
+                    type: string
+                    description: "Total initial margin"
+                  totalMaintMargin:
+                    type: string
+                    description: "Total maintenance margin"
+                  totalWalletBalance:
+                    type: string
+                    description: "Total wallet balance"
+                  totalUnrealizedProfit:
+                    type: string
+                    description: "Total unrealized profit"
+                  totalMarginBalance:
+                    type: string
+                    description: "Total margin balance"
+                  totalPositionInitialMargin:
+                    type: string
+                    description: "Total position initial margin"
+                  totalOpenOrderInitialMargin:
+                    type: string
+                    description: "Total open order initial margin"
+                  totalCrossWalletBalance:
+                    type: string
+                    description: "Total cross wallet balance"
+                  totalCrossUnPnl:
+                    type: string
+                    description: "Total cross unrealized PnL"
+                  availableBalance:
+                    type: string
+                    description: "Available balance"
+                  maxWithdrawAmount:
+                    type: string
+                    description: "Maximum withdraw amount"
+                  assets:
+                    type: array
+                    description: "Assets information"
+                    items:
+                      type: object
+                      properties:
+                        asset:
+                          type: string
+                          description: "Asset name"
+                        walletBalance:
+                          type: string
+                          description: "Wallet balance"
+                        unrealizedProfit:
+                          type: string
+                          description: "Unrealized profit"
+                        marginBalance:
+                          type: string
+                          description: "Margin balance"
+                        maintMargin:
+                          type: string
+                          description: "Maintenance margin"
+                        initialMargin:
+                          type: string
+                          description: "Initial margin"
+                        positionInitialMargin:
+                          type: string
+                          description: "Position initial margin"
+                        openOrderInitialMargin:
+                          type: string
+                          description: "Open order initial margin"
+                        crossWalletBalance:
+                          type: string
+                          description: "Cross wallet balance"
+                        crossUnPnl:
+                          type: string
+                          description: "Cross unrealized PnL"
+                        availableBalance:
+                          type: string
+                          description: "Available balance"
+                        maxWithdrawAmount:
+                          type: string
+                          description: "Maximum withdraw amount"
+                  positions:
+                    type: array
+                    description: "Positions"
+                    items:
+                      type: object
+                      properties:
+                        symbol:
+                          type: string
+                          description: "Trading pair"
+                        initialMargin:
+                          type: string
+                          description: "Initial margin"
+                        maintMargin:
+                          type: string
+                          description: "Maintenance margin"
+                        unrealizedProfit:
+                          type: string
+                          description: "Unrealized profit"
+                        positionInitialMargin:
+                          type: string
+                          description: "Position initial margin"
+                        openOrderInitialMargin:
+                          type: string
+                          description: "Open order initial margin"
+                        leverage:
+                          type: string
+                          description: "Leverage"
+                        isolated:
+                          type: boolean
+                          description: "Is isolated"
+                        entryPrice:
+                          type: string
+                          description: "Entry price"
+                        maxNotional:
+                          type: string
+                          description: "Maximum notional"
+                        positionSide:
+                          type: string
+                          description: "Position side"
+                        positionAmt:
+                          type: string
+                          description: "Position amount"
+                        notional:
+                          type: string
+                          description: "Notional value"
+                        isolatedWallet:
+                          type: string
+                          description: "Isolated wallet"
+                        updateTime:
+                          type: integer
+                          description: "Update time"
                 additionalProperties: true
   /fapi/v1/income:
     get:
       tags:
         - Account
       summary: Get Income History
-      description: Get Income History
+      description: Get income history from futures account
       operationId: income
       parameters:
         - name: symbol
           in: query
+          description: Trading pair
+          required: false
           schema:
             type: string
-            example: BTCUSDT
         - name: incomeType
           in: query
+          description: Income type
+          required: false
           schema:
             type: string
-            example: REALIZED_PNL
+            enum:
+              - TRANSFER
+              - WELCOME_BONUS
+              - REALIZED_PNL
+              - FUNDING_FEE
+              - COMMISSION
+              - INSURANCE_CLEAR
+              - REFERRAL_KICKBACK
+              - COMMISSION_REBATE
+              - API_REBATE
+              - CONTEST_REWARD
+              - CROSS_COLLATERAL_TRANSFER
+              - OPTIONS_PREMIUM_FEE
+              - OPTIONS_SETTLE_PROFIT
+              - INTERNAL_TRANSFER
+              - AUTO_EXCHANGE
+              - DELIVERED_SETTELMENT
+              - COIN_SWAP_DEPOSIT
+              - COIN_SWAP_WITHDRAW
+              - POSITION_LIMIT_INCREASE_FEE
         - name: startTime
           in: query
+          description: Start time in ms
+          required: false
           schema:
-            type: string
-            example: ''
+            type: integer
+            format: int64
         - name: endTime
           in: query
+          description: End time in ms
+          required: false
           schema:
-            type: string
-            example: ''
-        - name: page
-          in: query
-          schema:
-            type: string
-            example: ''
+            type: integer
+            format: int64
         - name: limit
           in: query
+          description: Default 100; max 1000
+          required: false
           schema:
-            type: string
-            example: '100'
-          description: The value cannot be greater than 60000
+            type: integer
+            default: 100
+            maximum: 1000
         - name: recvWindow
           in: query
-          schema:
-            type: string
-            example: '5000'
           description: The value cannot be greater than 60000
+          required: false
+          schema:
+            type: integer
+            format: int64
+            maximum: 60000
+            default: 5000
         - name: timestamp
           in: query
+          description: Current timestamp in milliseconds
           schema:
-            type: string
-            example: '{{timestamp}}'
+            type: integer
+            format: int64
         - name: signature
           in: query
+          description: Signature
           schema:
             type: string
-            example: '{{signature}}'
         - name: x-mbx-apikey
           in: header
+          description: API Key
           schema:
             type: string
             example: '{{binance-api-key}}'
       responses:
         '200':
-          description: ''
+          description: 'Income History'
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
-  /fapi/v2/positionRisk:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    symbol:
+                      type: string
+                      description: "Trading pair"
+                    incomeType:
+                      type: string
+                      description: "Income type"
+                      enum:
+                        - TRANSFER
+                        - WELCOME_BONUS
+                        - REALIZED_PNL
+                        - FUNDING_FEE
+                        - COMMISSION
+                        - INSURANCE_CLEAR
+                        - REFERRAL_KICKBACK
+                        - COMMISSION_REBATE
+                        - API_REBATE
+                        - CONTEST_REWARD
+                        - CROSS_COLLATERAL_TRANSFER
+                        - OPTIONS_PREMIUM_FEE
+                        - OPTIONS_SETTLE_PROFIT
+                        - INTERNAL_TRANSFER
+                        - AUTO_EXCHANGE
+                        - DELIVERED_SETTELMENT
+                        - COIN_SWAP_DEPOSIT
+                        - COIN_SWAP_WITHDRAW
+                        - POSITION_LIMIT_INCREASE_FEE
+                    income:
+                      type: string
+                      description: "Income amount"
+                    asset:
+                      type: string
+                      description: "Asset name"
+                    info:
+                      type: string
+                      description: "Additional information"
+                    time:
+                      type: integer
+                      format: int64
+                      description: "Transaction time in ms"
+                    tranId:
+                      type: string
+                      description: "Transaction ID"
+                    tradeId:
+                      type: string
+                      description: "Trade ID if the income is from a trade"
+                  additionalProperties: true
+  /fapi/v3/positionRisk:
     get:
       tags:
         - Account
-      summary: Position Information
-      description: Position Information
-      operationId: positionRisk
+      summary: Position Risk
+      description: Get Position Risk of all symbols
+      operationId: position_risk
       parameters:
-        - name: symbol
-          in: query
-          schema:
-            type: string
         - name: recvWindow
           in: query
+          description: The value cannot be greater than 60000
+          required: false
           schema:
-            type: string
+            type: integer
+            format: int64
+            maximum: 60000
+            default: 5000
         - name: timestamp
           in: query
+          description: Current timestamp in milliseconds
           schema:
-            type: string
-            example: '{{timestamp}}'
+            type: integer
+            format: int64
         - name: signature
           in: query
+          description: Signature
           schema:
             type: string
-            example: '{{signature}}'
         - name: x-mbx-apikey
           in: header
+          description: API Key
           schema:
             type: string
             example: '{{binance-api-key}}'
       responses:
         '200':
-          description: ''
+          description: 'Position Risk Information'
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                type: array
+                items:
+                  type: object
+                  properties:
+                    symbol:
+                      type: string
+                      description: "Trading pair"
+                    positionAmt:
+                      type: string
+                      description: "Position amount"
+                    entryPrice:
+                      type: string
+                      description: "Entry price"
+                    markPrice:
+                      type: string
+                      description: "Mark price"
+                    unRealizedProfit:
+                      type: string
+                      description: "Unrealized profit"
+                    liquidationPrice:
+                      type: string
+                      description: "Liquidation price"
+                    leverage:
+                      type: string
+                      description: "Leverage"
+                    maxNotionalValue:
+                      type: string
+                      description: "Maximum notional value"
+                    marginType:
+                      type: string
+                      description: "Margin type (isolated or cross)"
+                    isolatedMargin:
+                      type: string
+                      description: "Isolated margin"
+                    isAutoAddMargin:
+                      type: boolean
+                      description: "Is auto add margin"
+                    positionSide:
+                      type: string
+                      description: "Position side (BOTH, LONG or SHORT)"
+                    notional:
+                      type: string
+                      description: "Notional value"
+                    isolatedWallet:
+                      type: string
+                      description: "Isolated wallet amount"
+                    updateTime:
+                      type: integer
+                      format: int64
+                      description: "Update time in milliseconds"
+                  additionalProperties: true
   /fapi/v1/userTrades:
     get:
       tags:
@@ -1239,83 +1508,157 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-  /fapi/v2/balance:
+  /fapi/v3/balance:
     get:
       tags:
         - Account
       summary: Future Account Balance
-      description: Future Account Balance
+      description: Get Future Account Balance
       operationId: balance
       parameters:
         - name: recvWindow
           in: query
+          description: The value cannot be greater than 60000
+          required: false
           schema:
-            type: string
+            type: integer
+            format: int64
+            maximum: 60000
+            default: 5000
         - name: timestamp
           in: query
+          description: Current timestamp in milliseconds
           schema:
-            type: string
-            example: '{{timestamp}}'
+            type: integer
+            format: int64
         - name: signature
+          description: Signature
           in: query
           schema:
             type: string
-            example: '{{signature}}'
         - name: x-mbx-apikey
           in: header
+          description: API Key
           schema:
             type: string
             example: '{{binance-api-key}}'
       responses:
         '200':
-          description: ''
+          description: 'Future Account Balance'
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                type: array
+                items:
+                  type: object
+                  properties:
+                    accountAlias:
+                      type: string
+                      description: "Unique account code"
+                    asset:
+                      type: string
+                      description: "Asset name"
+                    balance:
+                      type: string
+                      description: "Wallet balance"
+                    crossWalletBalance:
+                      type: string
+                      description: "Cross wallet balance"
+                    crossUnPnl:
+                      type: string
+                      description: "Unrealized profit/loss of crossed positions"
+                    availableBalance:
+                      type: string
+                      description: "Available balance = walletBalance - marginBalance"
+                    maxWithdrawAmount:
+                      type: string
+                      description: "Maximum amount for transfer out"
+                    marginAvailable:
+                      type: boolean
+                      description: "Whether the asset can be used as margin in Multi-Assets mode"
+                    updateTime:
+                      type: integer
+                      format: int64
+                      description: "Update time in milliseconds"
+                  additionalProperties: true
   /fapi/v1/leverageBracket:
     get:
       tags:
         - Account
-      summary: Notional and Leverage Brackets (USER_DATA)
-      description: Get present open interest of a specific symbol.
-      operationId: leverageBracket
+      summary: Notional and Leverage Brackets
+      description: Get notional and leverage brackets
+      operationId: leverage_bracket
       parameters:
         - name: symbol
           in: query
+          description: Trading pair
+          required: false
           schema:
             type: string
-            example: BTCUSDT
         - name: recvWindow
           in: query
-          schema:
-            type: string
-            example: '5000'
           description: The value cannot be greater than 60000
+          required: false
+          schema:
+            type: integer
+            format: int64
+            maximum: 60000
+            default: 5000
         - name: timestamp
           in: query
+          description: Current timestamp in milliseconds
           schema:
-            type: string
-            example: '{{timestamp}}'
+            type: integer
+            format: int64
         - name: signature
           in: query
+          description: Signature
           schema:
             type: string
-            example: '{{signature}}'
         - name: x-mbx-apikey
           in: header
+          description: API Key
           schema:
             type: string
             example: '{{binance-api-key}}'
       responses:
         '200':
-          description: ''
+          description: 'Notional and Leverage Brackets'
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                type: array
+                items:
+                  type: object
+                  properties:
+                    symbol:
+                      type: string
+                      description: "Trading pair"
+                    brackets:
+                      type: array
+                      description: "Bracket information"
+                      items:
+                        type: object
+                        properties:
+                          bracket:
+                            type: integer
+                            description: "Bracket number"
+                          initialLeverage:
+                            type: integer
+                            description: "Max initial leverage for this bracket"
+                          notionalCap:
+                            type: string
+                            description: "Cap notional of this bracket"
+                          notionalFloor:
+                            type: string
+                            description: "Floor notional of this bracket"
+                          maintMarginRatio:
+                            type: string
+                            description: "Maintenance margin ratio for this bracket"
+                          cum:
+                            type: string
+                            description: "Auxiliary number for quick calculation"
+                  additionalProperties: true
   /fapi/v1/adlQuantile:
     get:
       tags:
@@ -3418,9 +3761,9 @@ components:
           markPrice:
             type: string
             description: Mark price
-          maxNotionalValue:
+          maxNotional:
             type: string
-            description: Maximum notional value
+            description: Maximum notional
           positionAmt:
             type: string
             description: Position amount

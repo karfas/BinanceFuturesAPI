@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **leverage** | **String** | Current leverage | [optional] [default to nothing]
 **liquidationPrice** | **String** | Liquidation price | [optional] [default to nothing]
 **markPrice** | **String** | Mark price | [optional] [default to nothing]
-**maxNotionalValue** | **String** | Maximum notional value | [optional] [default to nothing]
+**maxNotional** | **String** | Maximum notional | [optional] [default to nothing]
 **positionAmt** | **String** | Position amount | [optional] [default to nothing]
 **symbol** | **String** | Trading pair symbol | [optional] [default to nothing]
 **unRealizedProfit** | **String** | Unrealized profit | [optional] [default to nothing]

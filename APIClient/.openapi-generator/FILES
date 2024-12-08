@@ -1,4 +1,7 @@
 README.md
+docs/Account200Response.md
+docs/Account200ResponseAssetsInner.md
+docs/Account200ResponsePositionsInner.md
 docs/AccountApi.md
 docs/AggregateTradesResponseInner.md
 docs/AllOrdersResponseInner.md
@@ -6,6 +9,7 @@ docs/ApiTradingStatusResponse.md
 docs/ApiTradingStatusResponseIndicators.md
 docs/ApiTradingStatusResponseIndicatorsBTCUSDT.md
 docs/ApiTradingStatusResponseTriggerCondition.md
+docs/Balance200ResponseInner.md
 docs/BookTicker200Response.md
 docs/BookTickerResponseO.md
 docs/DataStreamApi.md
@@ -17,7 +21,10 @@ docs/ExchangeInfoResponseSymbolsInner.md
 docs/ExchangeInfoResponseSymbolsInnerFiltersInner.md
 docs/FundingRateResponseInner.md
 docs/HistoricalTradesResponseInner.md
+docs/Income200ResponseInner.md
 docs/KlinesResponseInnerInner.md
+docs/LeverageBracket200ResponseInner.md
+docs/LeverageBracket200ResponseInnerBracketsInner.md
 docs/LeverageResponse.md
 docs/ListenKeyResponse.md
 docs/MarkPriceResponseInner.md
@@ -32,6 +39,7 @@ docs/PortfolioMarginApi.md
 docs/PositionMarginHistoryResponseInner.md
 docs/PositionMarginResponse.md
 docs/PositionModeResponse.md
+docs/PositionRisk200ResponseInner.md
 docs/PositionRiskResponseInner.md
 docs/PremiumIndexResponseInner.md
 docs/ServerTime200Response.md
@@ -48,12 +56,16 @@ src/apis/api_OrderApi.jl
 src/apis/api_PortfolioMarginApi.jl
 src/apis/api_TradeApi.jl
 src/modelincludes.jl
+src/models/model_Account200Response.jl
+src/models/model_Account200ResponseAssetsInner.jl
+src/models/model_Account200ResponsePositionsInner.jl
 src/models/model_AggregateTradesResponseInner.jl
 src/models/model_AllOrdersResponseInner.jl
 src/models/model_ApiTradingStatusResponse.jl
 src/models/model_ApiTradingStatusResponseIndicators.jl
 src/models/model_ApiTradingStatusResponseIndicatorsBTCUSDT.jl
 src/models/model_ApiTradingStatusResponseTriggerCondition.jl
+src/models/model_Balance200ResponseInner.jl
 src/models/model_BookTicker200Response.jl
 src/models/model_BookTickerResponseO.jl
 src/models/model_Depth200Response.jl
@@ -64,7 +76,10 @@ src/models/model_ExchangeInfoResponseSymbolsInner.jl
 src/models/model_ExchangeInfoResponseSymbolsInnerFiltersInner.jl
 src/models/model_FundingRateResponseInner.jl
 src/models/model_HistoricalTradesResponseInner.jl
+src/models/model_Income200ResponseInner.jl
 src/models/model_KlinesResponseInnerInner.jl
+src/models/model_LeverageBracket200ResponseInner.jl
+src/models/model_LeverageBracket200ResponseInnerBracketsInner.jl
 src/models/model_LeverageResponse.jl
 src/models/model_ListenKeyResponse.jl
 src/models/model_MarkPriceResponseInner.jl
@@ -76,6 +91,7 @@ src/models/model_PortfolioMarginAccountResponsePositionsInner.jl
 src/models/model_PositionMarginHistoryResponseInner.jl
 src/models/model_PositionMarginResponse.jl
 src/models/model_PositionModeResponse.jl
+src/models/model_PositionRisk200ResponseInner.jl
 src/models/model_PositionRiskResponseInner.jl
 src/models/model_PremiumIndexResponseInner.jl
 src/models/model_ServerTime200Response.jl

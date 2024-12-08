@@ -20,6 +20,8 @@ function get_test_credentials()
     return (api_key, api_secret)
 end
 
+include("get_test_parameters.jl")
+
 @testset "TradeApi Tests" begin
     credentials = get_test_credentials()
     
@@ -28,9 +30,65 @@ end
         return
     end
 
-    api_key, api_secret = credentials
+    (url, api_key, api_secret) = get_test_parameters()
     trade = TradeApi("https://fapi.binance.com", api_key, api_secret)
     test_symbol = "BTCUSDT"
+
+    @testset "Position Mode" begin
+        timestamp = Int64(round(datetime2unix(now()) * 1000))
+
+        # Test getting position mode
+        @test begin
+            mode = get_position_mode(trade; timestamp=timestamp)
+            !isnothing(mode)
+        end
+
+        # Get current mode first
+        current_mode = get_position_mode(trade; timestamp=timestamp)
+        
+        # Test changing position mode to the opposite
+        @test begin
+            new_mode = change_position_mode(trade; 
+                dualSidePosition=!current_mode["dualSidePosition"],
+                timestamp=timestamp
+            )
+            !isnothing(new_mode)
+        end
+
+        # Change it back to original
+        change_position_mode(trade; 
+            dualSidePosition=current_mode["dualSidePosition"],
+            timestamp=timestamp
+        )
+    end
+
+    @testset "Multi-Assets Mode" begin
+        timestamp = Int64(round(datetime2unix(now()) * 1000))
+
+        # Test getting multi-assets mode
+        @test begin
+            mode = get_multi_assets_mode(trade; timestamp=timestamp)
+            !isnothing(mode)
+        end
+
+        # Get current mode first
+        current_mode = get_multi_assets_mode(trade; timestamp=timestamp)
+        
+        # Test changing multi-assets mode to the opposite
+        @test begin
+            new_mode = change_multi_assets_mode(trade; 
+                multiAssetsMargin=!current_mode["multiAssetsMargin"],
+                timestamp=timestamp
+            )
+            !isnothing(new_mode)
+        end
+
+        # Change it back to original
+        change_multi_assets_mode(trade; 
+            multiAssetsMargin=current_mode["multiAssetsMargin"],
+            timestamp=timestamp
+        )
+    end
 
     @testset "Order Management" begin
         timestamp = Int64(round(datetime2unix(now()) * 1000))
@@ -149,5 +207,16 @@ end
             marginType="INVALID",
             timestamp=timestamp
         )
+    end
+
+    @testset "User Trades" begin
+        # Test getting user trades for BTC
+        @test begin
+            trades = get_user_trades(trade;
+                symbol="BTCUSDT",
+                limit=10
+            )
+            !isnothing(trades)
+        end
     end
 end
