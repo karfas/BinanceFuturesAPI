@@ -40,7 +40,7 @@ module BinanceFuturesAPI
         # Create HMAC SHA256 signature
         hmac = hmac_sha256(Vector{UInt8}(secret), Vector{UInt8}(query_string))
         ret = bytes2hex(hmac)
-        println("sign_request: $query_string -> $ret")
+        # println("sign_request: $query_string -> $ret")
         ret
     end
 
@@ -117,7 +117,7 @@ module BinanceFuturesAPI
         api_secret::String
 
         function Client(url::String, api_key::String="", api_secret::String="")
-            client = OpenAPI.Clients.Client(url; verbose=true, pre_request_hook=pre_request_hook)
+            client = OpenAPI.Clients.Client(url; verbose=false, pre_request_hook=pre_request_hook)
             new(client,
                 APIClient.MarketApi(client),
                 APIClient.TradeApi(client),

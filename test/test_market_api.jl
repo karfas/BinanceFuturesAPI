@@ -24,7 +24,7 @@ include("get_test_parameters.jl")
             response = server_time(cl)
             # Server time should be within 10 seconds of local UTC time
             diff = abs(response.serverTime - Int64(round(datetime2unix(now(UTC)) * 1000)))
-            println("Server/local time difference: $diff ms")
+            # println("Server/local time difference: $diff ms")
             diff < 10000
         end
     end
