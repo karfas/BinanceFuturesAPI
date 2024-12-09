@@ -5,21 +5,25 @@
 @doc raw"""PositionModeResponse
 
     PositionModeResponse(;
-        dualSidePosition=nothing,
+        code=nothing,
+        msg=nothing,
     )
 
-    - dualSidePosition::Bool : true-hedge mode, false-one-way mode
+    - code::Int64 : Response code
+    - msg::String : Response message
 """
 Base.@kwdef mutable struct PositionModeResponse <: OpenAPI.APIModel
-    dualSidePosition::Union{Nothing, Bool} = nothing
+    code::Union{Nothing, Int64} = nothing
+    msg::Union{Nothing, String} = nothing
 
-    function PositionModeResponse(dualSidePosition, )
-        OpenAPI.validate_property(PositionModeResponse, Symbol("dualSidePosition"), dualSidePosition)
-        return new(dualSidePosition, )
+    function PositionModeResponse(code, msg, )
+        OpenAPI.validate_property(PositionModeResponse, Symbol("code"), code)
+        OpenAPI.validate_property(PositionModeResponse, Symbol("msg"), msg)
+        return new(code, msg, )
     end
 end # type PositionModeResponse
 
-const _property_types_PositionModeResponse = Dict{Symbol,String}(Symbol("dualSidePosition")=>"Bool", )
+const _property_types_PositionModeResponse = Dict{Symbol,String}(Symbol("code")=>"Int64", Symbol("msg")=>"String", )
 OpenAPI.property_type(::Type{ PositionModeResponse }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_PositionModeResponse[name]))}
 
 function check_required(o::PositionModeResponse)

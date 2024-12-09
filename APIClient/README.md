@@ -85,7 +85,6 @@ Class | Method
 *OrderApi* | [**put_order**](docs/OrderApi.md#put_order)<br/>**PUT** /fapi/v1/order<br/>Modify Order (TRADE)
 *PortfolioMarginApi* | [**get_p_m_account_info**](docs/PortfolioMarginApi.md#get_p_m_account_info)<br/>**GET** /fapi/v1/pmAccountInfo<br/>Portfolio Margin Account Information
 *TradeApi* | [**get_position_margin_history**](docs/TradeApi.md#get_position_margin_history)<br/>**GET** /fapi/v1/positionMargin/history<br/>Get Postion Margin Change History
-*TradeApi* | [**get_position_side_dual**](docs/TradeApi.md#get_position_side_dual)<br/>**GET** /fapi/v1/positionSide/dual<br/>Get Current Position Mode（USER_DATA）
 *TradeApi* | [**multi_assets_margin**](docs/TradeApi.md#multi_assets_margin)<br/>**GET** /fapi/v1/multiAssetsMargin<br/>Get Current Multi-Assets Mode
 *TradeApi* | [**post_leverage**](docs/TradeApi.md#post_leverage)<br/>**POST** /fapi/v1/leverage<br/>Change Initial Leverage
 *TradeApi* | [**post_margin_type**](docs/TradeApi.md#post_margin_type)<br/>**POST** /fapi/v1/marginType<br/>Change Margin Type
@@ -123,6 +122,7 @@ Class | Method
  - [LeverageResponse](docs/LeverageResponse.md)
  - [ListenKeyResponse](docs/ListenKeyResponse.md)
  - [MarkPriceResponseInner](docs/MarkPriceResponseInner.md)
+ - [MultiAssetsMarginResponse](docs/MultiAssetsMarginResponse.md)
  - [OrderAmendmentHistoryResponseInner](docs/OrderAmendmentHistoryResponseInner.md)
  - [OrderResponse](docs/OrderResponse.md)
  - [PortfolioMarginAccountResponse](docs/PortfolioMarginAccountResponse.md)

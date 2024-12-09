@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **positionAmt** | **String** | Position amount | [optional] [default to nothing]
 **symbol** | **String** | Trading pair symbol | [optional] [default to nothing]
 **unRealizedProfit** | **String** | Unrealized profit | [optional] [default to nothing]
-**positionSide** | **String** | Position side (BOTH/LONG/SHORT) | [optional] [default to nothing]
+**positionSide** | **String** | Position side (BOTH, LONG or SHORT) | [optional] [default to nothing]
 **updateTime** | **Int64** | Update time | [optional] [default to nothing]
 
 

@@ -1777,8 +1777,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                $ref: '#/components/schemas/MultiAssetsMarginResponse'
     post:
       tags:
         - Trade
@@ -3066,41 +3065,41 @@ paths:
               schema:
                 $ref: '#/components/schemas/PositionMarginHistoryResponse'
   /fapi/v1/positionSide/dual:
-    get:
-      tags:
-        - Trade
-      summary: Get Current Position Mode（USER_DATA）
-      description: Get Current Position Mode（USER_DATA）
-      operationId: getPositionSideDual
-      parameters:
-        - name: recvWindow
-          in: query
-          schema:
-            type: string
-            example: '5000'
-          description: The value cannot be greater than 60000
-        - name: timestamp
-          in: query
-          schema:
-            type: string
-            example: '{{timestamp}}'
-        - name: signature
-          in: query
-          schema:
-            type: string
-            example: '{{signature}}'
-        - name: x-mbx-apikey
-          in: header
-          schema:
-            type: string
-            example: '{{binance-api-key}}'
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PositionModeResponse'
+    # get:
+    #   tags:
+    #     - Trade
+    #   summary: Get Current Position Mode（USER_DATA）
+    #   description: Get Current Position Mode（USER_DATA）
+    #   operationId: getPositionSideDual
+    #   parameters:
+    #     - name: recvWindow
+    #       in: query
+    #       schema:
+    #         type: string
+    #         example: '5000'
+    #       description: The value cannot be greater than 60000
+    #     - name: timestamp
+    #       in: query
+    #       schema:
+    #         type: string
+    #         example: '{{timestamp}}'
+    #     - name: signature
+    #       in: query
+    #       schema:
+    #         type: string
+    #         example: '{{signature}}'
+    #     - name: x-mbx-apikey
+    #       in: header
+    #       schema:
+    #         type: string
+    #         example: '{{binance-api-key}}'
+    #   responses:
+    #     '200':
+    #       description: ''
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: '#/components/schemas/PositionModeResponse'
     post:
       tags:
         - Trade
@@ -3110,8 +3109,8 @@ paths:
       parameters:
         - name: dualSidePosition
           in: query
-          required: true
           description: 'Boolean value. "true": Hedge Mode mode; "false": One-way Mode'
+          required: true
           schema:
             type: boolean
         - name: recvWindow
@@ -3732,9 +3731,12 @@ components:
     PositionModeResponse:
       type: object
       properties:
-        dualSidePosition:
-          type: boolean
-          description: true-hedge mode, false-one-way mode
+        code:
+          type: integer
+          description: Response code
+        msg:
+          type: string
+          description: Response message
     PositionRiskResponse:
       type: array
       items:
@@ -3775,7 +3777,7 @@ components:
             description: Unrealized profit
           positionSide:
             type: string
-            description: Position side (BOTH/LONG/SHORT)
+            description: Position side (BOTH, LONG or SHORT)
           updateTime:
             type: integer
             format: int64
@@ -4129,3 +4131,16 @@ components:
             type: integer
             format: int64
             description: Update time
+
+    MultiAssetsMarginResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Response code
+        msg:
+          type: string
+          description: Response message
+        multiAssetsMargin:
+          type: boolean
+          description: true-Multi-Assets Mode, false-Single-Asset Mode

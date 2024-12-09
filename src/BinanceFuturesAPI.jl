@@ -117,7 +117,7 @@ module BinanceFuturesAPI
         api_secret::String
 
         function Client(url::String, api_key::String="", api_secret::String="")
-            client = OpenAPI.Clients.Client(url; verbose=false, pre_request_hook=pre_request_hook)
+            client = OpenAPI.Clients.Client(url; verbose=true, pre_request_hook=pre_request_hook)
             new(client,
                 APIClient.MarketApi(client),
                 APIClient.TradeApi(client),
@@ -156,7 +156,7 @@ module BinanceFuturesAPI
 
 
     include("wrap_market_api.jl")
-    # include("trade_api_wrappers.jl")
+    include("wrap_trade_api.jl")
     include("wrap_account_api.jl")
     # include("datastream_api_wrappers.jl")
     # include("portfoliomargin_api_wrappers.jl")

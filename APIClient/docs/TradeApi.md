@@ -5,7 +5,6 @@ All URIs are relative to *https://fapi.binance.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_position_margin_history**](TradeApi.md#get_position_margin_history) | **GET** /fapi/v1/positionMargin/history | Get Postion Margin Change History
-[**get_position_side_dual**](TradeApi.md#get_position_side_dual) | **GET** /fapi/v1/positionSide/dual | Get Current Position Mode（USER_DATA）
 [**multi_assets_margin**](TradeApi.md#multi_assets_margin) | **GET** /fapi/v1/multiAssetsMargin | Get Current Multi-Assets Mode
 [**post_leverage**](TradeApi.md#post_leverage) | **POST** /fapi/v1/leverage | Change Initial Leverage
 [**post_margin_type**](TradeApi.md#post_margin_type) | **POST** /fapi/v1/marginType | Change Margin Type
@@ -57,47 +56,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **get_position_side_dual**
-> get_position_side_dual(_api::TradeApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> PositionModeResponse, OpenAPI.Clients.ApiResponse <br/>
-> get_position_side_dual(_api::TradeApi, response_stream::Channel; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ PositionModeResponse }, OpenAPI.Clients.ApiResponse
-
-Get Current Position Mode（USER_DATA）
-
-Get Current Position Mode（USER_DATA）
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **TradeApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**|  | [default to nothing]
- **x_mbx_apikey** | **String**|  | [default to nothing]
-
-### Return type
-
-[**PositionModeResponse**](PositionModeResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
 # **multi_assets_margin**
-> multi_assets_margin(_api::TradeApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> multi_assets_margin(_api::TradeApi, response_stream::Channel; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> multi_assets_margin(_api::TradeApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> MultiAssetsMarginResponse, OpenAPI.Clients.ApiResponse <br/>
+> multi_assets_margin(_api::TradeApi, response_stream::Channel; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ MultiAssetsMarginResponse }, OpenAPI.Clients.ApiResponse
 
 Get Current Multi-Assets Mode
 
@@ -120,7 +81,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Dict{String, Any}**
+[**MultiAssetsMarginResponse**](MultiAssetsMarginResponse.md)
 
 ### Authorization
 

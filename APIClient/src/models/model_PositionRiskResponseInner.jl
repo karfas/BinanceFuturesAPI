@@ -31,7 +31,7 @@
     - positionAmt::String : Position amount
     - symbol::String : Trading pair symbol
     - unRealizedProfit::String : Unrealized profit
-    - positionSide::String : Position side (BOTH/LONG/SHORT)
+    - positionSide::String : Position side (BOTH, LONG or SHORT)
     - updateTime::Int64 : Update time
 """
 Base.@kwdef mutable struct PositionRiskResponseInner <: OpenAPI.APIModel

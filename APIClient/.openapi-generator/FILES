@@ -29,6 +29,7 @@ docs/LeverageResponse.md
 docs/ListenKeyResponse.md
 docs/MarkPriceResponseInner.md
 docs/MarketApi.md
+docs/MultiAssetsMarginResponse.md
 docs/OrderAmendmentHistoryResponseInner.md
 docs/OrderApi.md
 docs/OrderResponse.md
@@ -83,6 +84,7 @@ src/models/model_LeverageBracket200ResponseInnerBracketsInner.jl
 src/models/model_LeverageResponse.jl
 src/models/model_ListenKeyResponse.jl
 src/models/model_MarkPriceResponseInner.jl
+src/models/model_MultiAssetsMarginResponse.jl
 src/models/model_OrderAmendmentHistoryResponseInner.jl
 src/models/model_OrderResponse.jl
 src/models/model_PortfolioMarginAccountResponse.jl
