@@ -80,17 +80,17 @@ include("get_test_parameters.jl")
         # Test book ticker without symbol (returns array)
         @test begin
             tickers = book_ticker(cl)
-            isa(tickers, Vector) && !isempty(tickers)
+            isa(tickers.value, Vector) && !isempty(tickers.value)
         end
         # Test book ticker with symbol (returns single object)
         @test begin
             ticker = book_ticker(cl; symbol=symbol)
-            !isa(ticker, Vector) && ticker["symbol"] == symbol && !isempty(ticker["bidPrice"]) && !isempty(ticker["askPrice"])
+            !isa(ticker, Vector) && ticker.value["symbol"] == symbol && !isempty(ticker.value["bidPrice"]) && !isempty(ticker.value["askPrice"])
         end
         # Test 24hr ticker
         @test begin
             stats = ticker24hr(cl; symbol=symbol)
-            stats["symbol"] == symbol
+            stats.value["symbol"] == symbol
         end
     end
 end

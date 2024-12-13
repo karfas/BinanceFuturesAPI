@@ -18,8 +18,15 @@ Details for the generated API in [./APIClient/README.md](./APIClient/README.md).
 ```julia
 using BinanceFuturesAPI # exports BinanceFutures as alias for BinanceFuturesAPI.APIClient
 
-market_api = BinanceFutures.MarketApi("https://fapi.binance.com")
-info = market_api.exchange_information() # returns Tuple{Dict{String, Any}, OpenAPI.Clients.ApiResponse}
+cl = Client("https://fapi.binance.com", "your_api_key", "your_api_secret")
+info = exchange_info(cl)
 
+println(info.rate_limits)
 
 ```
+
+# TODOs
+
+## fix inconsistent return types, especially for the oneOf types.
+
+E.g. `book_ticker()` returns something we need to access using `response[n].value["symbol"]`, whereas we can access the result of `exchange_info()` using `response.timezone`.

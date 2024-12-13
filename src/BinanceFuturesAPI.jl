@@ -154,6 +154,18 @@ module BinanceFuturesAPI
         resource_path, body, headers
     end
 
+    wrap!(cl::Client, f::Function, api::APIClient.MarketApi, args...; kwargs...) = begin
+        response, headers = f(api, args...; kwargs...)
+        response
+    end
+
+    SignedAPI = Union{APIClient.TradeApi, APIClient.AccountApi}
+
+    wrap!(cl::Client, f::Function, api::SignedAPI, args...; kwargs...) = begin
+        params = signed_kwargs(cl.api_secret; kwargs...)
+        response, headers = f(api, args...; x_mbx_apikey=cl.api_key, params...)
+        response
+    end
 
     include("wrap_market_api.jl")
     include("wrap_trade_api.jl")

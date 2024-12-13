@@ -1787,17 +1787,18 @@ paths:
       parameters:
         - name: multiAssetsMargin
           in: query
+          required: true
           schema:
-            type: string
-            example: 'true'
+            type: boolean
         - name: recvWindow
           in: query
           schema:
-            type: string
+            type: integer
+            example: '5000'
         - name: timestamp
           in: query
           schema:
-            type: string
+            type: integer
             example: '{{timestamp}}'
         - name: signature
           in: query

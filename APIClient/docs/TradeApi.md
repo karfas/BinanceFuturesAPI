@@ -175,8 +175,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **post_multi_assets_margin**
-> post_multi_assets_margin(_api::TradeApi; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> post_multi_assets_margin(_api::TradeApi, response_stream::Channel; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> post_multi_assets_margin(_api::TradeApi, multi_assets_margin::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> post_multi_assets_margin(_api::TradeApi, response_stream::Channel, multi_assets_margin::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
 
 Change Multi-Assets Mode
 
@@ -187,14 +187,14 @@ Change Multi-Assets Mode
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **TradeApi** | API context | 
+**multi_assets_margin** | **Bool**|  | [default to nothing]
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **multi_assets_margin** | **String**|  | [default to nothing]
- **recv_window** | **String**|  | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
+ **recv_window** | **Int64**|  | [default to nothing]
+ **timestamp** | **Int64**|  | [default to nothing]
  **signature** | **String**|  | [default to nothing]
  **x_mbx_apikey** | **String**|  | [default to nothing]
 

@@ -184,11 +184,11 @@ const _returntypes_post_multi_assets_margin_TradeApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
-function _oacinternal_post_multi_assets_margin(_api::TradeApi; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_post_multi_assets_margin(_api::TradeApi, multi_assets_margin::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_post_multi_assets_margin_TradeApi, "/fapi/v1/multiAssetsMargin", [])
-    OpenAPI.Clients.set_param(_ctx.query, "multiAssetsMargin", multi_assets_margin)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "multiAssetsMargin", multi_assets_margin)  # type Bool
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
@@ -201,21 +201,21 @@ end
 Change Multi-Assets Mode
 
 Params:
-- multi_assets_margin::String
-- recv_window::String
-- timestamp::String
+- multi_assets_margin::Bool (required)
+- recv_window::Int64
+- timestamp::Int64
 - signature::String
 - x_mbx_apikey::String
 
 Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
-function post_multi_assets_margin(_api::TradeApi; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_post_multi_assets_margin(_api; multi_assets_margin=multi_assets_margin, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function post_multi_assets_margin(_api::TradeApi, multi_assets_margin::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_post_multi_assets_margin(_api, multi_assets_margin; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function post_multi_assets_margin(_api::TradeApi, response_stream::Channel; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_post_multi_assets_margin(_api; multi_assets_margin=multi_assets_margin, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function post_multi_assets_margin(_api::TradeApi, response_stream::Channel, multi_assets_margin::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_post_multi_assets_margin(_api, multi_assets_margin; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
