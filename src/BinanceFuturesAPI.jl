@@ -8,11 +8,15 @@ organizing them into distinct API groups (Market, Trade, Account, etc.) for bett
 """
 module BinanceFuturesAPI
     include("../APIClient/src/APIClient.jl")
-    using .APIClient
+    # import .APIClient
     using OpenAPI
     using Dates
     using SHA
     using Base64
+
+    include("wrap_market_api.jl")
+    include("wrap_trade_api.jl")
+    include("wrap_account_api.jl")
 
     timestamp() = Int64(round(datetime2unix(now(UTC)) * 1000))
     timestamp!(d::Dict{Symbol, Any}) = begin d[:timestamp] = timestamp(); return d; end
@@ -117,7 +121,7 @@ module BinanceFuturesAPI
         api_secret::String
 
         function Client(url::String, api_key::String="", api_secret::String="")
-            client = OpenAPI.Clients.Client(url; verbose=true, pre_request_hook=pre_request_hook)
+            client = OpenAPI.Clients.Client(url; verbose=false, pre_request_hook=pre_request_hook)
             new(client,
                 APIClient.MarketApi(client),
                 APIClient.TradeApi(client),
@@ -167,9 +171,6 @@ module BinanceFuturesAPI
         response
     end
 
-    include("wrap_market_api.jl")
-    include("wrap_trade_api.jl")
-    include("wrap_account_api.jl")
     # include("datastream_api_wrappers.jl")
     # include("portfoliomargin_api_wrappers.jl")
 

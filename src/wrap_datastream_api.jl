@@ -1,18 +1,9 @@
-    # Data Stream API wrapper functions
-    function create_listen_key(cl::Client; kwargs...)
-        (response, headers) = APIClient.create_listen_key(cl.ds_api; kwargs...)
-        response
-    end
+    # Datastream API wrapper functions
 
-    function delete_listen_key(cl::Client; kwargs...)
-        (response, headers) = APIClient.delete_listen_key(cl.ds_api; kwargs...)
-        response
-    end
+    list_subscriptions(cl::Client, args...; kwargs...) =       wrap!(cl, APIClient.list_subscriptions, cl.d_api, args...; kwargs...)
+    create_listen_key(cl::Client, args...; kwargs...) =        wrap!(cl, APIClient.create_listen_key, cl.d_api, args...; kwargs...)
+    ping_listen_key(cl::Client, args...; kwargs...) =          wrap!(cl, APIClient.ping_listen_key, cl.d_api, args...; kwargs...)
+    close_listen_key(cl::Client, args...; kwargs...) =         wrap!(cl, APIClient.close_listen_key, cl.d_api, args...; kwargs...)
 
-    function keepalive_listen_key(cl::Client; kwargs...)
-        (response, headers) = APIClient.keepalive_listen_key(cl.ds_api; kwargs...)
-        response
-    end
-
-    # Export data stream API functions
-    export create_listen_key, delete_listen_key, keepalive_listen_key
+    # Export datastream API functions
+    export list_subscriptions, create_listen_key, ping_listen_key, close_listen_key
