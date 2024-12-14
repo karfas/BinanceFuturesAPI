@@ -29,9 +29,9 @@ Class | Method
 ------------ | -------------
 *AccountApi* | [**account**](docs/AccountApi.md#account)<br/>**GET** /fapi/v3/account<br/>Account information
 *AccountApi* | [**adl_quantile**](docs/AccountApi.md#adl_quantile)<br/>**GET** /fapi/v1/adlQuantile<br/>Position ADL Quantile Estimation (USER_DATA)
+*AccountApi* | [**api_trading_status**](docs/AccountApi.md#api_trading_status)<br/>**GET** /fapi/v1/apiTradingStatus<br/>Account API Trading Status
 *AccountApi* | [**balance**](docs/AccountApi.md#balance)<br/>**GET** /fapi/v3/balance<br/>Future Account Balance
 *AccountApi* | [**commission_rate**](docs/AccountApi.md#commission_rate)<br/>**GET** /fapi/v1/commissionRate<br/>User Commission Rate (USER_DATA)
-*AccountApi* | [**fapi_v1_api_trading_status_get**](docs/AccountApi.md#fapi_v1_api_trading_status_get)<br/>**GET** /fapi/v1/apiTradingStatus<br/>Account API Trading Status
 *AccountApi* | [**income**](docs/AccountApi.md#income)<br/>**GET** /fapi/v1/income<br/>Get Income History
 *AccountApi* | [**leverage_bracket**](docs/AccountApi.md#leverage_bracket)<br/>**GET** /fapi/v1/leverageBracket<br/>Notional and Leverage Brackets
 *AccountApi* | [**position_risk**](docs/AccountApi.md#position_risk)<br/>**GET** /fapi/v3/positionRisk<br/>Position Risk
@@ -69,6 +69,7 @@ Class | Method
 *OrderApi* | [**delete_all_open_orders**](docs/OrderApi.md#delete_all_open_orders)<br/>**DELETE** /fapi/v1/allOpenOrders<br/>Cancel All Open Orders
 *OrderApi* | [**delete_batch_orders**](docs/OrderApi.md#delete_batch_orders)<br/>**DELETE** /fapi/v1/batchOrders<br/>Cancel Multiple Orders (TRADE)
 *OrderApi* | [**delete_order**](docs/OrderApi.md#delete_order)<br/>**DELETE** /fapi/v1/order<br/>Cancel Order
+*OrderApi* | [**force_orders**](docs/OrderApi.md#force_orders)<br/>**GET** /fapi/v1/forceOrders<br/>User&#39;s Force Orders (USER_DATA)
 *OrderApi* | [**get_all_orders**](docs/OrderApi.md#get_all_orders)<br/>**GET** /fapi/v1/allOrders<br/>All Orders
 *OrderApi* | [**get_open_order**](docs/OrderApi.md#get_open_order)<br/>**GET** /fapi/v1/openOrder<br/>Query Current Open Order (USER_DATA)
 *OrderApi* | [**get_open_orders**](docs/OrderApi.md#get_open_orders)<br/>**GET** /fapi/v1/openOrders<br/>Current All Open Orders (USER_DATA)
@@ -78,7 +79,6 @@ Class | Method
 *OrderApi* | [**get_order_download_link_id**](docs/OrderApi.md#get_order_download_link_id)<br/>**GET** /fapi/v1/order/asyn/id<br/>Get Futures Order History Download Link by Id (USER_DATA)
 *OrderApi* | [**get_trade_download_id**](docs/OrderApi.md#get_trade_download_id)<br/>**GET** /fapi/v1/trade/asyn<br/>Get Download Id For Futures Trade History (USER_DATA)
 *OrderApi* | [**get_trade_download_link_id**](docs/OrderApi.md#get_trade_download_link_id)<br/>**GET** /fapi/v1/trade/asyn/id<br/>Get Futures Trade Download Link by Id (USER_DATA)
-*OrderApi* | [**get_user_s_force_orders**](docs/OrderApi.md#get_user_s_force_orders)<br/>**GET** /fapi/v1/forceOrders<br/>User&#39;s Force Orders (USER_DATA)
 *OrderApi* | [**post_batch_orders**](docs/OrderApi.md#post_batch_orders)<br/>**POST** /fapi/v1/batchOrders<br/>Place Multiple Orders (TRADE)
 *OrderApi* | [**post_order**](docs/OrderApi.md#post_order)<br/>**POST** /fapi/v1/order<br/>New Order (TRADE)
 *OrderApi* | [**put_batch_orders**](docs/OrderApi.md#put_batch_orders)<br/>**PUT** /fapi/v1/batchOrders<br/>Modify Multiple Orders (TRADE)
@@ -113,6 +113,7 @@ Class | Method
  - [ExchangeInfoResponseRateLimitsInner](docs/ExchangeInfoResponseRateLimitsInner.md)
  - [ExchangeInfoResponseSymbolsInner](docs/ExchangeInfoResponseSymbolsInner.md)
  - [ExchangeInfoResponseSymbolsInnerFiltersInner](docs/ExchangeInfoResponseSymbolsInnerFiltersInner.md)
+ - [ForceOrders200ResponseInner](docs/ForceOrders200ResponseInner.md)
  - [FundingRateResponseInner](docs/FundingRateResponseInner.md)
  - [HistoricalTradesResponseInner](docs/HistoricalTradesResponseInner.md)
  - [Income200ResponseInner](docs/Income200ResponseInner.md)

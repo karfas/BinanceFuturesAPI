@@ -89,6 +89,47 @@ function adl_quantile(_api::AccountApi, response_stream::Channel; symbol=nothing
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
+const _returntypes_api_trading_status_AccountApi = Dict{Regex,Type}(
+    Regex("^" * replace("200", "x"=>".") * "\$") => ApiTradingStatusResponse,
+)
+
+function _oacinternal_api_trading_status(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    OpenAPI.validate_param("recv_window", "api_trading_status", :maximum, recv_window, 60000, false)
+
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_api_trading_status_AccountApi, "/fapi/v1/apiTradingStatus", [])
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
+    return _ctx
+end
+
+@doc raw"""Account API Trading Status
+
+Get current account's trading status on futures. Weight: 1 
+
+Params:
+- symbol::String
+- recv_window::Int64
+- timestamp::Int64
+- signature::String
+- x_mbx_apikey::String
+
+Return: ApiTradingStatusResponse, OpenAPI.Clients.ApiResponse
+"""
+function api_trading_status(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_api_trading_status(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx)
+end
+
+function api_trading_status(_api::AccountApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_api_trading_status(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx, response_stream)
+end
+
 const _returntypes_balance_AccountApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Vector{Balance200ResponseInner},
 )
@@ -164,43 +205,6 @@ end
 
 function commission_rate(_api::AccountApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_commission_rate(_api; symbol=symbol, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
-const _returntypes_fapi_v1_api_trading_status_get_AccountApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => ApiTradingStatusResponse,
-)
-
-function _oacinternal_fapi_v1_api_trading_status_get(_api::AccountApi, timestamp::Int64; symbol=nothing, recv_window=nothing, _mediaType=nothing)
-    OpenAPI.validate_param("recv_window", "fapi_v1_api_trading_status_get", :maximum, recv_window, 60000, false)
-
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_fapi_v1_api_trading_status_get_AccountApi, "/fapi/v1/apiTradingStatus", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Account API Trading Status
-
-Get current account's trading status on futures. Weight: 1 
-
-Params:
-- timestamp::Int64 (required)
-- symbol::String
-- recv_window::Int64
-
-Return: ApiTradingStatusResponse, OpenAPI.Clients.ApiResponse
-"""
-function fapi_v1_api_trading_status_get(_api::AccountApi, timestamp::Int64; symbol=nothing, recv_window=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_fapi_v1_api_trading_status_get(_api, timestamp; symbol=symbol, recv_window=recv_window, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function fapi_v1_api_trading_status_get(_api::AccountApi, response_stream::Channel, timestamp::Int64; symbol=nothing, recv_window=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_fapi_v1_api_trading_status_get(_api, timestamp; symbol=symbol, recv_window=recv_window, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -384,9 +388,9 @@ end
 
 export account
 export adl_quantile
+export api_trading_status
 export balance
 export commission_rate
-export fapi_v1_api_trading_status_get
 export income
 export leverage_bracket
 export position_risk

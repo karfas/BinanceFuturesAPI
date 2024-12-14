@@ -6,9 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**account**](AccountApi.md#account) | **GET** /fapi/v3/account | Account information
 [**adl_quantile**](AccountApi.md#adl_quantile) | **GET** /fapi/v1/adlQuantile | Position ADL Quantile Estimation (USER_DATA)
+[**api_trading_status**](AccountApi.md#api_trading_status) | **GET** /fapi/v1/apiTradingStatus | Account API Trading Status
 [**balance**](AccountApi.md#balance) | **GET** /fapi/v3/balance | Future Account Balance
 [**commission_rate**](AccountApi.md#commission_rate) | **GET** /fapi/v1/commissionRate | User Commission Rate (USER_DATA)
-[**fapi_v1_api_trading_status_get**](AccountApi.md#fapi_v1_api_trading_status_get) | **GET** /fapi/v1/apiTradingStatus | Account API Trading Status
 [**income**](AccountApi.md#income) | **GET** /fapi/v1/income | Get Income History
 [**leverage_bracket**](AccountApi.md#leverage_bracket) | **GET** /fapi/v1/leverageBracket | Notional and Leverage Brackets
 [**position_risk**](AccountApi.md#position_risk) | **GET** /fapi/v3/positionRisk | Position Risk
@@ -80,6 +80,45 @@ Name | Type | Description  | Notes
 ### Return type
 
 **Dict{String, Any}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **api_trading_status**
+> api_trading_status(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> ApiTradingStatusResponse, OpenAPI.Clients.ApiResponse <br/>
+> api_trading_status(_api::AccountApi, response_stream::Channel; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ ApiTradingStatusResponse }, OpenAPI.Clients.ApiResponse
+
+Account API Trading Status
+
+Get current account's trading status on futures. Weight: 1 
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **AccountApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT). If not sent, returns status for all symbols | [default to nothing]
+ **recv_window** | **Int64**| The value cannot be greater than 60000. Defines how long the request is valid for in milliseconds. Default: 5000  | [default to 5000]
+ **timestamp** | **Int64**| Current timestamp in milliseconds | [default to nothing]
+ **signature** | **String**|  | [default to nothing]
+ **x_mbx_apikey** | **String**|  | [default to nothing]
+
+### Return type
+
+[**ApiTradingStatusResponse**](ApiTradingStatusResponse.md)
 
 ### Authorization
 
@@ -169,43 +208,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **fapi_v1_api_trading_status_get**
-> fapi_v1_api_trading_status_get(_api::AccountApi, timestamp::Int64; symbol=nothing, recv_window=nothing, _mediaType=nothing) -> ApiTradingStatusResponse, OpenAPI.Clients.ApiResponse <br/>
-> fapi_v1_api_trading_status_get(_api::AccountApi, response_stream::Channel, timestamp::Int64; symbol=nothing, recv_window=nothing, _mediaType=nothing) -> Channel{ ApiTradingStatusResponse }, OpenAPI.Clients.ApiResponse
-
-Account API Trading Status
-
-Get current account's trading status on futures. Weight: 1 
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **AccountApi** | API context | 
-**timestamp** | **Int64**| Current timestamp in milliseconds | [default to nothing]
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT). If not sent, returns status for all symbols | [default to nothing]
- **recv_window** | **Int64**| The value cannot be greater than 60000. Defines how long the request is valid for in milliseconds. Default: 5000  | [default to 5000]
-
-### Return type
-
-[**ApiTradingStatusResponse**](ApiTradingStatusResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
 # **income**
 > income(_api::AccountApi; symbol=nothing, income_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{Income200ResponseInner}, OpenAPI.Clients.ApiResponse <br/>
 > income(_api::AccountApi, response_stream::Channel; symbol=nothing, income_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{Income200ResponseInner} }, OpenAPI.Clients.ApiResponse
@@ -231,7 +233,7 @@ Name | Type | Description  | Notes
  **limit** | **Int64**| Default 100; max 1000 | [default to 100]
  **recv_window** | **Int64**| The value cannot be greater than 60000 | [default to 5000]
  **timestamp** | **Int64**| Current timestamp in milliseconds | [default to nothing]
- **signature** | **String**| Signature | [default to nothing]
+ **signature** | **String**|  | [default to nothing]
  **x_mbx_apikey** | **String**| API Key | [default to nothing]
 
 ### Return type

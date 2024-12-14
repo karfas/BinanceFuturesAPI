@@ -14,10 +14,6 @@ module BinanceFuturesAPI
     using SHA
     using Base64
 
-    include("wrap_market_api.jl")
-    include("wrap_trade_api.jl")
-    include("wrap_account_api.jl")
-
     timestamp() = Int64(round(datetime2unix(now(UTC)) * 1000))
     timestamp!(d::Dict{Symbol, Any}) = begin d[:timestamp] = timestamp(); return d; end
 
@@ -48,40 +44,29 @@ module BinanceFuturesAPI
         ret
     end
 
-    # function sign_request(secret::String, kwargs::Base.Pairs)
-    #     # Convert kwargs to Dict
-    #     params = Dict{String,Any}()
-    #     for (k,v) in kwargs
-    #         params[string(k)] = v
-    #     end
-    #     sign_request(secret, params)
-    # end
+    function sign_hook(resource_path::AbstractString, body::Any)
+        pq = split(resource_path, '?', limit=2)
+        if length(pq) != 2
+            return resource_path, body
+        end
+        path, query = pq
+        tupels = split(query, '&') |> ( x -> split.(x, '=')) |> (x -> map(y -> (y[1], y[2]), x))
+        q = Dict{String,String}(tupels)
+        sig = get(q, "signature", nothing)
+        if sig !== nothing
+            delete!(q, "signature")
+            resource_path = string(path, "?", join(["$(k)=$(v)" for (k,v) in sort(collect(q), by=x->x[1])], "&"), "&signature=", sig)
+        end
+        resource_path, body
+    end
 
-    default_config() = Dict{String, Any}(
-        "rest_api" => Dict{String, Any}(
-            "base_url" => "https://fapi.binance.com",
-            "key" => "",
-            "secret" => ""
-        ),
-        "ws_api" => Dict{String, Any}(
-            "base_url" => "wss://fstream.binance.com",
-            "key" => "",
-            "secret" => ""
-        )
-    )
-    default_test_config() = Dict{String, Any}(
-        "rest_api" => Dict{String, Any}(
-            "base_url" => "https://testnet.binancefuture.com",
-            "key" => "",
-            "secret" => ""
-        ),
-        "ws_api" => Dict{String, Any}(
-            "base_url" => "wss://testnet.binancefuture.com",
-            "key" => "",
-            "secret" => ""
-        )
-    )
-
+    function pre_request_hook(ctx::OpenAPI.Clients.Ctx)
+        ctx
+    end
+    function pre_request_hook(resource_path::AbstractString, body::Any, headers::Dict{String,String})
+        resource_path, body = sign_hook(resource_path, body)
+        resource_path, body, headers
+    end
 
     """
         struct Client
@@ -117,15 +102,17 @@ module BinanceFuturesAPI
         m_api::APIClient.MarketApi
         t_api::APIClient.TradeApi
         a_api::APIClient.AccountApi
+        o_api::APIClient.OrderApi
         api_key::String
         api_secret::String
 
-        function Client(url::String, api_key::String="", api_secret::String="")
-            client = OpenAPI.Clients.Client(url; verbose=false, pre_request_hook=pre_request_hook)
+        function Client(url::String, api_key::String="", api_secret::String=""; verbose=false)
+            client = OpenAPI.Clients.Client(url; verbose=verbose, pre_request_hook=pre_request_hook)
             new(client,
                 APIClient.MarketApi(client),
                 APIClient.TradeApi(client),
                 APIClient.AccountApi(client),
+                APIClient.OrderApi(client),
                 api_key,
                 api_secret
             )
@@ -133,43 +120,60 @@ module BinanceFuturesAPI
 
     end
 
-    function sign_hook(resource_path::AbstractString, body::Any)
-        pq = split(resource_path, '?', limit=2)
-        if length(pq) != 2
-            return resource_path, body
-        end
-        path, query = pq
-        tupels = split(query, '&') |> ( x -> split.(x, '=')) |> (x -> map(y -> (y[1], y[2]), x))
-        q = Dict{String,String}(tupels)
-        sig = get(q, "signature", nothing)
-        if sig !== nothing
-            delete!(q, "signature")
-            resource_path = string(path, "?", join(["$(k)=$(v)" for (k,v) in sort(collect(q), by=x->x[1])], "&"), "&signature=", sig)
-        end
-        resource_path, body
-    end
-
-
-    function pre_request_hook(ctx::OpenAPI.Clients.Ctx)
-        ctx
-    end
-    function pre_request_hook(resource_path::AbstractString, body::Any, headers::Dict{String,String})
-        resource_path, body = sign_hook(resource_path, body)
-        resource_path, body, headers
-    end
+    SignedAPI = Union{APIClient.TradeApi, APIClient.AccountApi, APIClient.OrderApi}
 
     wrap!(cl::Client, f::Function, api::APIClient.MarketApi, args...; kwargs...) = begin
         response, headers = f(api, args...; kwargs...)
         response
     end
 
-    SignedAPI = Union{APIClient.TradeApi, APIClient.AccountApi}
-
     wrap!(cl::Client, f::Function, api::SignedAPI, args...; kwargs...) = begin
         params = signed_kwargs(cl.api_secret; kwargs...)
         response, headers = f(api, args...; x_mbx_apikey=cl.api_key, params...)
         response
     end
+
+    # __precompile__(false)
+    include("wrap_market_api.jl")
+    include("wrap_trade_api.jl")
+    include("wrap_account_api.jl")
+    include("wrap_order_api.jl")
+    # __precompile__(true)
+
+    # function sign_request(secret::String, kwargs::Base.Pairs)
+    #     # Convert kwargs to Dict
+    #     params = Dict{String,Any}()
+    #     for (k,v) in kwargs
+    #         params[string(k)] = v
+    #     end
+    #     sign_request(secret, params)
+    # end
+
+    default_config() = Dict{String, Any}(
+        "rest_api" => Dict{String, Any}(
+            "base_url" => "https://fapi.binance.com",
+            "key" => "",
+            "secret" => ""
+        ),
+        "ws_api" => Dict{String, Any}(
+            "base_url" => "wss://fstream.binance.com",
+            "key" => "",
+            "secret" => ""
+        )
+    )
+    default_test_config() = Dict{String, Any}(
+        "rest_api" => Dict{String, Any}(
+            "base_url" => "https://testnet.binancefuture.com",
+            "key" => "",
+            "secret" => ""
+        ),
+        "ws_api" => Dict{String, Any}(
+            "base_url" => "wss://testnet.binancefuture.com",
+            "key" => "",
+            "secret" => ""
+        )
+    )
+
 
     # include("datastream_api_wrappers.jl")
     # include("portfoliomargin_api_wrappers.jl")

@@ -6,13 +6,24 @@ include("get_test_parameters.jl")
 
 @testset "Account API Tests" begin
     (url, api_key, api_secret) = get_test_parameters()
-    cl = Client(url, api_key, api_secret)
+    cl = Client(url, api_key, api_secret; verbose=false)
+    test_symbol = "BTCUSDT"
 
     @testset "Account Information" begin
         # Test getting account information
         @test begin
             info = account(cl)
             !isnothing(info)
+        end
+    end
+
+    @testset "ADL Quantile" begin
+        # Test getting ADL quantile
+        @test begin
+            quantile = adl_quantile(cl;
+                symbol=test_symbol
+            )
+            !isnothing(quantile)
         end
     end
 
@@ -24,11 +35,21 @@ include("get_test_parameters.jl")
         end
     end
 
-    @testset "Position Risk" begin
-        # Test getting position risk
+    @testset "Commission Rate" begin
+        # Test getting commission rate
         @test begin
-            risk = position_risk(cl)
-            !isnothing(risk)
+            rate = commission_rate(cl;
+                symbol=test_symbol
+            )
+            !isnothing(rate)
+        end
+    end
+
+    @testset "API Trading Status" begin
+        # Test getting API trading status
+        @test begin
+            status = api_trading_status(cl)
+            !isnothing(status)
         end
     end
 
@@ -46,9 +67,30 @@ include("get_test_parameters.jl")
         # Test getting leverage bracket for BTC
         @test begin
             bracket = leverage_bracket(cl;
-                symbol="BTCUSDT"
+                symbol=test_symbol
             )
             !isnothing(bracket)
         end
     end
+
+    @testset "Position Risk" begin
+        # Test getting position risk
+        @test begin
+            risk = position_risk(cl)
+            !isnothing(risk)
+        end
+    end
+
+    @testset "User Trades" begin
+        # Test getting user trades
+        # returns 400 for a valid(?) request
+        @test_skip begin
+            trades = user_trades(cl;
+                symbol=test_symbol,
+                limit=10
+            )
+            !isnothing(trades)
+        end
+    end
+
 end

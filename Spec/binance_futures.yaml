@@ -1290,7 +1290,6 @@ paths:
             format: int64
         - name: signature
           in: query
-          description: Signature
           schema:
             type: string
         - name: x-mbx-apikey
@@ -1773,7 +1772,7 @@ paths:
             example: '{{binance-api-key}}'
       responses:
         '200':
-          description: ''
+          description: Current Multi-Assets Mode
           content:
             application/json:
               schema:
@@ -2776,7 +2775,7 @@ paths:
         - Order
       summary: User's Force Orders (USER_DATA)
       description: User's Force Orders (USER_DATA)
-      operationId: getUserSForceOrders
+      operationId: forceOrders
       parameters:
         - name: symbol
           in: query
@@ -2826,12 +2825,80 @@ paths:
             example: '{{binance-api-key}}'
       responses:
         '200':
-          description: ''
+          description: User's Force Orders
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                type: array
+                items:
+                  type: object
+                  properties:
+                    orderId:
+                      type: integer
+                      format: int64
+                      description: Order ID
+                    symbol:
+                      type: string
+                      description: Trading symbol
+                    status:
+                      type: string
+                      description: Order status
+                    clientOrderId:
+                      type: string
+                      description: Client order ID
+                    price:
+                      type: string
+                      description: Order price
+                    avgPrice:
+                      type: string
+                      description: Average fill price
+                    origQty:
+                      type: string
+                      description: Original quantity
+                    executedQty:
+                      type: string
+                      description: Executed quantity
+                    cumQuote:
+                      type: string
+                      description: Cumulative quote asset transacted quantity
+                    timeInForce:
+                      type: string
+                      description: Time in force
+                    type:
+                      type: string
+                      description: Order type
+                    reduceOnly:
+                      type: boolean
+                      description: Reduce only flag
+                    closePosition:
+                      type: boolean
+                      description: Close position flag
+                    side:
+                      type: string
+                      description: Order side (BUY/SELL)
+                    positionSide:
+                      type: string
+                      description: Position side
+                    stopPrice:
+                      type: string
+                      description: Stop price
+                    workingType:
+                      type: string
+                      description: Working type
+                    priceProtect:
+                      type: boolean
+                      description: Price protection flag
+                    origType:
+                      type: string
+                      description: Original order type
+                    time:
+                      type: integer
+                      format: int64
+                      description: Order creation time
+                    updateTime:
+                      type: integer
+                      format: int64
+                      description: Last update time
   /fapi/v1/marginType:
     post:
       tags:
@@ -3150,6 +3217,7 @@ paths:
       description: |
         Get current account's trading status on futures.
         Weight: 1
+      operationId: apiTradingStatus
       security:
         - ApiKeyAuth: []
         - SignatureAuth: []
@@ -3171,11 +3239,20 @@ paths:
             default: 5000
         - name: timestamp
           in: query
-          required: true
           description: Current timestamp in milliseconds
           schema:
             type: integer
             format: int64
+        - name: signature
+          in: query
+          schema:
+            type: string
+            example: '{{signature}}'
+        - name: x-mbx-apikey
+          in: header
+          schema:
+            type: string
+            example: '{{binance-api-key}}'
       responses:
         '200':
           description: Trading status information
@@ -3291,6 +3368,12 @@ tags:
   - name: Portfolio Margin
 components:
   schemas:
+    MultiAssetsMarginResponse:
+      type: object
+      properties:
+        multiAssetsMargin:
+          type: boolean
+          description: "Whether multi-assets mode is enabled"
     ExchangeInfoResponse:
       type: object
       properties:
@@ -3606,6 +3689,20 @@ components:
             type: string
             description: Rejection reason if amendment was rejected
     UserTradesResponse:
+    # "buyer": false,
+    # "commission": "-0.07819010",
+    # "commissionAsset": "USDT",
+    # "id": 698759,
+    # "maker": false,
+    # "orderId": 25851813,
+    # "price": "7819.01",
+    # "qty": "0.002",
+    # "quoteQty": "15.63802",
+    # "realizedPnl": "-0.91539999",
+    # "side": "SELL",
+    # "positionSide": "SHORT",
+    # "symbol": "BTCUSDT",
+    # "time": 1569514978020
       type: array
       items:
         type: object
@@ -4132,16 +4229,3 @@ components:
             type: integer
             format: int64
             description: Update time
-
-    MultiAssetsMarginResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Response code
-        msg:
-          type: string
-          description: Response message
-        multiAssetsMargin:
-          type: boolean
-          description: true-Multi-Assets Mode, false-Single-Asset Mode

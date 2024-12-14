@@ -19,6 +19,7 @@ docs/ExchangeInfoResponseAssetsInner.md
 docs/ExchangeInfoResponseRateLimitsInner.md
 docs/ExchangeInfoResponseSymbolsInner.md
 docs/ExchangeInfoResponseSymbolsInnerFiltersInner.md
+docs/ForceOrders200ResponseInner.md
 docs/FundingRateResponseInner.md
 docs/HistoricalTradesResponseInner.md
 docs/Income200ResponseInner.md
@@ -75,6 +76,7 @@ src/models/model_ExchangeInfoResponseAssetsInner.jl
 src/models/model_ExchangeInfoResponseRateLimitsInner.jl
 src/models/model_ExchangeInfoResponseSymbolsInner.jl
 src/models/model_ExchangeInfoResponseSymbolsInnerFiltersInner.jl
+src/models/model_ForceOrders200ResponseInner.jl
 src/models/model_FundingRateResponseInner.jl
 src/models/model_HistoricalTradesResponseInner.jl
 src/models/model_Income200ResponseInner.jl

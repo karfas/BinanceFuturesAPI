@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**delete_all_open_orders**](OrderApi.md#delete_all_open_orders) | **DELETE** /fapi/v1/allOpenOrders | Cancel All Open Orders
 [**delete_batch_orders**](OrderApi.md#delete_batch_orders) | **DELETE** /fapi/v1/batchOrders | Cancel Multiple Orders (TRADE)
 [**delete_order**](OrderApi.md#delete_order) | **DELETE** /fapi/v1/order | Cancel Order
+[**force_orders**](OrderApi.md#force_orders) | **GET** /fapi/v1/forceOrders | User&#39;s Force Orders (USER_DATA)
 [**get_all_orders**](OrderApi.md#get_all_orders) | **GET** /fapi/v1/allOrders | All Orders
 [**get_open_order**](OrderApi.md#get_open_order) | **GET** /fapi/v1/openOrder | Query Current Open Order (USER_DATA)
 [**get_open_orders**](OrderApi.md#get_open_orders) | **GET** /fapi/v1/openOrders | Current All Open Orders (USER_DATA)
@@ -16,7 +17,6 @@ Method | HTTP request | Description
 [**get_order_download_link_id**](OrderApi.md#get_order_download_link_id) | **GET** /fapi/v1/order/asyn/id | Get Futures Order History Download Link by Id (USER_DATA)
 [**get_trade_download_id**](OrderApi.md#get_trade_download_id) | **GET** /fapi/v1/trade/asyn | Get Download Id For Futures Trade History (USER_DATA)
 [**get_trade_download_link_id**](OrderApi.md#get_trade_download_link_id) | **GET** /fapi/v1/trade/asyn/id | Get Futures Trade Download Link by Id (USER_DATA)
-[**get_user_s_force_orders**](OrderApi.md#get_user_s_force_orders) | **GET** /fapi/v1/forceOrders | User&#39;s Force Orders (USER_DATA)
 [**post_batch_orders**](OrderApi.md#post_batch_orders) | **POST** /fapi/v1/batchOrders | Place Multiple Orders (TRADE)
 [**post_order**](OrderApi.md#post_order) | **POST** /fapi/v1/order | New Order (TRADE)
 [**put_batch_orders**](OrderApi.md#put_batch_orders) | **PUT** /fapi/v1/batchOrders | Modify Multiple Orders (TRADE)
@@ -132,6 +132,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OrderResponse**](OrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **force_orders**
+> force_orders(_api::OrderApi; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{ForceOrders200ResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> force_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{ForceOrders200ResponseInner} }, OpenAPI.Clients.ApiResponse
+
+User's Force Orders (USER_DATA)
+
+User's Force Orders (USER_DATA)
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **OrderApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**|  | [default to nothing]
+ **auto_close_type** | **String**|  | [default to nothing]
+ **start_time** | **String**|  | [default to nothing]
+ **end_time** | **String**|  | [default to nothing]
+ **limit** | **String**|  | [default to nothing]
+ **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
+ **timestamp** | **String**|  | [default to nothing]
+ **signature** | **String**|  | [default to nothing]
+ **x_mbx_apikey** | **String**|  | [default to nothing]
+
+### Return type
+
+[**Vector{ForceOrders200ResponseInner}**](ForceOrders200ResponseInner.md)
 
 ### Authorization
 
@@ -493,49 +536,6 @@ Name | Type | Description  | Notes
  **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
  **timestamp** | **String**|  | [default to nothing]
  **signature** | **String**| Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode. | [default to nothing]
- **x_mbx_apikey** | **String**|  | [default to nothing]
-
-### Return type
-
-**Dict{String, Any}**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **get_user_s_force_orders**
-> get_user_s_force_orders(_api::OrderApi; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> get_user_s_force_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
-
-User's Force Orders (USER_DATA)
-
-User's Force Orders (USER_DATA)
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **OrderApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**|  | [default to nothing]
- **auto_close_type** | **String**|  | [default to nothing]
- **start_time** | **String**|  | [default to nothing]
- **end_time** | **String**|  | [default to nothing]
- **limit** | **String**|  | [default to nothing]
- **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**|  | [default to nothing]
  **x_mbx_apikey** | **String**|  | [default to nothing]
 
 ### Return type

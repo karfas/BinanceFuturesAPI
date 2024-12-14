@@ -136,6 +136,53 @@ function delete_order(_api::OrderApi, response_stream::Channel; symbol=nothing, 
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
+const _returntypes_force_orders_OrderApi = Dict{Regex,Type}(
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{ForceOrders200ResponseInner},
+)
+
+function _oacinternal_force_orders(_api::OrderApi; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_force_orders_OrderApi, "/fapi/v1/forceOrders", [])
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "autoCloseType", auto_close_type)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
+    return _ctx
+end
+
+@doc raw"""User's Force Orders (USER_DATA)
+
+User's Force Orders (USER_DATA)
+
+Params:
+- symbol::String
+- auto_close_type::String
+- start_time::String
+- end_time::String
+- limit::String
+- recv_window::String
+- timestamp::String
+- signature::String
+- x_mbx_apikey::String
+
+Return: Vector{ForceOrders200ResponseInner}, OpenAPI.Clients.ApiResponse
+"""
+function force_orders(_api::OrderApi; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_force_orders(_api; symbol=symbol, auto_close_type=auto_close_type, start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx)
+end
+
+function force_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_force_orders(_api; symbol=symbol, auto_close_type=auto_close_type, start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx, response_stream)
+end
+
 const _returntypes_get_all_orders_OrderApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Vector{AllOrdersResponseInner},
 )
@@ -517,53 +564,6 @@ function get_trade_download_link_id(_api::OrderApi, response_stream::Channel; do
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-const _returntypes_get_user_s_force_orders_OrderApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
-)
-
-function _oacinternal_get_user_s_force_orders(_api::OrderApi; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_user_s_force_orders_OrderApi, "/fapi/v1/forceOrders", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "autoCloseType", auto_close_type)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
-    OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""User's Force Orders (USER_DATA)
-
-User's Force Orders (USER_DATA)
-
-Params:
-- symbol::String
-- auto_close_type::String
-- start_time::String
-- end_time::String
-- limit::String
-- recv_window::String
-- timestamp::String
-- signature::String
-- x_mbx_apikey::String
-
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
-"""
-function get_user_s_force_orders(_api::OrderApi; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_get_user_s_force_orders(_api; symbol=symbol, auto_close_type=auto_close_type, start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function get_user_s_force_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_get_user_s_force_orders(_api; symbol=symbol, auto_close_type=auto_close_type, start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
 const _returntypes_post_batch_orders_OrderApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Vector{OrderResponse},
 )
@@ -769,6 +769,7 @@ end
 export delete_all_open_orders
 export delete_batch_orders
 export delete_order
+export force_orders
 export get_all_orders
 export get_open_order
 export get_open_orders
@@ -778,7 +779,6 @@ export get_order_download_id
 export get_order_download_link_id
 export get_trade_download_id
 export get_trade_download_link_id
-export get_user_s_force_orders
 export post_batch_orders
 export post_order
 export put_batch_orders

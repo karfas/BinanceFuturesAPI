@@ -5,29 +5,21 @@
 @doc raw"""MultiAssetsMarginResponse
 
     MultiAssetsMarginResponse(;
-        code=nothing,
-        msg=nothing,
         multiAssetsMargin=nothing,
     )
 
-    - code::Int64 : Response code
-    - msg::String : Response message
-    - multiAssetsMargin::Bool : true-Multi-Assets Mode, false-Single-Asset Mode
+    - multiAssetsMargin::Bool : Whether multi-assets mode is enabled
 """
 Base.@kwdef mutable struct MultiAssetsMarginResponse <: OpenAPI.APIModel
-    code::Union{Nothing, Int64} = nothing
-    msg::Union{Nothing, String} = nothing
     multiAssetsMargin::Union{Nothing, Bool} = nothing
 
-    function MultiAssetsMarginResponse(code, msg, multiAssetsMargin, )
-        OpenAPI.validate_property(MultiAssetsMarginResponse, Symbol("code"), code)
-        OpenAPI.validate_property(MultiAssetsMarginResponse, Symbol("msg"), msg)
+    function MultiAssetsMarginResponse(multiAssetsMargin, )
         OpenAPI.validate_property(MultiAssetsMarginResponse, Symbol("multiAssetsMargin"), multiAssetsMargin)
-        return new(code, msg, multiAssetsMargin, )
+        return new(multiAssetsMargin, )
     end
 end # type MultiAssetsMarginResponse
 
-const _property_types_MultiAssetsMarginResponse = Dict{Symbol,String}(Symbol("code")=>"Int64", Symbol("msg")=>"String", Symbol("multiAssetsMargin")=>"Bool", )
+const _property_types_MultiAssetsMarginResponse = Dict{Symbol,String}(Symbol("multiAssetsMargin")=>"Bool", )
 OpenAPI.property_type(::Type{ MultiAssetsMarginResponse }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_MultiAssetsMarginResponse[name]))}
 
 function check_required(o::MultiAssetsMarginResponse)
