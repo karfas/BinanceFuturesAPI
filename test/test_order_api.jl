@@ -6,7 +6,7 @@ include("get_test_parameters.jl")
 
 @testset "Order API Tests" begin
     (url, api_key, api_secret) = get_test_parameters()
-    cl = Client(url, api_key, api_secret; verbose=true)
+    cl = Client(url, api_key, api_secret; verbose=false)
     test_symbol = "BTCUSDT"
 
     # these return 400 for a valid(?) request
