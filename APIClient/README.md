@@ -66,11 +66,11 @@ Class | Method
 *MarketApi* | [**top_long_short_account_ratio**](docs/MarketApi.md#top_long_short_account_ratio)<br/>**GET** /fapi/v1/topLongShortAccountRatio<br/>Top Trader Long/Short Ratio (Accounts)
 *MarketApi* | [**top_long_short_position_ratio**](docs/MarketApi.md#top_long_short_position_ratio)<br/>**GET** /fapi/v1/topLongShortPositionRatio<br/>Top Trader Long/Short Ratio (Positions)
 *MarketApi* | [**trades**](docs/MarketApi.md#trades)<br/>**GET** /fapi/v1/trades<br/>Recent Trades List
+*OrderApi* | [**all_orders**](docs/OrderApi.md#all_orders)<br/>**GET** /fapi/v1/allOrders<br/>All Orders
 *OrderApi* | [**delete_all_open_orders**](docs/OrderApi.md#delete_all_open_orders)<br/>**DELETE** /fapi/v1/allOpenOrders<br/>Cancel All Open Orders
 *OrderApi* | [**delete_batch_orders**](docs/OrderApi.md#delete_batch_orders)<br/>**DELETE** /fapi/v1/batchOrders<br/>Cancel Multiple Orders (TRADE)
 *OrderApi* | [**delete_order**](docs/OrderApi.md#delete_order)<br/>**DELETE** /fapi/v1/order<br/>Cancel Order
 *OrderApi* | [**force_orders**](docs/OrderApi.md#force_orders)<br/>**GET** /fapi/v1/forceOrders<br/>User&#39;s Force Orders (USER_DATA)
-*OrderApi* | [**get_all_orders**](docs/OrderApi.md#get_all_orders)<br/>**GET** /fapi/v1/allOrders<br/>All Orders
 *OrderApi* | [**get_open_order**](docs/OrderApi.md#get_open_order)<br/>**GET** /fapi/v1/openOrder<br/>Query Current Open Order (USER_DATA)
 *OrderApi* | [**get_open_orders**](docs/OrderApi.md#get_open_orders)<br/>**GET** /fapi/v1/openOrders<br/>Current All Open Orders (USER_DATA)
 *OrderApi* | [**get_order**](docs/OrderApi.md#get_order)<br/>**GET** /fapi/v1/order<br/>Query Order
@@ -139,6 +139,7 @@ Class | Method
  - [SymbolPriceTickerResponseInner](docs/SymbolPriceTickerResponseInner.md)
  - [Ticker24hr200Response](docs/Ticker24hr200Response.md)
  - [TickerPriceChangeResponseInner](docs/TickerPriceChangeResponseInner.md)
+ - [UserTrades200ResponseInner](docs/UserTrades200ResponseInner.md)
  - [UserTradesResponseInner](docs/UserTradesResponseInner.md)
 
 

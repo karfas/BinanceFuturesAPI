@@ -4,11 +4,11 @@ All URIs are relative to *https://fapi.binance.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**all_orders**](OrderApi.md#all_orders) | **GET** /fapi/v1/allOrders | All Orders
 [**delete_all_open_orders**](OrderApi.md#delete_all_open_orders) | **DELETE** /fapi/v1/allOpenOrders | Cancel All Open Orders
 [**delete_batch_orders**](OrderApi.md#delete_batch_orders) | **DELETE** /fapi/v1/batchOrders | Cancel Multiple Orders (TRADE)
 [**delete_order**](OrderApi.md#delete_order) | **DELETE** /fapi/v1/order | Cancel Order
 [**force_orders**](OrderApi.md#force_orders) | **GET** /fapi/v1/forceOrders | User&#39;s Force Orders (USER_DATA)
-[**get_all_orders**](OrderApi.md#get_all_orders) | **GET** /fapi/v1/allOrders | All Orders
 [**get_open_order**](OrderApi.md#get_open_order) | **GET** /fapi/v1/openOrder | Query Current Open Order (USER_DATA)
 [**get_open_orders**](OrderApi.md#get_open_orders) | **GET** /fapi/v1/openOrders | Current All Open Orders (USER_DATA)
 [**get_order**](OrderApi.md#get_order) | **GET** /fapi/v1/order | Query Order
@@ -22,6 +22,49 @@ Method | HTTP request | Description
 [**put_batch_orders**](OrderApi.md#put_batch_orders) | **PUT** /fapi/v1/batchOrders | Modify Multiple Orders (TRADE)
 [**put_order**](OrderApi.md#put_order) | **PUT** /fapi/v1/order | Modify Order (TRADE)
 
+
+# **all_orders**
+> all_orders(_api::OrderApi; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{AllOrdersResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> all_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{AllOrdersResponseInner} }, OpenAPI.Clients.ApiResponse
+
+All Orders
+
+All Orders
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **OrderApi** | API context | 
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**|  | [default to nothing]
+ **order_id** | **String**|  | [default to nothing]
+ **start_time** | **String**|  | [default to nothing]
+ **end_time** | **String**|  | [default to nothing]
+ **limit** | **String**| Default 500; max 1000. | [default to nothing]
+ **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
+ **timestamp** | **String**|  | [default to nothing]
+ **signature** | **String**|  | [default to nothing]
+ **x_mbx_apikey** | **String**|  | [default to nothing]
+
+### Return type
+
+[**Vector{AllOrdersResponseInner}**](AllOrdersResponseInner.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **delete_all_open_orders**
 > delete_all_open_orders(_api::OrderApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
@@ -175,49 +218,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Vector{ForceOrders200ResponseInner}**](ForceOrders200ResponseInner.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **get_all_orders**
-> get_all_orders(_api::OrderApi; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{AllOrdersResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> get_all_orders(_api::OrderApi, response_stream::Channel; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{AllOrdersResponseInner} }, OpenAPI.Clients.ApiResponse
-
-All Orders
-
-All Orders
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **OrderApi** | API context | 
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **String**|  | [default to nothing]
- **order_id** | **String**|  | [default to nothing]
- **start_time** | **String**|  | [default to nothing]
- **end_time** | **String**|  | [default to nothing]
- **limit** | **String**| Default 500; max 1000. | [default to nothing]
- **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
- **timestamp** | **String**|  | [default to nothing]
- **signature** | **String**|  | [default to nothing]
- **x_mbx_apikey** | **String**|  | [default to nothing]
-
-### Return type
-
-[**Vector{AllOrdersResponseInner}**](AllOrdersResponseInner.md)
 
 ### Authorization
 

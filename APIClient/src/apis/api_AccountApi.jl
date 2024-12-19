@@ -340,7 +340,7 @@ function position_risk(_api::AccountApi, response_stream::Channel; recv_window=n
 end
 
 const _returntypes_user_trades_AccountApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{UserTrades200ResponseInner},
 )
 
 function _oacinternal_user_trades(_api::AccountApi; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
@@ -374,7 +374,7 @@ Params:
 - signature::String
 - x_mbx_apikey::String
 
-Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
+Return: Vector{UserTrades200ResponseInner}, OpenAPI.Clients.ApiResponse
 """
 function user_trades(_api::AccountApi; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = _oacinternal_user_trades(_api; symbol=symbol, start_time=start_time, end_time=end_time, from_id=from_id, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)

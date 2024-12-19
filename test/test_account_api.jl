@@ -6,7 +6,7 @@ include("get_test_parameters.jl")
 
 @testset "Account API Tests" begin
     (url, api_key, api_secret) = get_test_parameters()
-    cl = Client(url, api_key, api_secret; verbose=false)
+    cl = Client(url, api_key, api_secret; verbose=true)
     test_symbol = "BTCUSDT"
 
     @testset "Account Information" begin
@@ -84,7 +84,7 @@ include("get_test_parameters.jl")
     @testset "User Trades" begin
         # Test getting user trades
         # returns 400 for a valid(?) request
-        @test_skip begin
+        @test begin
             trades = user_trades(cl;
                 symbol=test_symbol,
                 limit=10

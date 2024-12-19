@@ -1501,12 +1501,56 @@ paths:
             example: '{{binance-api-key}}'
       responses:
         '200':
-          description: ''
+          description: 'List of trades'
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+                type: array
+                items:
+                  type: object
+                  properties:
+                    buyer:
+                      type: boolean
+                      description: "true if the buyer is the taker"
+                    commission:
+                      type: string
+                      description: "Commission"
+                    commissionAsset:
+                      type: string
+                      description: "Commission asset"
+                    id:
+                      type: integer
+                      description: "Trade ID"
+                    maker:
+                      type: boolean
+                      description: "true if the trade was a maker trade"
+                    orderId:
+                      type: integer
+                      description: "Order ID"
+                    price:
+                      type: string
+                      description: "Price"
+                    qty:
+                      type: string
+                      description: "Quantity"
+                    quoteQty:
+                      type: string
+                      description: "Quote quantity"
+                    realizedPnl:
+                      type: string
+                      description: "Realized profit and loss"
+                    side:
+                      type: string
+                      description: "Side of the trade (BUY or SELL)"
+                    positionSide:
+                      type: string
+                      description: "Position side (LONG, SHORT, or BOTH)"
+                    symbol:
+                      type: string
+                      description: "Symbol"
+                    time:
+                      type: integer
+                      description: "Trade time"
   /fapi/v3/balance:
     get:
       tags:
@@ -2713,7 +2757,7 @@ paths:
         - Order
       summary: All Orders
       description: All Orders
-      operationId: getAllOrders
+      operationId: allOrders
       parameters:
         - name: symbol
           in: query
@@ -3689,20 +3733,6 @@ components:
             type: string
             description: Rejection reason if amendment was rejected
     UserTradesResponse:
-    # "buyer": false,
-    # "commission": "-0.07819010",
-    # "commissionAsset": "USDT",
-    # "id": 698759,
-    # "maker": false,
-    # "orderId": 25851813,
-    # "price": "7819.01",
-    # "qty": "0.002",
-    # "quoteQty": "15.63802",
-    # "realizedPnl": "-0.91539999",
-    # "side": "SELL",
-    # "positionSide": "SHORT",
-    # "symbol": "BTCUSDT",
-    # "time": 1569514978020
       type: array
       items:
         type: object

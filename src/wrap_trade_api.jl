@@ -1,4 +1,4 @@
-using ..BinanceFuturesAPI: Client, signed_kwargs, wrap!
+using ..BinanceFuturesAPI: Client, wrap!
 
 # Trade API wrapper functions
 
@@ -19,28 +19,10 @@ modify_isolated_position_margin(cl::Client, args...; kwargs...) = wrap!(cl, APIC
 # Position mode
 post_position_side_dual(cl::Client, args...; kwargs...) =      wrap!(cl, APIClient.post_position_side_dual, cl.t_api, args...; kwargs...)
 
-# Order management
-new_order(cl::Client, args...; kwargs...) =                    wrap!(cl, APIClient.new_order, cl.t_api, args...; kwargs...)
-modify_order(cl::Client, args...; kwargs...) =                 wrap!(cl, APIClient.modify_order, cl.t_api, args...; kwargs...)
-modify_multiple_orders(cl::Client, args...; kwargs...) =       wrap!(cl, APIClient.modify_multiple_orders, cl.t_api, args...; kwargs...)
-get_order(cl::Client, args...; kwargs...) =                    wrap!(cl, APIClient.get_order, cl.t_api, args...; kwargs...)
-cancel_order(cl::Client, args...; kwargs...) =                 wrap!(cl, APIClient.cancel_order, cl.t_api, args...; kwargs...)
-cancel_all_orders(cl::Client, args...; kwargs...) =            wrap!(cl, APIClient.cancel_all_orders, cl.t_api, args...; kwargs...)
-auto_cancel_all_orders(cl::Client, args...; kwargs...) =       wrap!(cl, APIClient.auto_cancel_all_orders, cl.t_api, args...; kwargs...)
-cancel_multiple_orders(cl::Client, args...; kwargs...) =       wrap!(cl, APIClient.cancel_multiple_orders, cl.t_api, args...; kwargs...)
-current_all_open_orders(cl::Client, args...; kwargs...) =      wrap!(cl, APIClient.current_all_open_orders, cl.t_api, args...; kwargs...)
-current_open_orders(cl::Client, args...; kwargs...) =          wrap!(cl, APIClient.current_open_orders, cl.t_api, args...; kwargs...)
-all_orders(cl::Client, args...; kwargs...) =                   wrap!(cl, APIClient.all_orders, cl.t_api, args...; kwargs...)
-force_orders(cl::Client, args...; kwargs...) =                 wrap!(cl, APIClient.force_orders, cl.t_api, args...; kwargs...)
 
 # Export trade API functions
 export get_position_margin_history,
        multi_assets_margin, post_multi_assets_margin,
        change_initial_leverage, change_margin_type,
        modify_isolated_position_margin,
-       post_position_side_dual,
-       new_order, modify_order, modify_multiple_orders,
-       get_order, cancel_order, cancel_all_orders,
-       auto_cancel_all_orders, cancel_multiple_orders,
-       current_all_open_orders, current_open_orders,
-       all_orders, force_orders
+       post_position_side_dual

@@ -22,7 +22,7 @@ trades = recent_trades(market, "BTCUSDT", limit=100)
 book = order_book(market, "BTCUSDT", limit=10)
 
 # Get 24hr ticker
-ticker = ticker_24hr(market, symbol="BTCUSDT")
+ticker = ticker24hr(market, symbol="BTCUSDT")
 ```
 
 ### Working with Klines Data
@@ -43,7 +43,7 @@ for kline in klines
     low = parse(Float64, kline[4])
     close = parse(Float64, kline[5])
     volume = parse(Float64, kline[6])
-    
+
     println("Time: \$open_time")
     println("OHLCV: \$open, \$high, \$low, \$close, \$volume")
 end

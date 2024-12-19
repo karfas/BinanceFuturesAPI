@@ -8,7 +8,7 @@ include("get_test_parameters.jl")
 @testset "MarketApi Tests" begin
     # Create a client
     (url, api_key, api_secret) = get_test_parameters()
-    cl = Client(url, api_key, api_secret; verbose=false)
+    cl = Client(url, api_key, api_secret; verbose=true)
 
     @testset "ping" begin
         # Test ping endpoint

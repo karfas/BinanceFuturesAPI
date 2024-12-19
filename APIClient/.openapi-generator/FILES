@@ -49,6 +49,7 @@ docs/SymbolPriceTickerResponseInner.md
 docs/Ticker24hr200Response.md
 docs/TickerPriceChangeResponseInner.md
 docs/TradeApi.md
+docs/UserTrades200ResponseInner.md
 docs/UserTradesResponseInner.md
 src/APIClient.jl
 src/apis/api_AccountApi.jl
@@ -102,4 +103,5 @@ src/models/model_ServerTime200Response.jl
 src/models/model_SymbolPriceTickerResponseInner.jl
 src/models/model_Ticker24hr200Response.jl
 src/models/model_TickerPriceChangeResponseInner.jl
+src/models/model_UserTrades200ResponseInner.jl
 src/models/model_UserTradesResponseInner.jl
