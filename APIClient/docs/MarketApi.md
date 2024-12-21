@@ -34,8 +34,8 @@ Method | HTTP request | Description
 
 
 # **agg_trades**
-> agg_trades(_api::MarketApi, symbol::String; from_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{AggregateTradesResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> agg_trades(_api::MarketApi, response_stream::Channel, symbol::String; from_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{AggregateTradesResponseInner} }, OpenAPI.Clients.ApiResponse
+> agg_trades(_api::MarketApi; symbol=nothing, from_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{AggregateTradesResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> agg_trades(_api::MarketApi, response_stream::Channel; symbol=nothing, from_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{AggregateTradesResponseInner} }, OpenAPI.Clients.ApiResponse
 
 Compressed/Aggregate Trades List
 
@@ -46,12 +46,12 @@ Get compressed, aggregate trades. Trades that fill at the same time, from the sa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **MarketApi** | API context | 
-**symbol** | **String**|  | [default to nothing]
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **symbol** | **String**|  | [default to nothing]
  **from_id** | **Int64**|  | [default to nothing]
  **start_time** | **Int64**|  | [default to nothing]
  **end_time** | **Int64**|  | [default to nothing]
@@ -259,8 +259,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **depth**
-> depth(_api::MarketApi, symbol::String; limit=nothing, _mediaType=nothing) -> Depth200Response, OpenAPI.Clients.ApiResponse <br/>
-> depth(_api::MarketApi, response_stream::Channel, symbol::String; limit=nothing, _mediaType=nothing) -> Channel{ Depth200Response }, OpenAPI.Clients.ApiResponse
+> depth(_api::MarketApi; symbol=nothing, limit=nothing, _mediaType=nothing) -> Depth200Response, OpenAPI.Clients.ApiResponse <br/>
+> depth(_api::MarketApi, response_stream::Channel; symbol=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Depth200Response }, OpenAPI.Clients.ApiResponse
 
 Order Book
 
@@ -271,12 +271,12 @@ Order Book
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **MarketApi** | API context | 
-**symbol** | **String**| Trading pair symbol (e.g., BTCUSDT)  | [default to nothing]
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT)  | [default to nothing]
  **limit** | **Int64**| Number of price levels to return. Valid values: [5, 10, 20, 50, 100, 500, 1000] Default: 100  | [default to 100]
 
 ### Return type
@@ -399,8 +399,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **historical_trades**
-> historical_trades(_api::MarketApi, symbol::String; limit=nothing, from_id=nothing, _mediaType=nothing) -> Vector{HistoricalTradesResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> historical_trades(_api::MarketApi, response_stream::Channel, symbol::String; limit=nothing, from_id=nothing, _mediaType=nothing) -> Channel{ Vector{HistoricalTradesResponseInner} }, OpenAPI.Clients.ApiResponse
+> historical_trades(_api::MarketApi; symbol=nothing, limit=nothing, from_id=nothing, _mediaType=nothing) -> Vector{HistoricalTradesResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> historical_trades(_api::MarketApi, response_stream::Channel; symbol=nothing, limit=nothing, from_id=nothing, _mediaType=nothing) -> Channel{ Vector{HistoricalTradesResponseInner} }, OpenAPI.Clients.ApiResponse
 
 Old Trades Lookup (MARKET_DATA)
 
@@ -411,12 +411,12 @@ This endpoint need your API key only, not the secret key.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **MarketApi** | API context | 
-**symbol** | **String**|  | [default to nothing]
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **symbol** | **String**|  | [default to nothing]
  **limit** | **Int64**|  | [default to 500]
  **from_id** | **Int64**|  | [default to nothing]
 
@@ -511,8 +511,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **klines**
-> klines(_api::MarketApi, symbol::String, interval::String; start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse <br/>
-> klines(_api::MarketApi, response_stream::Channel, symbol::String, interval::String; start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{Vector{KlinesResponseInnerInner}} }, OpenAPI.Clients.ApiResponse
+> klines(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse <br/>
+> klines(_api::MarketApi, response_stream::Channel; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{Vector{KlinesResponseInnerInner}} }, OpenAPI.Clients.ApiResponse
 
 Kline/Candlestick Data
 
@@ -523,13 +523,13 @@ Kline/candlestick bars for a symbol. Klines are uniquely identified by their ope
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **MarketApi** | API context | 
-**symbol** | **String**| Trading pair symbol (e.g., BTCUSDT) | [default to nothing]
-**interval** | **String**| Kline/candlestick interval: - 1m: 1 minute - 3m: 3 minutes - 5m: 5 minutes - 15m: 15 minutes - 30m: 30 minutes - 1h: 1 hour - 2h: 2 hours - 4h: 4 hours - 6h: 6 hours - 8h: 8 hours - 12h: 12 hours - 1d: 1 day - 3d: 3 days - 1w: 1 week - 1M: 1 month  | [default to nothing]
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT) | [default to nothing]
+ **interval** | **String**| Kline/candlestick interval: - 1m: 1 minute - 3m: 3 minutes - 5m: 5 minutes - 15m: 15 minutes - 30m: 30 minutes - 1h: 1 hour - 2h: 2 hours - 4h: 4 hours - 6h: 6 hours - 8h: 8 hours - 12h: 12 hours - 1d: 1 day - 3d: 3 days - 1w: 1 week - 1M: 1 month  | [default to nothing]
  **start_time** | **Int64**| Start time in milliseconds. If not sent, returns from earliest available | [default to nothing]
  **end_time** | **Int64**| End time in milliseconds. If not sent, returns until latest available | [default to nothing]
  **limit** | **Int64**| Number of data points to return. Default: 500 Max: 1500  | [default to 500]
@@ -981,8 +981,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **trades**
-> trades(_api::MarketApi, symbol::String; limit=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> trades(_api::MarketApi, response_stream::Channel, symbol::String; limit=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> trades(_api::MarketApi; symbol=nothing, limit=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> trades(_api::MarketApi, response_stream::Channel; symbol=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
 
 Recent Trades List
 
@@ -993,12 +993,12 @@ Recent Trades List
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **MarketApi** | API context | 
-**symbol** | **String**| Trading pair symbol (e.g., BTCUSDT) | [default to nothing]
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT) | [default to nothing]
  **limit** | **Int64**| Number of recent trades to return. Default: 500 Max: 1000  | [default to 500]
 
 ### Return type

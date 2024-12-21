@@ -14,8 +14,8 @@ Method | HTTP request | Description
 
 
 # **get_position_margin_history**
-> get_position_margin_history(_api::TradeApi, symbol::String, type::Int64; start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{PositionMarginHistoryResponseInner}, OpenAPI.Clients.ApiResponse <br/>
-> get_position_margin_history(_api::TradeApi, response_stream::Channel, symbol::String, type::Int64; start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{PositionMarginHistoryResponseInner} }, OpenAPI.Clients.ApiResponse
+> get_position_margin_history(_api::TradeApi; symbol=nothing, type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Vector{PositionMarginHistoryResponseInner}, OpenAPI.Clients.ApiResponse <br/>
+> get_position_margin_history(_api::TradeApi, response_stream::Channel; symbol=nothing, type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Vector{PositionMarginHistoryResponseInner} }, OpenAPI.Clients.ApiResponse
 
 Get Postion Margin Change History
 
@@ -26,13 +26,13 @@ Get Postion Margin Change History
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **TradeApi** | API context | 
-**symbol** | **String**| Trading pair symbol (e.g., BTCUSDT) | [default to nothing]
-**type** | **Int64**| Margin type (1: Add, 2: Reduce)  | [default to nothing]
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT) | [default to nothing]
+ **type** | **Int64**| Margin type (1: Add, 2: Reduce)  | [default to nothing]
  **start_time** | **String**|  | [default to nothing]
  **end_time** | **String**|  | [default to nothing]
  **limit** | **String**|  | [default to nothing]
@@ -95,8 +95,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **post_leverage**
-> post_leverage(_api::TradeApi, symbol::String, leverage::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> post_leverage(_api::TradeApi, response_stream::Channel, symbol::String, leverage::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> post_leverage(_api::TradeApi; symbol=nothing, leverage=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> post_leverage(_api::TradeApi, response_stream::Channel; symbol=nothing, leverage=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
 
 Change Initial Leverage
 
@@ -107,13 +107,13 @@ Change Initial Leverage
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **TradeApi** | API context | 
-**symbol** | **String**| Trading pair symbol (e.g., BTCUSDT) | [default to nothing]
-**leverage** | **Int64**| Target leverage value. Must be between the minimum and maximum leverage allowed for the symbol.  | [default to nothing]
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT) | [default to nothing]
+ **leverage** | **Int64**| Target leverage value. Must be between the minimum and maximum leverage allowed for the symbol.  | [default to nothing]
  **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
  **timestamp** | **String**|  | [default to nothing]
  **signature** | **String**|  | [default to nothing]
@@ -135,8 +135,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **post_margin_type**
-> post_margin_type(_api::TradeApi, symbol::String, margin_type::String; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> post_margin_type(_api::TradeApi, response_stream::Channel, symbol::String, margin_type::String; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> post_margin_type(_api::TradeApi; symbol=nothing, margin_type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> post_margin_type(_api::TradeApi, response_stream::Channel; symbol=nothing, margin_type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
 
 Change Margin Type
 
@@ -147,13 +147,13 @@ Change Margin Type
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **TradeApi** | API context | 
-**symbol** | **String**| Trading pair symbol (e.g., BTCUSDT) | [default to nothing]
-**margin_type** | **String**| Target margin type. ISOLATED or CROSS  | [default to nothing]
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT) | [default to nothing]
+ **margin_type** | **String**| Target margin type. ISOLATED or CROSS  | [default to nothing]
  **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
  **timestamp** | **String**|  | [default to nothing]
  **signature** | **String**|  | [default to nothing]
@@ -175,8 +175,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **post_multi_assets_margin**
-> post_multi_assets_margin(_api::TradeApi, multi_assets_margin::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
-> post_multi_assets_margin(_api::TradeApi, response_stream::Channel, multi_assets_margin::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
+> post_multi_assets_margin(_api::TradeApi; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Dict{String, Any}, OpenAPI.Clients.ApiResponse <br/>
+> post_multi_assets_margin(_api::TradeApi, response_stream::Channel; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ Dict{String, Any} }, OpenAPI.Clients.ApiResponse
 
 Change Multi-Assets Mode
 
@@ -187,12 +187,12 @@ Change Multi-Assets Mode
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **TradeApi** | API context | 
-**multi_assets_margin** | **Bool**|  | [default to nothing]
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **multi_assets_margin** | **Bool**|  | [default to nothing]
  **recv_window** | **Int64**|  | [default to nothing]
  **timestamp** | **Int64**|  | [default to nothing]
  **signature** | **String**|  | [default to nothing]
@@ -214,8 +214,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **post_position_margin**
-> post_position_margin(_api::TradeApi, symbol::String, position_side::String, amount::String, type::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> PositionMarginResponse, OpenAPI.Clients.ApiResponse <br/>
-> post_position_margin(_api::TradeApi, response_stream::Channel, symbol::String, position_side::String, amount::String, type::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ PositionMarginResponse }, OpenAPI.Clients.ApiResponse
+> post_position_margin(_api::TradeApi; symbol=nothing, position_side=nothing, amount=nothing, type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> PositionMarginResponse, OpenAPI.Clients.ApiResponse <br/>
+> post_position_margin(_api::TradeApi, response_stream::Channel; symbol=nothing, position_side=nothing, amount=nothing, type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ PositionMarginResponse }, OpenAPI.Clients.ApiResponse
 
 Modify Isolated Position Margin
 
@@ -226,15 +226,15 @@ Modify Isolated Position Margin
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **TradeApi** | API context | 
-**symbol** | **String**| Trading pair symbol (e.g., BTCUSDT) | [default to nothing]
-**position_side** | **String**| Position side (BOTH/LONG/SHORT) | [default to nothing]
-**amount** | **String**| Amount of margin | [default to nothing]
-**type** | **Int64**| Margin type (1: Add, 2: Reduce)  | [default to nothing]
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Trading pair symbol (e.g., BTCUSDT) | [default to nothing]
+ **position_side** | **String**| Position side (BOTH/LONG/SHORT) | [default to nothing]
+ **amount** | **String**| Amount of margin | [default to nothing]
+ **type** | **Int64**| Margin type (1: Add, 2: Reduce)  | [default to nothing]
  **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
  **timestamp** | **String**|  | [default to nothing]
  **signature** | **String**|  | [default to nothing]
@@ -256,8 +256,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **post_position_side_dual**
-> post_position_side_dual(_api::TradeApi, dual_side_position::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> PositionModeResponse, OpenAPI.Clients.ApiResponse <br/>
-> post_position_side_dual(_api::TradeApi, response_stream::Channel, dual_side_position::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ PositionModeResponse }, OpenAPI.Clients.ApiResponse
+> post_position_side_dual(_api::TradeApi; dual_side_position=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> PositionModeResponse, OpenAPI.Clients.ApiResponse <br/>
+> post_position_side_dual(_api::TradeApi, response_stream::Channel; dual_side_position=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing) -> Channel{ PositionModeResponse }, OpenAPI.Clients.ApiResponse
 
 Change Position Mode（TRADE）
 
@@ -268,12 +268,12 @@ Change Position Mode（TRADE）
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **TradeApi** | API context | 
-**dual_side_position** | **Bool**| Boolean value. \&quot;true\&quot;: Hedge Mode mode; \&quot;false\&quot;: One-way Mode | [default to nothing]
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **dual_side_position** | **Bool**| Boolean value. \&quot;true\&quot;: Hedge Mode mode; \&quot;false\&quot;: One-way Mode | [default to nothing]
  **recv_window** | **String**| The value cannot be greater than 60000 | [default to nothing]
  **timestamp** | **String**|  | [default to nothing]
  **signature** | **String**|  | [default to nothing]

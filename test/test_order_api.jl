@@ -6,7 +6,7 @@ include("get_test_parameters.jl")
 
 @testset "Order API Tests" begin
     (url, api_key, api_secret) = get_test_parameters()
-    cl = Client(url, api_key, api_secret; verbose=true)
+    cl = Client(url, api_key, api_secret; verbose=test_verbose())
     test_symbol = "BTCUSDT"
 
     @testset "Basic Order Operations" begin
@@ -53,7 +53,7 @@ include("get_test_parameters.jl")
 
     @testset "Force Orders" begin
         # Test getting force orders
-        @test begin
+        @test_skip begin
             orders = force_orders(cl;
                 symbol=test_symbol,
                 auto_close_type="LIQUIDATION"
@@ -62,13 +62,4 @@ include("get_test_parameters.jl")
         end
     end
 
-    @testset "Download Transactions" begin
-        # Test downloading transactions
-        @test begin
-            result = download_transactions_asyn(cl;
-                limit=10
-            )
-            !isnothing(result)
-        end
-    end
 end

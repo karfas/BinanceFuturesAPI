@@ -8,7 +8,7 @@ include("get_test_parameters.jl")
 @testset "MarketApi Tests" begin
     # Create a client
     (url, api_key, api_secret) = get_test_parameters()
-    cl = Client(url, api_key, api_secret; verbose=true)
+    cl = Client(url, api_key, api_secret; verbose=test_verbose())
 
     @testset "ping" begin
         # Test ping endpoint
@@ -52,19 +52,19 @@ include("get_test_parameters.jl")
 
         # Test order book
         @test begin
-            depth_info = depth(cl, symbol; limit=100)
+            depth_info = depth(cl; symbol=symbol, limit=100)
             !isempty(depth_info.asks) && !isempty(depth_info.bids)
         end
 
         # Test aggregate trades
         @test begin
-            trades = agg_trades(cl, symbol; limit=100)
+            trades = agg_trades(cl; symbol = symbol, limit=100)
             !isempty(trades)
         end
 
         # Test klines (candlestick) data
         @test begin
-            candles = klines(cl, symbol, "1m"; limit=100)
+            candles = klines(cl; symbol = symbol, interval="1m", limit=100)
             !isempty(candles)
         end
     end

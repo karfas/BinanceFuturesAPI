@@ -15,7 +15,7 @@ const _returntypes_get_position_margin_history_TradeApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Vector{PositionMarginHistoryResponseInner},
 )
 
-function _oacinternal_get_position_margin_history(_api::TradeApi, symbol::String, type::Int64; start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_get_position_margin_history(_api::TradeApi; symbol=nothing, type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_position_margin_history_TradeApi, "/fapi/v1/positionMargin/history", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "type", type)  # type Int64
@@ -36,8 +36,8 @@ end
 Get Postion Margin Change History
 
 Params:
-- symbol::String (required)
-- type::Int64 (required)
+- symbol::String
+- type::Int64
 - start_time::String
 - end_time::String
 - limit::String
@@ -48,13 +48,13 @@ Params:
 
 Return: Vector{PositionMarginHistoryResponseInner}, OpenAPI.Clients.ApiResponse
 """
-function get_position_margin_history(_api::TradeApi, symbol::String, type::Int64; start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_get_position_margin_history(_api, symbol, type; start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function get_position_margin_history(_api::TradeApi; symbol=nothing, type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_get_position_margin_history(_api; symbol=symbol, type=type, start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function get_position_margin_history(_api::TradeApi, response_stream::Channel, symbol::String, type::Int64; start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_get_position_margin_history(_api, symbol, type; start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function get_position_margin_history(_api::TradeApi, response_stream::Channel; symbol=nothing, type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_get_position_margin_history(_api; symbol=symbol, type=type, start_time=start_time, end_time=end_time, limit=limit, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -99,7 +99,7 @@ const _returntypes_post_leverage_TradeApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
-function _oacinternal_post_leverage(_api::TradeApi, symbol::String, leverage::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_post_leverage(_api::TradeApi; symbol=nothing, leverage=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     OpenAPI.validate_param("leverage", "post_leverage", :maximum, leverage, 125, false)
     OpenAPI.validate_param("leverage", "post_leverage", :minimum, leverage, 1, false)
 
@@ -120,8 +120,8 @@ end
 Change Initial Leverage
 
 Params:
-- symbol::String (required)
-- leverage::Int64 (required)
+- symbol::String
+- leverage::Int64
 - recv_window::String
 - timestamp::String
 - signature::String
@@ -129,13 +129,13 @@ Params:
 
 Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
-function post_leverage(_api::TradeApi, symbol::String, leverage::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_post_leverage(_api, symbol, leverage; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function post_leverage(_api::TradeApi; symbol=nothing, leverage=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_post_leverage(_api; symbol=symbol, leverage=leverage, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function post_leverage(_api::TradeApi, response_stream::Channel, symbol::String, leverage::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_post_leverage(_api, symbol, leverage; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function post_leverage(_api::TradeApi, response_stream::Channel; symbol=nothing, leverage=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_post_leverage(_api; symbol=symbol, leverage=leverage, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -143,7 +143,7 @@ const _returntypes_post_margin_type_TradeApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
-function _oacinternal_post_margin_type(_api::TradeApi, symbol::String, margin_type::String; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_post_margin_type(_api::TradeApi; symbol=nothing, margin_type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_post_margin_type_TradeApi, "/fapi/v1/marginType", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "marginType", margin_type)  # type String
@@ -161,8 +161,8 @@ end
 Change Margin Type
 
 Params:
-- symbol::String (required)
-- margin_type::String (required)
+- symbol::String
+- margin_type::String
 - recv_window::String
 - timestamp::String
 - signature::String
@@ -170,13 +170,13 @@ Params:
 
 Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
-function post_margin_type(_api::TradeApi, symbol::String, margin_type::String; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_post_margin_type(_api, symbol, margin_type; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function post_margin_type(_api::TradeApi; symbol=nothing, margin_type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_post_margin_type(_api; symbol=symbol, margin_type=margin_type, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function post_margin_type(_api::TradeApi, response_stream::Channel, symbol::String, margin_type::String; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_post_margin_type(_api, symbol, margin_type; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function post_margin_type(_api::TradeApi, response_stream::Channel; symbol=nothing, margin_type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_post_margin_type(_api; symbol=symbol, margin_type=margin_type, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -184,7 +184,7 @@ const _returntypes_post_multi_assets_margin_TradeApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Dict{String, Any},
 )
 
-function _oacinternal_post_multi_assets_margin(_api::TradeApi, multi_assets_margin::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_post_multi_assets_margin(_api::TradeApi; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_post_multi_assets_margin_TradeApi, "/fapi/v1/multiAssetsMargin", [])
     OpenAPI.Clients.set_param(_ctx.query, "multiAssetsMargin", multi_assets_margin)  # type Bool
     OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
@@ -201,7 +201,7 @@ end
 Change Multi-Assets Mode
 
 Params:
-- multi_assets_margin::Bool (required)
+- multi_assets_margin::Bool
 - recv_window::Int64
 - timestamp::Int64
 - signature::String
@@ -209,13 +209,13 @@ Params:
 
 Return: Dict{String, Any}, OpenAPI.Clients.ApiResponse
 """
-function post_multi_assets_margin(_api::TradeApi, multi_assets_margin::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_post_multi_assets_margin(_api, multi_assets_margin; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function post_multi_assets_margin(_api::TradeApi; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_post_multi_assets_margin(_api; multi_assets_margin=multi_assets_margin, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function post_multi_assets_margin(_api::TradeApi, response_stream::Channel, multi_assets_margin::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_post_multi_assets_margin(_api, multi_assets_margin; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function post_multi_assets_margin(_api::TradeApi, response_stream::Channel; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_post_multi_assets_margin(_api; multi_assets_margin=multi_assets_margin, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -223,7 +223,7 @@ const _returntypes_post_position_margin_TradeApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => PositionMarginResponse,
 )
 
-function _oacinternal_post_position_margin(_api::TradeApi, symbol::String, position_side::String, amount::String, type::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_post_position_margin(_api::TradeApi; symbol=nothing, position_side=nothing, amount=nothing, type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_post_position_margin_TradeApi, "/fapi/v1/positionMargin", [])
     OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "positionSide", position_side)  # type String
@@ -243,10 +243,10 @@ end
 Modify Isolated Position Margin
 
 Params:
-- symbol::String (required)
-- position_side::String (required)
-- amount::String (required)
-- type::Int64 (required)
+- symbol::String
+- position_side::String
+- amount::String
+- type::Int64
 - recv_window::String
 - timestamp::String
 - signature::String
@@ -254,13 +254,13 @@ Params:
 
 Return: PositionMarginResponse, OpenAPI.Clients.ApiResponse
 """
-function post_position_margin(_api::TradeApi, symbol::String, position_side::String, amount::String, type::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_post_position_margin(_api, symbol, position_side, amount, type; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function post_position_margin(_api::TradeApi; symbol=nothing, position_side=nothing, amount=nothing, type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_post_position_margin(_api; symbol=symbol, position_side=position_side, amount=amount, type=type, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function post_position_margin(_api::TradeApi, response_stream::Channel, symbol::String, position_side::String, amount::String, type::Int64; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_post_position_margin(_api, symbol, position_side, amount, type; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function post_position_margin(_api::TradeApi, response_stream::Channel; symbol=nothing, position_side=nothing, amount=nothing, type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_post_position_margin(_api; symbol=symbol, position_side=position_side, amount=amount, type=type, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -268,7 +268,7 @@ const _returntypes_post_position_side_dual_TradeApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => PositionModeResponse,
 )
 
-function _oacinternal_post_position_side_dual(_api::TradeApi, dual_side_position::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+function _oacinternal_post_position_side_dual(_api::TradeApi; dual_side_position=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_post_position_side_dual_TradeApi, "/fapi/v1/positionSide/dual", [])
     OpenAPI.Clients.set_param(_ctx.query, "dualSidePosition", dual_side_position)  # type Bool
     OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
@@ -285,7 +285,7 @@ end
 Change Position Mode（TRADE）
 
 Params:
-- dual_side_position::Bool (required)
+- dual_side_position::Bool
 - recv_window::String
 - timestamp::String
 - signature::String
@@ -293,13 +293,13 @@ Params:
 
 Return: PositionModeResponse, OpenAPI.Clients.ApiResponse
 """
-function post_position_side_dual(_api::TradeApi, dual_side_position::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_post_position_side_dual(_api, dual_side_position; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function post_position_side_dual(_api::TradeApi; dual_side_position=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_post_position_side_dual(_api; dual_side_position=dual_side_position, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function post_position_side_dual(_api::TradeApi, response_stream::Channel, dual_side_position::Bool; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_post_position_side_dual(_api, dual_side_position; recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
+function post_position_side_dual(_api::TradeApi, response_stream::Channel; dual_side_position=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_post_position_side_dual(_api; dual_side_position=dual_side_position, recv_window=recv_window, timestamp=timestamp, signature=signature, x_mbx_apikey=x_mbx_apikey, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 

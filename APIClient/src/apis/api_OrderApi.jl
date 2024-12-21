@@ -185,6 +185,7 @@ end
 
 const _returntypes_force_orders_OrderApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => Vector{ForceOrders200ResponseInner},
+    Regex("^" * replace("400", "x"=>".") * "\$") => BinanceError,
 )
 
 function _oacinternal_force_orders(_api::OrderApi; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)

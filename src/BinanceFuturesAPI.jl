@@ -165,6 +165,7 @@ module BinanceFuturesAPI
         t_api::APIClient.TradeApi
         a_api::APIClient.AccountApi
         o_api::APIClient.OrderApi
+        d_api::APIClient.DataStreamApi
         cost::Cost
         api_key::String
         api_secret::String
@@ -179,6 +180,7 @@ module BinanceFuturesAPI
                 APIClient.TradeApi(client),
                 APIClient.AccountApi(client),
                 APIClient.OrderApi(client),
+                APIClient.DataStreamApi(client),
                 Cost(),
                 api_key,
                 api_secret
@@ -188,8 +190,9 @@ module BinanceFuturesAPI
     end
 
 
+    SimpleAPI = Union{APIClient.MarketApi, APIClient.DataStreamApi}
     SignedAPI = Union{APIClient.TradeApi, APIClient.AccountApi, APIClient.OrderApi}
-    AnyAPI = Union{SignedAPI, APIClient.MarketApi}
+    AnyAPI = Union{SignedAPI, SimpleAPI}
 
     cost_reset!(cl::Client) = cl.cost = Cost()
     cost(f::Function) = get(COST_TABLE, nameof(f), WEIGHT_MINIMAL)
@@ -209,11 +212,11 @@ module BinanceFuturesAPI
         cl.cost = Cost(cl.cost.reported, cl.cost.active + cost(f))
         response, headers = f(api, args...; kwargs...)
         cl.cost = Cost(cl.cost.reported, cl.cost.active - cost(f))
-        response, headers
+        response
     end
 
 
-    wrap!(cl::Client, f::Function, api::APIClient.MarketApi, args...; kwargs...) = begin
+    wrap!(cl::Client, f::Function, api::SimpleAPI, args...; kwargs...) = begin
         wrap2!(cl, f, api, args...; kwargs...)
     end
 
@@ -264,6 +267,7 @@ module BinanceFuturesAPI
     include("wrap_trade_api.jl")
     include("wrap_account_api.jl")
     include("wrap_order_api.jl")
+    include("wrap_datastream_api.jl")
     # include("datastream_api_wrappers.jl")
     # include("portfoliomargin_api_wrappers.jl")
     # __precompile__(true)

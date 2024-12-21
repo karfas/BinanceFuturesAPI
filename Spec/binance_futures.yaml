@@ -80,7 +80,6 @@ paths:
       parameters:
         - name: symbol
           in: query
-          required: true
           description: |
             Trading pair symbol (e.g., BTCUSDT)
           schema:
@@ -149,7 +148,6 @@ paths:
       parameters:
         - name: symbol
           in: query
-          required: true
           description: Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
@@ -182,7 +180,6 @@ paths:
       parameters:
         - name: symbol
           in: query
-          required: true
           schema:
             type: string
         - name: limit
@@ -214,7 +211,6 @@ paths:
       parameters:
         - name: symbol
           in: query
-          required: true
           schema:
             type: string
         - name: fromId
@@ -260,13 +256,11 @@ paths:
       parameters:
         - name: symbol
           in: query
-          required: true
           description: Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
         - name: interval
           in: query
-          required: true
           description: |
             Kline/candlestick interval:
             - 1m: 1 minute
@@ -1830,7 +1824,6 @@ paths:
       parameters:
         - name: multiAssetsMargin
           in: query
-          required: true
           schema:
             type: boolean
         - name: recvWindow
@@ -2965,13 +2958,11 @@ paths:
       parameters:
         - name: symbol
           in: query
-          required: true
           description: Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
         - name: marginType
           in: query
-          required: true
           description: |
             Target margin type.
             ISOLATED or CROSS
@@ -3017,13 +3008,11 @@ paths:
       parameters:
         - name: symbol
           in: query
-          required: true
           description: Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
         - name: leverage
           in: query
-          required: true
           description: |
             Target leverage value.
             Must be between the minimum and maximum leverage allowed for the symbol.
@@ -3070,26 +3059,22 @@ paths:
       parameters:
         - name: symbol
           in: query
-          required: true
           description: Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
         - name: positionSide
           in: query
-          required: true
           description: Position side (BOTH/LONG/SHORT)
           schema:
             type: string
             enum: ["BOTH", "LONG", "SHORT"]
         - name: amount
           in: query
-          required: true
           description: Amount of margin
           schema:
             type: string
         - name: type
           in: query
-          required: true
           description: |
             Margin type (1: Add, 2: Reduce)
           schema:
@@ -3133,13 +3118,11 @@ paths:
       parameters:
         - name: symbol
           in: query
-          required: true
           description: Trading pair symbol (e.g., BTCUSDT)
           schema:
             type: string
         - name: type
           in: query
-          required: true
           description: |
             Margin type (1: Add, 2: Reduce)
           schema:
@@ -3234,7 +3217,6 @@ paths:
         - name: dualSidePosition
           in: query
           description: 'Boolean value. "true": Hedge Mode mode; "false": One-way Mode'
-          required: true
           schema:
             type: boolean
         - name: recvWindow
