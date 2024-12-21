@@ -105,6 +105,7 @@ Class | Method
  - [ApiTradingStatusResponseIndicatorsBTCUSDT](docs/ApiTradingStatusResponseIndicatorsBTCUSDT.md)
  - [ApiTradingStatusResponseTriggerCondition](docs/ApiTradingStatusResponseTriggerCondition.md)
  - [Balance200ResponseInner](docs/Balance200ResponseInner.md)
+ - [BinanceError](docs/BinanceError.md)
  - [BookTicker200Response](docs/BookTicker200Response.md)
  - [BookTickerResponseO](docs/BookTickerResponseO.md)
  - [Depth200Response](docs/Depth200Response.md)

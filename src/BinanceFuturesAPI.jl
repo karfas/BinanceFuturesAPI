@@ -13,6 +13,8 @@ module BinanceFuturesAPI
     using Dates
     using SHA
     using Base64
+    using Logging
+    using LoggingExtras
 
     # constant tables
     include("cost_table.jl")
@@ -43,6 +45,8 @@ module BinanceFuturesAPI
     """
     timestamp!(d::Dict{Symbol, Any}) = begin d[:timestamp] = timestamp(); return d; end
 
+    _sig_collect(x::Dict) = collect(x) |> (x -> sort(x, by=x->x[1])) |> (x -> map(y -> "$(y[1])=$(y[2])", x)) |> (x -> join(x, "&"))
+
     """
         signature(secret::String; kwargs...) -> String
 
@@ -63,11 +67,10 @@ module BinanceFuturesAPI
             ks = string(k)
             params[get(PARAM_CASE_MAPPING, k, ks)] = v
         end
-        params |>
-            (x -> collect(x)) |>
-            (x -> sort(x, by=x->x[1])) |>
-            (x -> map(y -> "$(y[1])=$(y[2])", x)) |>
-            (x -> join(x, "&")) |>
+        qs = params |>
+            (x -> _sig_collect(x))
+        @debug "querystring for signature: $qs"
+        qs |>
             (x -> bytes2hex(hmac_sha256(Vector{UInt8}(secret), Vector{UInt8}(x))))
     end
 
@@ -86,11 +89,13 @@ module BinanceFuturesAPI
         Tuple of (modified resource path, unchanged body)
     """
     sign_hook(resource_path::AbstractString, body::Any) = begin
+
         pq = split(resource_path, '?', limit=2)
         if length(pq) != 2
             return resource_path, body
         end
         path, query = pq
+
         q = split(query, '&') |>
             ( x -> split.(x, '=')) |>
             ( x -> map(y -> (y[1], y[2]), x)) |>
@@ -99,11 +104,9 @@ module BinanceFuturesAPI
         if sig !== nothing
             delete!(q, "signature")
             query_string = q |>
-                collect |>
-                (x -> sort(x, by=x->x[1])) |>
-                (x -> map(y -> "$(y[1])=$(y[2])", x)) |>
-                (x -> join(x, "&")) |>
+                (x -> _sig_collect(x)) |>
                 (x -> string(x, "&signature=", sig))
+            @debug "querystring in sign_hook: $query_string"
             resource_path = string(path, "?",  query_string)
         end
         resource_path, body
@@ -167,6 +170,9 @@ module BinanceFuturesAPI
         api_secret::String
 
         function Client(url::String, api_key::String="", api_secret::String=""; verbose=false)
+            if verbose
+                global_logger(ConsoleLogger(stderr, Logging.Debug))
+            end
             client = OpenAPI.Clients.Client(url; verbose=verbose, pre_request_hook=pre_request_hook)
             new(client,
                 APIClient.MarketApi(client),
@@ -203,7 +209,7 @@ module BinanceFuturesAPI
         cl.cost = Cost(cl.cost.reported, cl.cost.active + cost(f))
         response, headers = f(api, args...; kwargs...)
         cl.cost = Cost(cl.cost.reported, cl.cost.active - cost(f))
-        response
+        response, headers
     end
 
 
@@ -280,7 +286,7 @@ module BinanceFuturesAPI
 
     would exceed `COST_LIMIT - COST_LIMIT_SAFETY_MARGIN`.
 
-    Default cost for unknown functions is 2.
+    Default cost for unknown functions is 30 (= WEIGHT_HEAVY).
     """
     cost_exceeds_limit(cl::Client, f::Function) = begin
         (get(COST_TABLE, nameof(f), WEIGHT_HEAVY) + cl.cost.active + cl.cost.reported) > (COST_LIMIT - COST_LIMIT_SAFETY_MARGIN)

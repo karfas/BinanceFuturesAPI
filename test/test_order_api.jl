@@ -17,7 +17,7 @@ include("get_test_parameters.jl")
                 side="BUY",
                 type="LIMIT",
                 quantity="0.001",
-                price="20000",
+                price="20000.0",
                 time_in_force="GTC"
             )
             !isnothing(order)
@@ -53,7 +53,7 @@ include("get_test_parameters.jl")
 
     @testset "Force Orders" begin
         # Test getting force orders
-        @test_skip begin
+        @test begin
             orders = force_orders(cl;
                 symbol=test_symbol,
                 auto_close_type="LIQUIDATION"
@@ -64,7 +64,7 @@ include("get_test_parameters.jl")
 
     @testset "Download Transactions" begin
         # Test downloading transactions
-        @test_skip begin
+        @test begin
             result = download_transactions_asyn(cl;
                 limit=10
             )

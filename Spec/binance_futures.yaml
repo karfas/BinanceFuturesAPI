@@ -2139,6 +2139,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse'
+        '400':
+          description: 'Bad Request'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BinanceError'
     delete:
       tags:
         - Order
@@ -2943,6 +2949,12 @@ paths:
                       type: integer
                       format: int64
                       description: Last update time
+        '400':
+          description: 'Bad Request'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BinanceError'
   /fapi/v1/marginType:
     post:
       tags:
@@ -4259,3 +4271,12 @@ components:
             type: integer
             format: int64
             description: Update time
+    BinanceError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        msg:
+          type: string
+          description: Error message

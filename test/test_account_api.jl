@@ -6,7 +6,7 @@ include("get_test_parameters.jl")
 
 @testset "Account API Tests" begin
     (url, api_key, api_secret) = get_test_parameters()
-    cl = Client(url, api_key, api_secret; verbose=true)
+    cl = Client(url, api_key, api_secret; verbose=false)
     test_symbol = "BTCUSDT"
 
     @testset "Account Information" begin
