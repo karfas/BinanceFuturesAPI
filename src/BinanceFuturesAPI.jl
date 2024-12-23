@@ -198,10 +198,13 @@ module BinanceFuturesAPI
     cost(f::Function) = get(COST_TABLE, nameof(f), WEIGHT_MINIMAL)
 
     wait_until_next_minute() = begin
+        c = 0
         t0 = div(time(), 60)
         while div(time(), 60) == t0
             sleep(1)
+            c += 1
         end
+        c
     end
 
     wrap2!(cl::Client, f::Function, api::AnyAPI, args...; kwargs...) = begin
@@ -210,8 +213,12 @@ module BinanceFuturesAPI
             cost_reset!(cl)
         end
         cl.cost = Cost(cl.cost.reported, cl.cost.active + cost(f))
-        response, headers = f(api, args...; kwargs...)
-        cl.cost = Cost(cl.cost.reported, cl.cost.active - cost(f))
+        response, status = f(api, args...; kwargs...)
+        weight = status.headers |>
+                    Dict |>
+                    (x->get(x, "x-mbx-used-weight-1m", "0"))  |>
+                    (x -> parse(Int64, x))
+        cl.cost = Cost(weight, cl.cost.active - cost(f))
         response
     end
 

@@ -1,6 +1,7 @@
 using Test
 
 # Include test files
+include("test_cost.jl")
 include("test_market_api.jl")
 include("test_account_api.jl")
 include("test_order_api.jl")

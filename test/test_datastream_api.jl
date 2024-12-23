@@ -10,14 +10,14 @@ include("get_test_parameters.jl")
     @testset "ListenKey Operations" begin
         # Test creating a listen key
         @test begin
-            response, headers = post_listen_key(cl)
+            response = post_listen_key(cl)
             !isnothing(response) && haskey(response, :listenKey)
         end
 
         # Get the listen key for subsequent tests
         listen_key = nothing
         try
-            response, _ = post_listen_key(cl)
+            response = post_listen_key(cl)
             listen_key = response.listenKey
         catch e
             @warn "Failed to create listen key for tests" exception=e
@@ -28,19 +28,19 @@ include("get_test_parameters.jl")
         if !isnothing(listen_key)
             # Test keeping listen key alive
             @test begin
-                response, headers = put_listen_key(cl; listenKey=listen_key)
+                response = put_listen_key(cl; listenKey=listen_key)
                 isnothing(response)  # Success response is empty
             end
 
             # Test listing current subscriptions
             @test begin
-                response, headers = list_subscriptions(cl)
+                response = list_subscriptions(cl)
                 !isnothing(response)
             end
 
             # Test deleting the listen key
             @test begin
-                response, headers = delete_listen_key(cl; listenKey=listen_key)
+                response = delete_listen_key(cl; listenKey=listen_key)
                 isnothing(response)  # Success response is empty
             end
         end
