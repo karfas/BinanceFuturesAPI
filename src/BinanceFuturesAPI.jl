@@ -20,6 +20,49 @@ module BinanceFuturesAPI
     include("cost_table.jl")
     include("param_case_mapping.jl")
 
+    export binance_dt
+
+    """
+        binance_dt(x::Int64) -> DateTime
+
+    Convert a Binance timestamp (milliseconds since Unix epoch) to a Julia DateTime.
+
+    # Arguments
+    - `x::Int64`: Binance timestamp in milliseconds
+
+    # Returns
+    - `DateTime`: Corresponding Julia DateTime
+
+    # Example
+    ```julia
+    # Convert Binance server time to DateTime
+    ts = 1625097600000  # 2021-07-01 00:00:00 UTC
+    dt = binance_dt(ts)
+    println(dt)  # 2021-07-01T00:00:00
+    ```
+    """
+    binance_dt(x::Int64) = Dates.unix2datetime(div(x, 1000)) + Dates.Millisecond(mod(x, 1000))
+
+    """
+        binance_dt(x::DateTime) -> Int64
+
+    Convert a Julia DateTime to a Binance timestamp (milliseconds since Unix epoch).
+
+    # Arguments
+    - `x::DateTime`: Julia DateTime object
+
+    # Returns
+    - `Int64`: Binance timestamp in milliseconds
+
+    # Example
+    ```julia
+    # Convert current time to Binance timestamp
+    now_ts = binance_dt(now())
+    println(now_ts)  # e.g., 1699564800000
+    ```
+    """
+    binance_dt(x::Dates.DateTime) = Int64(floor(Dates.datetime2unix(x)) * 1000)
+
     """
         timestamp() -> Int64
 
@@ -189,6 +232,14 @@ module BinanceFuturesAPI
 
     end
 
+    # MIGHT be better to dispatch using the return type.
+    process_response(f::Function, response::Any) = begin
+        funcs = Dict{Symbol, Function}(
+            :klines => (x -> map.(x -> x.value, x))
+        )
+        conv = get(funcs, nameof(f), (x -> x))
+        response |> conv
+    end
 
     SimpleAPI = Union{APIClient.MarketApi, APIClient.DataStreamApi}
     SignedAPI = Union{APIClient.TradeApi, APIClient.AccountApi, APIClient.OrderApi}
@@ -219,7 +270,7 @@ module BinanceFuturesAPI
                     (x->get(x, "x-mbx-used-weight-1m", "0"))  |>
                     (x -> parse(Int64, x))
         cl.cost = Cost(weight, cl.cost.active - cost(f))
-        response
+        response |> (x->process_response(f, x))
     end
 
 
