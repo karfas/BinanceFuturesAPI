@@ -65,7 +65,7 @@ include("get_test_parameters.jl")
         # Test klines (candlestick) data
         @test begin
             candles = klines(cl; symbol = symbol, interval="1m", limit=100)
-            !isempty(candles) && typeof(candles[1][1]) == Int64
+            !isempty(candles)
         end
     end
 

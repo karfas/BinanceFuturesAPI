@@ -210,10 +210,15 @@ module BinanceFuturesAPI
         o_api::APIClient.OrderApi
         d_api::APIClient.DataStreamApi
         cost::Cost
+        process_response::Function
         api_key::String
         api_secret::String
 
-        function Client(url::String, api_key::String="", api_secret::String=""; verbose=false)
+        function Client(url::String, 
+                        api_key::String="", 
+                        api_secret::String=""; 
+                        verbose=false, 
+                        process_response::Function=((f,resp) -> resp))
             if verbose
                 global_logger(ConsoleLogger(stderr, Logging.Debug))
             end
@@ -225,20 +230,12 @@ module BinanceFuturesAPI
                 APIClient.OrderApi(client),
                 APIClient.DataStreamApi(client),
                 Cost(),
+                process_response,
                 api_key,
                 api_secret
             )
         end
 
-    end
-
-    # MIGHT be better to dispatch using the return type.
-    process_response(f::Function, response::Any) = begin
-        funcs = Dict{Symbol, Function}(
-            :klines => (x -> map.(x -> x.value, x))
-        )
-        conv = get(funcs, nameof(f), (x -> x))
-        response |> conv
     end
 
     SimpleAPI = Union{APIClient.MarketApi, APIClient.DataStreamApi}
@@ -260,6 +257,7 @@ module BinanceFuturesAPI
 
     wrap2!(cl::Client, f::Function, api::AnyAPI, args...; kwargs...) = begin
         while cost_exceeds_limit(cl, f)
+            @info "$(nameof(f)): Reported cost=$(cl.cost.reported) + Active cost=$(cl.cost.active) exceeds limit. Waiting until next minute."
             wait_until_next_minute()
             cost_reset!(cl)
         end
@@ -270,7 +268,7 @@ module BinanceFuturesAPI
                     (x->get(x, "x-mbx-used-weight-1m", "0"))  |>
                     (x -> parse(Int64, x))
         cl.cost = Cost(weight, cl.cost.active - cost(f))
-        response |> (x->process_response(f, x))
+        response |> (x->cl.process_response(f, x))
     end
 
 
