@@ -295,8 +295,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **exchange_info**
-> exchange_info(_api::MarketApi; _mediaType=nothing) -> ExchangeInfoResponse, OpenAPI.Clients.ApiResponse <br/>
-> exchange_info(_api::MarketApi, response_stream::Channel; _mediaType=nothing) -> Channel{ ExchangeInfoResponse }, OpenAPI.Clients.ApiResponse
+> exchange_info(_api::MarketApi; _mediaType=nothing) -> Any, OpenAPI.Clients.ApiResponse <br/>
+> exchange_info(_api::MarketApi, response_stream::Channel; _mediaType=nothing) -> Channel{ Any }, OpenAPI.Clients.ApiResponse
 
 Exchange Information
 
@@ -307,7 +307,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ExchangeInfoResponse**](ExchangeInfoResponse.md)
+**Any**
 
 ### Authorization
 

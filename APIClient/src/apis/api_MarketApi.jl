@@ -263,7 +263,7 @@ function depth(_api::MarketApi, response_stream::Channel; symbol=nothing, limit=
 end
 
 const _returntypes_exchange_info_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => ExchangeInfoResponse,
+    Regex("^" * replace("200", "x"=>".") * "\$") => Any,
 )
 
 function _oacinternal_exchange_info(_api::MarketApi; _mediaType=nothing)
@@ -279,7 +279,7 @@ Exchange Information
 
 Params:
 
-Return: ExchangeInfoResponse, OpenAPI.Clients.ApiResponse
+Return: Any, OpenAPI.Clients.ApiResponse
 """
 function exchange_info(_api::MarketApi; _mediaType=nothing)
     _ctx = _oacinternal_exchange_info(_api; _mediaType=_mediaType)
