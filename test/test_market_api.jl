@@ -31,7 +31,6 @@ include("get_test_parameters.jl")
 
     @testset "Exchange Info Tests" begin
         # Test exchange info endpoint
-        info = exchange_info(cl)
         @test !isempty(info.timezone)
         @test info.serverTime > 0
         @test !isempty(info.rateLimits)

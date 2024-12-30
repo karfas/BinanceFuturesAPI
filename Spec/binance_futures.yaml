@@ -68,7 +68,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExchangeInfoResponse'
+                type: object
+#                $ref: '#/components/schemas/ExchangeInfoResponse'
   /fapi/v1/depth:
     get:
       tags:
