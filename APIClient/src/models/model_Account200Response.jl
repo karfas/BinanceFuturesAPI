@@ -95,4 +95,22 @@ function check_required(o::Account200Response)
 end
 
 function OpenAPI.validate_property(::Type{ Account200Response }, name::Symbol, val)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end

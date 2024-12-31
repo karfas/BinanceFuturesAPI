@@ -31,4 +31,6 @@ function check_required(o::PositionModeResponse)
 end
 
 function OpenAPI.validate_property(::Type{ PositionModeResponse }, name::Symbol, val)
+
+
 end

@@ -35,4 +35,7 @@ function check_required(o::ExchangeInfoResponseAssetsInner)
 end
 
 function OpenAPI.validate_property(::Type{ ExchangeInfoResponseAssetsInner }, name::Symbol, val)
+
+
+
 end

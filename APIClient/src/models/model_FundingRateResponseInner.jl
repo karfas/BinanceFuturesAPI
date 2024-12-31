@@ -35,6 +35,9 @@ function check_required(o::FundingRateResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ FundingRateResponseInner }, name::Symbol, val)
+
+
+
     if name === Symbol("fundingTime")
         OpenAPI.validate_param(name, "FundingRateResponseInner", :format, val, "int64")
     end

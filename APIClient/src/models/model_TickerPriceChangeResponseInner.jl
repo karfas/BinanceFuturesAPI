@@ -87,16 +87,32 @@ function check_required(o::TickerPriceChangeResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ TickerPriceChangeResponseInner }, name::Symbol, val)
+
+
+
+
+
+
+
+
+
+
+
+
     if name === Symbol("openTime")
         OpenAPI.validate_param(name, "TickerPriceChangeResponseInner", :format, val, "int64")
     end
+
     if name === Symbol("closeTime")
         OpenAPI.validate_param(name, "TickerPriceChangeResponseInner", :format, val, "int64")
     end
+
     if name === Symbol("firstId")
         OpenAPI.validate_param(name, "TickerPriceChangeResponseInner", :format, val, "int64")
     end
+
     if name === Symbol("lastId")
         OpenAPI.validate_param(name, "TickerPriceChangeResponseInner", :format, val, "int64")
     end
+
 end

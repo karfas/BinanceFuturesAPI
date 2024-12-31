@@ -17,14 +17,14 @@ const _returntypes_all_orders_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_all_orders(_api::OrderApi; symbol=nothing, order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_all_orders_OrderApi, "/fapi/v1/allOrders", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "orderId", order_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "orderId", order_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -64,10 +64,10 @@ const _returntypes_delete_all_open_orders_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_delete_all_open_orders(_api::OrderApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_delete_all_open_orders_OrderApi, "/fapi/v1/allOpenOrders", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -103,12 +103,12 @@ const _returntypes_delete_batch_orders_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_delete_batch_orders(_api::OrderApi; symbol=nothing, order_id_list=nothing, orig_client_order_id_list=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_delete_batch_orders_OrderApi, "/fapi/v1/batchOrders", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "orderIdList", order_id_list)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "origClientOrderIdList", orig_client_order_id_list)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "orderIdList", order_id_list; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "origClientOrderIdList", orig_client_order_id_list; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -146,12 +146,12 @@ const _returntypes_delete_order_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_delete_order(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_delete_order_OrderApi, "/fapi/v1/order", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "orderId", order_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "origClientOrderId", orig_client_order_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "orderId", order_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "origClientOrderId", orig_client_order_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -190,14 +190,14 @@ const _returntypes_force_orders_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_force_orders(_api::OrderApi; symbol=nothing, auto_close_type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_force_orders_OrderApi, "/fapi/v1/forceOrders", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "autoCloseType", auto_close_type)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "autoCloseType", auto_close_type; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -237,12 +237,12 @@ const _returntypes_get_open_order_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_get_open_order(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_open_order_OrderApi, "/fapi/v1/openOrder", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "orderId", order_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "origClientOrderId", orig_client_order_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "orderId", order_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "origClientOrderId", orig_client_order_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -280,10 +280,10 @@ const _returntypes_get_open_orders_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_get_open_orders(_api::OrderApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_open_orders_OrderApi, "/fapi/v1/openOrders", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -319,12 +319,12 @@ const _returntypes_get_order_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_get_order(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_order_OrderApi, "/fapi/v1/order", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "orderId", order_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "origClientOrderId", orig_client_order_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "orderId", order_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "origClientOrderId", orig_client_order_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -362,15 +362,15 @@ const _returntypes_get_order_amendment_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_get_order_amendment(_api::OrderApi; symbol=nothing, order_id=nothing, orig_client_order_id=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_order_amendment_OrderApi, "/fapi/v1/orderAmendment", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "orderId", order_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "origClientOrderId", orig_client_order_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "orderId", order_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "origClientOrderId", orig_client_order_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -411,11 +411,11 @@ const _returntypes_get_order_download_id_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_get_order_download_id(_api::OrderApi; start_time=nothing, end_time=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_order_download_id_OrderApi, "/fapi/v1/order/asyn", [])
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -452,10 +452,10 @@ const _returntypes_get_order_download_link_id_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_get_order_download_link_id(_api::OrderApi; download_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_order_download_link_id_OrderApi, "/fapi/v1/order/asyn/id", [])
-    OpenAPI.Clients.set_param(_ctx.query, "downloadId", download_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "downloadId", download_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -491,11 +491,11 @@ const _returntypes_get_trade_download_id_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_get_trade_download_id(_api::OrderApi; start_time=nothing, end_time=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_trade_download_id_OrderApi, "/fapi/v1/trade/asyn", [])
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -532,10 +532,10 @@ const _returntypes_get_trade_download_link_id_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_get_trade_download_link_id(_api::OrderApi; download_id=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_trade_download_link_id_OrderApi, "/fapi/v1/trade/asyn/id", [])
-    OpenAPI.Clients.set_param(_ctx.query, "downloadId", download_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "downloadId", download_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -571,10 +571,10 @@ const _returntypes_post_batch_orders_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_post_batch_orders(_api::OrderApi; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_post_batch_orders_OrderApi, "/fapi/v1/batchOrders", [])
-    OpenAPI.Clients.set_param(_ctx.query, "batchOrders", batch_orders)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "batchOrders", batch_orders; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -611,28 +611,28 @@ const _returntypes_post_order_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_post_order(_api::OrderApi; symbol=nothing, side=nothing, position_side=nothing, type=nothing, time_in_force=nothing, quantity=nothing, reduce_only=nothing, price=nothing, new_client_order_id=nothing, stop_price=nothing, close_position=nothing, activation_price=nothing, callback_rate=nothing, working_type=nothing, price_protect=nothing, new_order_resp_type=nothing, price_match=nothing, self_trade_prevention_mode=nothing, good_till_date=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_post_order_OrderApi, "/fapi/v1/order", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "side", side)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "positionSide", position_side)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "type", type)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timeInForce", time_in_force)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "quantity", quantity)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "reduceOnly", reduce_only)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "price", price)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "newClientOrderId", new_client_order_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "stopPrice", stop_price)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "closePosition", close_position)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "activationPrice", activation_price)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "callbackRate", callback_rate)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "workingType", working_type)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "priceProtect", price_protect)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "newOrderRespType", new_order_resp_type)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "priceMatch", price_match)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "selfTradePreventionMode", self_trade_prevention_mode)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "goodTillDate", good_till_date)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "side", side; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "positionSide", position_side; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "type", type; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timeInForce", time_in_force; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "quantity", quantity; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "reduceOnly", reduce_only; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "price", price; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "newClientOrderId", new_client_order_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "stopPrice", stop_price; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "closePosition", close_position; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "activationPrice", activation_price; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "callbackRate", callback_rate; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "workingType", working_type; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "priceProtect", price_protect; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "newOrderRespType", new_order_resp_type; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "priceMatch", price_match; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "selfTradePreventionMode", self_trade_prevention_mode; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "goodTillDate", good_till_date; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -686,10 +686,10 @@ const _returntypes_put_batch_orders_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_put_batch_orders(_api::OrderApi; batch_orders=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "PUT", _returntypes_put_batch_orders_OrderApi, "/fapi/v1/batchOrders", [])
-    OpenAPI.Clients.set_param(_ctx.query, "batchOrders", batch_orders)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "batchOrders", batch_orders; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -725,15 +725,15 @@ const _returntypes_put_order_OrderApi = Dict{Regex,Type}(
 
 function _oacinternal_put_order(_api::OrderApi; order_id=nothing, orig_client_order_id=nothing, symbol=nothing, side=nothing, quantity=nothing, price=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "PUT", _returntypes_put_order_OrderApi, "/fapi/v1/order", [])
-    OpenAPI.Clients.set_param(_ctx.query, "orderId", order_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "origClientOrderId", orig_client_order_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "side", side)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "quantity", quantity)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "price", price)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "orderId", order_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "origClientOrderId", orig_client_order_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "side", side; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "quantity", quantity; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "price", price; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])

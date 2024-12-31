@@ -17,10 +17,10 @@ const _returntypes_get_p_m_account_info_PortfolioMarginApi = Dict{Regex,Type}(
 
 function _oacinternal_get_p_m_account_info(_api::PortfolioMarginApi; asset=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_p_m_account_info_PortfolioMarginApi, "/fapi/v1/pmAccountInfo", [])
-    OpenAPI.Clients.set_param(_ctx.query, "asset", asset)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "asset", asset; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])

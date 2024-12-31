@@ -55,10 +55,19 @@ function check_required(o::Income200ResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ Income200ResponseInner }, name::Symbol, val)
+
+
     if name === Symbol("incomeType")
         OpenAPI.validate_param(name, "Income200ResponseInner", :enum, val, ["TRANSFER", "WELCOME_BONUS", "REALIZED_PNL", "FUNDING_FEE", "COMMISSION", "INSURANCE_CLEAR", "REFERRAL_KICKBACK", "COMMISSION_REBATE", "API_REBATE", "CONTEST_REWARD", "CROSS_COLLATERAL_TRANSFER", "OPTIONS_PREMIUM_FEE", "OPTIONS_SETTLE_PROFIT", "INTERNAL_TRANSFER", "AUTO_EXCHANGE", "DELIVERED_SETTELMENT", "COIN_SWAP_DEPOSIT", "COIN_SWAP_WITHDRAW", "POSITION_LIMIT_INCREASE_FEE"])
     end
+
+
+
+
+
     if name === Symbol("time")
         OpenAPI.validate_param(name, "Income200ResponseInner", :format, val, "int64")
     end
+
+
 end

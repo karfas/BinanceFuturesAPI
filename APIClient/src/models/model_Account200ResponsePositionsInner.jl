@@ -83,4 +83,19 @@ function check_required(o::Account200ResponsePositionsInner)
 end
 
 function OpenAPI.validate_property(::Type{ Account200ResponsePositionsInner }, name::Symbol, val)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end

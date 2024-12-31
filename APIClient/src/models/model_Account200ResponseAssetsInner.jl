@@ -71,4 +71,16 @@ function check_required(o::Account200ResponseAssetsInner)
 end
 
 function OpenAPI.validate_property(::Type{ Account200ResponseAssetsInner }, name::Symbol, val)
+
+
+
+
+
+
+
+
+
+
+
+
 end

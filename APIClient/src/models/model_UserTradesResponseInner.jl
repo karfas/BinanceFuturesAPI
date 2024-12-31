@@ -79,18 +79,34 @@ function check_required(o::UserTradesResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ UserTradesResponseInner }, name::Symbol, val)
+
+
+
+
     if name === Symbol("id")
         OpenAPI.validate_param(name, "UserTradesResponseInner", :format, val, "int64")
     end
+
+
     if name === Symbol("orderId")
         OpenAPI.validate_param(name, "UserTradesResponseInner", :format, val, "int64")
     end
+
+
+
+
+
     if name === Symbol("side")
         OpenAPI.validate_param(name, "UserTradesResponseInner", :enum, val, ["BUY", "SELL"])
     end
+
+
     if name === Symbol("positionSide")
         OpenAPI.validate_param(name, "UserTradesResponseInner", :enum, val, ["BOTH", "LONG", "SHORT"])
     end
+
+
+
     if name === Symbol("time")
         OpenAPI.validate_param(name, "UserTradesResponseInner", :format, val, "int64")
     end

@@ -67,4 +67,15 @@ function check_required(o::PortfolioMarginAccountResponse)
 end
 
 function OpenAPI.validate_property(::Type{ PortfolioMarginAccountResponse }, name::Symbol, val)
+
+
+
+
+
+
+
+
+
+
+
 end

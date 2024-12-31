@@ -47,10 +47,16 @@ function check_required(o::HistoricalTradesResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ HistoricalTradesResponseInner }, name::Symbol, val)
+
     if name === Symbol("id")
         OpenAPI.validate_param(name, "HistoricalTradesResponseInner", :format, val, "int64")
     end
+
+
+
+
     if name === Symbol("time")
         OpenAPI.validate_param(name, "HistoricalTradesResponseInner", :format, val, "int64")
     end
+
 end

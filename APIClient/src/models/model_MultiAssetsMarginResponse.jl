@@ -27,4 +27,5 @@ function check_required(o::MultiAssetsMarginResponse)
 end
 
 function OpenAPI.validate_property(::Type{ MultiAssetsMarginResponse }, name::Symbol, val)
+
 end

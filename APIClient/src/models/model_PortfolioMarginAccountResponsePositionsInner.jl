@@ -63,4 +63,14 @@ function check_required(o::PortfolioMarginAccountResponsePositionsInner)
 end
 
 function OpenAPI.validate_property(::Type{ PortfolioMarginAccountResponsePositionsInner }, name::Symbol, val)
+
+
+
+
+
+
+
+
+
+
 end

@@ -75,6 +75,19 @@ function check_required(o::PositionRiskResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ PositionRiskResponseInner }, name::Symbol, val)
+
+
+
+
+
+
+
+
+
+
+
+
+
     if name === Symbol("updateTime")
         OpenAPI.validate_param(name, "PositionRiskResponseInner", :format, val, "int64")
     end

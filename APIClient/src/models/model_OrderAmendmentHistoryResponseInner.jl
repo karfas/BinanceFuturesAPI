@@ -71,16 +71,29 @@ function check_required(o::OrderAmendmentHistoryResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ OrderAmendmentHistoryResponseInner }, name::Symbol, val)
+
     if name === Symbol("amendId")
         OpenAPI.validate_param(name, "OrderAmendmentHistoryResponseInner", :format, val, "int64")
     end
+
+
     if name === Symbol("orderId")
         OpenAPI.validate_param(name, "OrderAmendmentHistoryResponseInner", :format, val, "int64")
     end
+
+
+
+
+
+
+
     if name === Symbol("amendTime")
         OpenAPI.validate_param(name, "OrderAmendmentHistoryResponseInner", :format, val, "int64")
     end
+
     if name === Symbol("amendStatus")
         OpenAPI.validate_param(name, "OrderAmendmentHistoryResponseInner", :enum, val, ["ACCEPTED", "REJECTED"])
     end
+
+
 end

@@ -71,4 +71,16 @@ function check_required(o::ExchangeInfoResponseSymbolsInnerFiltersInner)
 end
 
 function OpenAPI.validate_property(::Type{ ExchangeInfoResponseSymbolsInnerFiltersInner }, name::Symbol, val)
+
+
+
+
+
+
+
+
+
+
+
+
 end

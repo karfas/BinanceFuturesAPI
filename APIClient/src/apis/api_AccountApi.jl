@@ -19,9 +19,9 @@ function _oacinternal_account(_api::AccountApi; recv_window=nothing, timestamp=n
     OpenAPI.validate_param("recv_window", "account", :maximum, recv_window, 60000, false)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_account_AccountApi, "/fapi/v3/account", [])
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -56,10 +56,10 @@ const _returntypes_adl_quantile_AccountApi = Dict{Regex,Type}(
 
 function _oacinternal_adl_quantile(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_adl_quantile_AccountApi, "/fapi/v1/adlQuantile", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -97,10 +97,10 @@ function _oacinternal_api_trading_status(_api::AccountApi; symbol=nothing, recv_
     OpenAPI.validate_param("recv_window", "api_trading_status", :maximum, recv_window, 60000, false)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_api_trading_status_AccountApi, "/fapi/v1/apiTradingStatus", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -138,9 +138,9 @@ function _oacinternal_balance(_api::AccountApi; recv_window=nothing, timestamp=n
     OpenAPI.validate_param("recv_window", "balance", :maximum, recv_window, 60000, false)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_balance_AccountApi, "/fapi/v3/balance", [])
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -175,10 +175,10 @@ const _returntypes_commission_rate_AccountApi = Dict{Regex,Type}(
 
 function _oacinternal_commission_rate(_api::AccountApi; symbol=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_commission_rate_AccountApi, "/fapi/v1/commissionRate", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -218,14 +218,14 @@ function _oacinternal_income(_api::AccountApi; symbol=nothing, income_type=nothi
     OpenAPI.validate_param("recv_window", "income", :maximum, recv_window, 60000, false)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_income_AccountApi, "/fapi/v1/income", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "incomeType", income_type)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "incomeType", income_type; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -267,10 +267,10 @@ function _oacinternal_leverage_bracket(_api::AccountApi; symbol=nothing, recv_wi
     OpenAPI.validate_param("recv_window", "leverage_bracket", :maximum, recv_window, 60000, false)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_leverage_bracket_AccountApi, "/fapi/v1/leverageBracket", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -308,9 +308,9 @@ function _oacinternal_position_risk(_api::AccountApi; recv_window=nothing, times
     OpenAPI.validate_param("recv_window", "position_risk", :maximum, recv_window, 60000, false)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_position_risk_AccountApi, "/fapi/v3/positionRisk", [])
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -345,14 +345,14 @@ const _returntypes_user_trades_AccountApi = Dict{Regex,Type}(
 
 function _oacinternal_user_trades(_api::AccountApi; symbol=nothing, start_time=nothing, end_time=nothing, from_id=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_user_trades_AccountApi, "/fapi/v1/userTrades", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "fromId", from_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "fromId", from_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
