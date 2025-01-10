@@ -35,7 +35,4 @@ function check_required(o::ApiTradingStatusResponseTriggerCondition)
 end
 
 function OpenAPI.validate_property(::Type{ ApiTradingStatusResponseTriggerCondition }, name::Symbol, val)
-
-
-
 end

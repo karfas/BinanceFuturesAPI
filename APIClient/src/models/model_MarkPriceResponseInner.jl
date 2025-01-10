@@ -47,15 +47,9 @@ function check_required(o::MarkPriceResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ MarkPriceResponseInner }, name::Symbol, val)
-
-
-
-
-
     if name === Symbol("nextFundingTime")
         OpenAPI.validate_param(name, "MarkPriceResponseInner", :format, val, "int64")
     end
-
     if name === Symbol("time")
         OpenAPI.validate_param(name, "MarkPriceResponseInner", :format, val, "int64")
     end

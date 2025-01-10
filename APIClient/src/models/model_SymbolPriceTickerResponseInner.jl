@@ -35,9 +35,6 @@ function check_required(o::SymbolPriceTickerResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ SymbolPriceTickerResponseInner }, name::Symbol, val)
-
-
-
     if name === Symbol("time")
         OpenAPI.validate_param(name, "SymbolPriceTickerResponseInner", :format, val, "int64")
     end

@@ -214,10 +214,10 @@ module BinanceFuturesAPI
         api_key::String
         api_secret::String
 
-        function Client(url::String, 
-                        api_key::String="", 
-                        api_secret::String=""; 
-                        verbose=false, 
+        function Client(url::String,
+                        api_key::String="",
+                        api_secret::String="";
+                        verbose=false,
                         process_response::Function=((f,resp) -> resp))
             if verbose
                 global_logger(ConsoleLogger(stderr, Logging.Debug))
@@ -268,16 +268,24 @@ module BinanceFuturesAPI
                     (x->get(x, "x-mbx-used-weight-1m", "0"))  |>
                     (x -> parse(Int64, x))
         cl.cost = Cost(weight, cl.cost.active - cost(f))
-        response |> (x->cl.process_response(f, x))
+        if response === nothing; @error "Response is nothing, status: $status"; end
+        response |> (x->cl.process_response(f, x; kwargs...))
     end
 
 
     wrap!(cl::Client, f::Function, api::SimpleAPI, args...; kwargs...) = begin
-        wrap2!(cl, f, api, args...; kwargs...)
+        pars = Dict{Symbol, Any}(kwargs...)
+        if get(pars, :symbol, nothing) !== nothing
+            pars[:symbol] = pars[:symbol] |> string |> uppercase
+        end
+        wrap2!(cl, f, api, args...; pars...)
     end
 
     wrap!(cl::Client, f::Function, api::SignedAPI, args...; kwargs...) = begin
         pars = Dict{Symbol, Any}(kwargs...)
+        if get(pars, :symbol, nothing) !== nothing
+            pars[:symbol] = pars[:symbol] |> string |> uppercase
+        end
         timestamp!(pars)
         pars[:signature] = signature(cl.api_secret; pars...)
         pars[:x_mbx_apikey] = cl.api_key

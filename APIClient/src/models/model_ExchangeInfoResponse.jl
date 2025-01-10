@@ -47,13 +47,7 @@ function check_required(o::ExchangeInfoResponse)
 end
 
 function OpenAPI.validate_property(::Type{ ExchangeInfoResponse }, name::Symbol, val)
-
-
-
     if name === Symbol("serverTime")
         OpenAPI.validate_param(name, "ExchangeInfoResponse", :format, val, "int64")
     end
-
-
-
 end

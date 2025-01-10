@@ -31,19 +31,20 @@ include("get_test_parameters.jl")
 
     @testset "Exchange Info Tests" begin
         # Test exchange info endpoint
-        @test !isempty(info.timezone)
-        @test info.serverTime > 0
-        @test !isempty(info.rateLimits)
-        @test !isempty(info.symbols)
+        info = exchange_info(cl)
+        @test !isempty(info["timezone"])
+        @test info["serverTime"] > 0
+        @test !isempty(info["rateLimits"])
+        @test !isempty(info["symbols"])
 
         # Check specific fields in symbols
-        btc_symbol = first(filter(s -> s.symbol == "BTCUSDT", info.symbols))
-        @test btc_symbol.symbol == "BTCUSDT"
-        @test btc_symbol.baseAsset == "BTC"
-        @test btc_symbol.quoteAsset == "USDT"
-        @test btc_symbol.status == "TRADING"
-        @test btc_symbol.pricePrecision >= 0
-        @test btc_symbol.quantityPrecision >= 0
+        btc_symbol = first(filter(s -> s["symbol"] == "BTCUSDT", info["symbols"]))
+        @test btc_symbol["symbol"] == "BTCUSDT"
+        @test btc_symbol["baseAsset"] == "BTC"
+        @test btc_symbol["quoteAsset"] == "USDT"
+        @test btc_symbol["status"] == "TRADING"
+        @test btc_symbol["pricePrecision"] >= 0
+        @test btc_symbol["quantityPrecision"] >= 0
     end
 
     @testset "Market Data Queries" begin

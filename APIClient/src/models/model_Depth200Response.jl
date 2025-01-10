@@ -46,18 +46,13 @@ function check_required(o::Depth200Response)
 end
 
 function OpenAPI.validate_property(::Type{ Depth200Response }, name::Symbol, val)
-
     if name === Symbol("lastUpdateId")
         OpenAPI.validate_param(name, "Depth200Response", :format, val, "int64")
     end
-
     if name === Symbol("E")
         OpenAPI.validate_param(name, "Depth200Response", :format, val, "int64")
     end
-
     if name === Symbol("T")
         OpenAPI.validate_param(name, "Depth200Response", :format, val, "int64")
     end
-
-
 end

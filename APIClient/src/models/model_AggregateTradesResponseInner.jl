@@ -51,23 +51,16 @@ function check_required(o::AggregateTradesResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ AggregateTradesResponseInner }, name::Symbol, val)
-
     if name === Symbol("a")
         OpenAPI.validate_param(name, "AggregateTradesResponseInner", :format, val, "int64")
     end
-
-
-
     if name === Symbol("f")
         OpenAPI.validate_param(name, "AggregateTradesResponseInner", :format, val, "int64")
     end
-
     if name === Symbol("l")
         OpenAPI.validate_param(name, "AggregateTradesResponseInner", :format, val, "int64")
     end
-
     if name === Symbol("T")
         OpenAPI.validate_param(name, "AggregateTradesResponseInner", :format, val, "int64")
     end
-
 end

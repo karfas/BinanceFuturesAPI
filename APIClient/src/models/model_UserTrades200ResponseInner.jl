@@ -79,18 +79,4 @@ function check_required(o::UserTrades200ResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ UserTrades200ResponseInner }, name::Symbol, val)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end

@@ -59,15 +59,6 @@ function check_required(o::Balance200ResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ Balance200ResponseInner }, name::Symbol, val)
-
-
-
-
-
-
-
-
-
     if name === Symbol("updateTime")
         OpenAPI.validate_param(name, "Balance200ResponseInner", :format, val, "int64")
     end

@@ -22,9 +22,9 @@ Please see [Binance Futures API](https://developers.binance.com/docs/derivatives
 
 Details for the generated API is in [./APIClient/README.md](./APIClient/README.md).
 
-## Internals
+## Calling conventions
 
-The calling convention for the API calls is as follows:
+Calling convention for the API calls:
 - all parameters except the `client` are optional and called as keyword arguments, using snake_case names, even when they are **required** by the API.
 - a required `timestamp` parameter is added automatically.
 - a required `signature` parameter is added automatically (generated from the API secret key).
@@ -39,8 +39,7 @@ using BinanceFuturesAPI
 cl = Client("https://fapi.binance.com", "your_api_key", "your_api_secret")
 info = exchange_info(cl)
 
-println(info.rate_limits)
-
+println(info["rate_limits"])
 ```
 
 # TODOs

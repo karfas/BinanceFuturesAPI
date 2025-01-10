@@ -47,12 +47,6 @@ function check_required(o::BookTickerResponseO)
 end
 
 function OpenAPI.validate_property(::Type{ BookTickerResponseO }, name::Symbol, val)
-
-
-
-
-
-
     if name === Symbol("time")
         OpenAPI.validate_param(name, "BookTickerResponseO", :format, val, "int64")
     end

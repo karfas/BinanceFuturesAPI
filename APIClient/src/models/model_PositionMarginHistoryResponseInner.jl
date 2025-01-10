@@ -47,13 +47,7 @@ function check_required(o::PositionMarginHistoryResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ PositionMarginHistoryResponseInner }, name::Symbol, val)
-
-
-
-
     if name === Symbol("time")
         OpenAPI.validate_param(name, "PositionMarginHistoryResponseInner", :format, val, "int64")
     end
-
-
 end

@@ -119,42 +119,16 @@ function check_required(o::ExchangeInfoResponseSymbolsInner)
 end
 
 function OpenAPI.validate_property(::Type{ ExchangeInfoResponseSymbolsInner }, name::Symbol, val)
-
-
-
-
     if name === Symbol("deliveryDate")
         OpenAPI.validate_param(name, "ExchangeInfoResponseSymbolsInner", :format, val, "int64")
     end
-
     if name === Symbol("onboardDate")
         OpenAPI.validate_param(name, "ExchangeInfoResponseSymbolsInner", :format, val, "int64")
     end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if name === Symbol("OrderType")
-        OpenAPI.validate_param(name, "ExchangeInfoResponseSymbolsInner", :enum, val, ["LIMIT", "MARKET", "STOP", "STOP_MARKET", "TAKE_PROFIT", "TAKE_PROFIT_MARKET", "TRAILING_STOP_MARKET"])
+        OpenAPI.validate_param(name, "ExchangeInfoResponseSymbolsInner", :enum, val, [])
     end
-
-
     if name === Symbol("timeInForce")
-        OpenAPI.validate_param(name, "ExchangeInfoResponseSymbolsInner", :enum, val, ["GTC", "IOC", "FOK", "GTX"])
+        OpenAPI.validate_param(name, "ExchangeInfoResponseSymbolsInner", :enum, val, [])
     end
-
-
-
 end

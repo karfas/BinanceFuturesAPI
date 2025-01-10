@@ -35,7 +35,4 @@ function check_required(o::LeverageResponse)
 end
 
 function OpenAPI.validate_property(::Type{ LeverageResponse }, name::Symbol, val)
-
-
-
 end

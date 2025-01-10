@@ -119,64 +119,33 @@ function check_required(o::AllOrdersResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ AllOrdersResponseInner }, name::Symbol, val)
-
-
-
-
-
     if name === Symbol("orderId")
         OpenAPI.validate_param(name, "AllOrdersResponseInner", :format, val, "int64")
     end
-
-
-
-
-
     if name === Symbol("side")
         OpenAPI.validate_param(name, "AllOrdersResponseInner", :enum, val, ["BUY", "SELL"])
     end
-
-
     if name === Symbol("positionSide")
         OpenAPI.validate_param(name, "AllOrdersResponseInner", :enum, val, ["BOTH", "LONG", "SHORT"])
     end
-
-
     if name === Symbol("status")
         OpenAPI.validate_param(name, "AllOrdersResponseInner", :enum, val, ["NEW", "PARTIALLY_FILLED", "FILLED", "CANCELED", "REJECTED", "EXPIRED"])
     end
-
-
-
-
-
     if name === Symbol("timeInForce")
         OpenAPI.validate_param(name, "AllOrdersResponseInner", :enum, val, ["GTC", "IOC", "FOK", "GTX"])
     end
-
-
     if name === Symbol("type")
         OpenAPI.validate_param(name, "AllOrdersResponseInner", :enum, val, ["LIMIT", "MARKET", "STOP", "STOP_MARKET", "TAKE_PROFIT", "TAKE_PROFIT_MARKET", "TRAILING_STOP_MARKET"])
     end
-
-
     if name === Symbol("origType")
         OpenAPI.validate_param(name, "AllOrdersResponseInner", :enum, val, ["LIMIT", "MARKET", "STOP", "STOP_MARKET", "TAKE_PROFIT", "TAKE_PROFIT_MARKET", "TRAILING_STOP_MARKET"])
     end
-
-
-
-
     if name === Symbol("updateTime")
         OpenAPI.validate_param(name, "AllOrdersResponseInner", :format, val, "int64")
     end
-
     if name === Symbol("workingType")
         OpenAPI.validate_param(name, "AllOrdersResponseInner", :enum, val, ["MARK_PRICE", "CONTRACT_PRICE"])
     end
-
-
-
     if name === Symbol("time")
         OpenAPI.validate_param(name, "AllOrdersResponseInner", :format, val, "int64")
     end

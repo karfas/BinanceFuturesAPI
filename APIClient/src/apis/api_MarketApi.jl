@@ -19,11 +19,11 @@ function _oacinternal_agg_trades(_api::MarketApi; symbol=nothing, from_id=nothin
     OpenAPI.validate_param("limit", "agg_trades", :maximum, limit, 1000, false)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_agg_trades_MarketApi, "/fapi/v1/aggTrades", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "fromId", from_id; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "fromId", from_id)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type Int64
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -58,7 +58,7 @@ const _returntypes_asset_index_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_asset_index(_api::MarketApi; symbol=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_asset_index_MarketApi, "/fapi/v1/assetIndex", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -89,12 +89,12 @@ const _returntypes_basis_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_basis(_api::MarketApi; pair=nothing, contract_type=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_basis_MarketApi, "/fapi/v1/basis", [])
-    OpenAPI.Clients.set_param(_ctx.query, "pair", pair; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "contractType", contract_type; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "period", period; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "pair", pair)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "contractType", contract_type)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "period", period)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -130,7 +130,7 @@ const _returntypes_book_ticker_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_book_ticker(_api::MarketApi; symbol=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_book_ticker_MarketApi, "/fapi/v1/ticker/bookTicker", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -161,8 +161,8 @@ const _returntypes_constituents_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_constituents(_api::MarketApi; symbol=nothing, pair=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_constituents_MarketApi, "/fapi/v1/constituents", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "pair", pair; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "pair", pair)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -194,12 +194,12 @@ const _returntypes_continuous_klines_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_continuous_klines(_api::MarketApi; pair=nothing, contract_type=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_continuous_klines_MarketApi, "/fapi/v1/continuousKlines", [])
-    OpenAPI.Clients.set_param(_ctx.query, "pair", pair; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "contractType", contract_type; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "interval", interval; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "pair", pair)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "contractType", contract_type)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "interval", interval)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -235,8 +235,8 @@ const _returntypes_depth_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_depth(_api::MarketApi; symbol=nothing, limit=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_depth_MarketApi, "/fapi/v1/depth", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type Int64
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -297,10 +297,10 @@ const _returntypes_funding_rate_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_funding_rate(_api::MarketApi; symbol=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_funding_rate_MarketApi, "/fapi/v1/fundingRate", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -334,11 +334,11 @@ const _returntypes_global_long_short_account_ratio_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_global_long_short_account_ratio(_api::MarketApi; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_global_long_short_account_ratio_MarketApi, "/fapi/v1/globalLongShortAccountRatio", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "period", period; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "period", period)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -377,9 +377,9 @@ function _oacinternal_historical_trades(_api::MarketApi; symbol=nothing, limit=n
     OpenAPI.validate_param("limit", "historical_trades", :maximum, limit, 1000, false)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_historical_trades_MarketApi, "/fapi/v1/historicalTrades", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "fromId", from_id; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "fromId", from_id)  # type Int64
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -412,7 +412,7 @@ const _returntypes_index_info_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_index_info(_api::MarketApi; symbol=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_index_info_MarketApi, "/fapi/v1/indexInfo", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -445,11 +445,11 @@ const _returntypes_index_price_klines_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_index_price_klines(_api::MarketApi; pair=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_index_price_klines_MarketApi, "/fapi/v1/indexPriceKlines", [])
-    OpenAPI.Clients.set_param(_ctx.query, "pair", pair; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "interval", interval; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "pair", pair)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "interval", interval)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -479,7 +479,7 @@ function index_price_klines(_api::MarketApi, response_stream::Channel; pair=noth
 end
 
 const _returntypes_klines_MarketApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{Vector{KlinesResponseInnerInner}},
+    Regex("^" * replace("200", "x"=>".") * "\$") => Any,
 )
 
 function _oacinternal_klines(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
@@ -487,11 +487,11 @@ function _oacinternal_klines(_api::MarketApi; symbol=nothing, interval=nothing, 
     OpenAPI.validate_param("limit", "klines", :minimum, limit, 1, false)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_klines_MarketApi, "/fapi/v1/klines", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "interval", interval; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "interval", interval)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type Int64
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -508,7 +508,7 @@ Params:
 - end_time::Int64
 - limit::Int64
 
-Return: Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse
+Return: Any, OpenAPI.Clients.ApiResponse
 """
 function klines(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
     _ctx = _oacinternal_klines(_api; symbol=symbol, interval=interval, start_time=start_time, end_time=end_time, limit=limit, _mediaType=_mediaType)
@@ -526,11 +526,11 @@ const _returntypes_lvt_klines_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_lvt_klines(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_lvt_klines_MarketApi, "/fapi/v1/lvtKlines", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "interval", interval; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "interval", interval)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -567,11 +567,11 @@ const _returntypes_mark_price_klines_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_mark_price_klines(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_mark_price_klines_MarketApi, "/fapi/v1/markPriceKlines", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "interval", interval; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "interval", interval)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -606,7 +606,7 @@ const _returntypes_open_interest_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_open_interest(_api::MarketApi; symbol=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_open_interest_MarketApi, "/fapi/v1/openInterest", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -637,11 +637,11 @@ const _returntypes_open_interest_hist_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_open_interest_hist(_api::MarketApi; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_open_interest_hist_MarketApi, "/futures/data/openInterestHist", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "period", period; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "period", period)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -707,7 +707,7 @@ const _returntypes_premium_index_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_premium_index(_api::MarketApi; symbol=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_premium_index_MarketApi, "/fapi/v1/premiumIndex", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -767,11 +767,11 @@ const _returntypes_taker_long_short_ratio_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_taker_long_short_ratio(_api::MarketApi; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_taker_long_short_ratio_MarketApi, "/fapi/v1/takerlongshortRatio", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "period", period; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "period", period)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -810,8 +810,8 @@ function _oacinternal_ticker24hr(_api::MarketApi; symbol=nothing, symbols=nothin
     OpenAPI.validate_param("symbols", "ticker24hr", :maxItems, symbols, 100)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_ticker24hr_MarketApi, "/fapi/v1/ticker/24hr", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "symbols", symbols; style="form", is_explode=true)  # type Vector{String}
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbols", symbols)  # type Vector{String}
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -845,8 +845,8 @@ function _oacinternal_ticker_price(_api::MarketApi; symbol=nothing, symbols=noth
     OpenAPI.validate_param("symbols", "ticker_price", :maxItems, symbols, 100)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_ticker_price_MarketApi, "/fapi/v2/ticker/price", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "symbols", symbols; style="form", is_explode=true)  # type Vector{String}
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbols", symbols)  # type Vector{String}
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -878,11 +878,11 @@ const _returntypes_top_long_short_account_ratio_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_top_long_short_account_ratio(_api::MarketApi; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_top_long_short_account_ratio_MarketApi, "/fapi/v1/topLongShortAccountRatio", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "period", period; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "period", period)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -917,11 +917,11 @@ const _returntypes_top_long_short_position_ratio_MarketApi = Dict{Regex,Type}(
 
 function _oacinternal_top_long_short_position_ratio(_api::MarketApi; symbol=nothing, period=nothing, limit=nothing, start_time=nothing, end_time=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_top_long_short_position_ratio_MarketApi, "/fapi/v1/topLongShortPositionRatio", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "period", period; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "period", period)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -959,8 +959,8 @@ function _oacinternal_trades(_api::MarketApi; symbol=nothing, limit=nothing, _me
     OpenAPI.validate_param("limit", "trades", :minimum, limit, 1, false)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_trades_MarketApi, "/fapi/v1/trades", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type Int64
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx

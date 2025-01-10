@@ -107,33 +107,12 @@ function check_required(o::ForceOrders200ResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ ForceOrders200ResponseInner }, name::Symbol, val)
-
     if name === Symbol("orderId")
         OpenAPI.validate_param(name, "ForceOrders200ResponseInner", :format, val, "int64")
     end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if name === Symbol("time")
         OpenAPI.validate_param(name, "ForceOrders200ResponseInner", :format, val, "int64")
     end
-
     if name === Symbol("updateTime")
         OpenAPI.validate_param(name, "ForceOrders200ResponseInner", :format, val, "int64")
     end

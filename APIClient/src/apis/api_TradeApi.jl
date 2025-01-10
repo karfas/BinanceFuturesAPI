@@ -17,14 +17,14 @@ const _returntypes_get_position_margin_history_TradeApi = Dict{Regex,Type}(
 
 function _oacinternal_get_position_margin_history(_api::TradeApi; symbol=nothing, type=nothing, start_time=nothing, end_time=nothing, limit=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_position_margin_history_TradeApi, "/fapi/v1/positionMargin/history", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "type", type; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "type", type)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "startTime", start_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endTime", end_time)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "limit", limit)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -64,9 +64,9 @@ const _returntypes_multi_assets_margin_TradeApi = Dict{Regex,Type}(
 
 function _oacinternal_multi_assets_margin(_api::TradeApi; recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_multi_assets_margin_TradeApi, "/fapi/v1/multiAssetsMargin", [])
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -104,11 +104,11 @@ function _oacinternal_post_leverage(_api::TradeApi; symbol=nothing, leverage=not
     OpenAPI.validate_param("leverage", "post_leverage", :minimum, leverage, 1, false)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_post_leverage_TradeApi, "/fapi/v1/leverage", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "leverage", leverage; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "leverage", leverage)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -145,11 +145,11 @@ const _returntypes_post_margin_type_TradeApi = Dict{Regex,Type}(
 
 function _oacinternal_post_margin_type(_api::TradeApi; symbol=nothing, margin_type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_post_margin_type_TradeApi, "/fapi/v1/marginType", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "marginType", margin_type; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "marginType", margin_type)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -186,10 +186,10 @@ const _returntypes_post_multi_assets_margin_TradeApi = Dict{Regex,Type}(
 
 function _oacinternal_post_multi_assets_margin(_api::TradeApi; multi_assets_margin=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_post_multi_assets_margin_TradeApi, "/fapi/v1/multiAssetsMargin", [])
-    OpenAPI.Clients.set_param(_ctx.query, "multiAssetsMargin", multi_assets_margin; style="form", is_explode=true)  # type Bool
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "multiAssetsMargin", multi_assets_margin)  # type Bool
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -225,13 +225,13 @@ const _returntypes_post_position_margin_TradeApi = Dict{Regex,Type}(
 
 function _oacinternal_post_position_margin(_api::TradeApi; symbol=nothing, position_side=nothing, amount=nothing, type=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_post_position_margin_TradeApi, "/fapi/v1/positionMargin", [])
-    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "positionSide", position_side; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "amount", amount; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "type", type; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "symbol", symbol)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "positionSide", position_side)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "amount", amount)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "type", type)  # type Int64
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -270,10 +270,10 @@ const _returntypes_post_position_side_dual_TradeApi = Dict{Regex,Type}(
 
 function _oacinternal_post_position_side_dual(_api::TradeApi; dual_side_position=nothing, recv_window=nothing, timestamp=nothing, signature=nothing, x_mbx_apikey=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_post_position_side_dual_TradeApi, "/fapi/v1/positionSide/dual", [])
-    OpenAPI.Clients.set_param(_ctx.query, "dualSidePosition", dual_side_position; style="form", is_explode=true)  # type Bool
-    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "signature", signature; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "dualSidePosition", dual_side_position)  # type Bool
+    OpenAPI.Clients.set_param(_ctx.query, "recvWindow", recv_window)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "timestamp", timestamp)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "signature", signature)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "x-mbx-apikey", x_mbx_apikey)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])

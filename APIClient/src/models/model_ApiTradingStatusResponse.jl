@@ -43,15 +43,10 @@ function check_required(o::ApiTradingStatusResponse)
 end
 
 function OpenAPI.validate_property(::Type{ ApiTradingStatusResponse }, name::Symbol, val)
-
-
     if name === Symbol("plannedRecoverTime")
         OpenAPI.validate_param(name, "ApiTradingStatusResponse", :format, val, "int64")
     end
-
-
     if name === Symbol("updateTime")
         OpenAPI.validate_param(name, "ApiTradingStatusResponse", :format, val, "int64")
     end
-
 end

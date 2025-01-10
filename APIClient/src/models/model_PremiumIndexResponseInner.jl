@@ -55,17 +55,9 @@ function check_required(o::PremiumIndexResponseInner)
 end
 
 function OpenAPI.validate_property(::Type{ PremiumIndexResponseInner }, name::Symbol, val)
-
-
-
-
-
-
     if name === Symbol("nextFundingTime")
         OpenAPI.validate_param(name, "PremiumIndexResponseInner", :format, val, "int64")
     end
-
-
     if name === Symbol("time")
         OpenAPI.validate_param(name, "PremiumIndexResponseInner", :format, val, "int64")
     end

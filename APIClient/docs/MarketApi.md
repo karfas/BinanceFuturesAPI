@@ -511,8 +511,8 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **klines**
-> klines(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Vector{Vector{KlinesResponseInnerInner}}, OpenAPI.Clients.ApiResponse <br/>
-> klines(_api::MarketApi, response_stream::Channel; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Vector{Vector{KlinesResponseInnerInner}} }, OpenAPI.Clients.ApiResponse
+> klines(_api::MarketApi; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Any, OpenAPI.Clients.ApiResponse <br/>
+> klines(_api::MarketApi, response_stream::Channel; symbol=nothing, interval=nothing, start_time=nothing, end_time=nothing, limit=nothing, _mediaType=nothing) -> Channel{ Any }, OpenAPI.Clients.ApiResponse
 
 Kline/Candlestick Data
 
@@ -536,7 +536,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Vector{Vector{KlinesResponseInnerInner}}**
+**Any**
 
 ### Authorization
 

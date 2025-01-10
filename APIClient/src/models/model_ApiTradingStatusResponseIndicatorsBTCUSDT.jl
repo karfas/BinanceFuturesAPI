@@ -35,7 +35,4 @@ function check_required(o::ApiTradingStatusResponseIndicatorsBTCUSDT)
 end
 
 function OpenAPI.validate_property(::Type{ ApiTradingStatusResponseIndicatorsBTCUSDT }, name::Symbol, val)
-
-
-
 end

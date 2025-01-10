@@ -39,16 +39,10 @@ function check_required(o::ExchangeInfoResponseRateLimitsInner)
 end
 
 function OpenAPI.validate_property(::Type{ ExchangeInfoResponseRateLimitsInner }, name::Symbol, val)
-
     if name === Symbol("interval")
         OpenAPI.validate_param(name, "ExchangeInfoResponseRateLimitsInner", :enum, val, ["MINUTE"])
     end
-
-
-
-
     if name === Symbol("rateLimitType")
         OpenAPI.validate_param(name, "ExchangeInfoResponseRateLimitsInner", :enum, val, ["REQUEST_WEIGHT", "ORDERS"])
     end
-
 end

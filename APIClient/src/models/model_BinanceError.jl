@@ -31,6 +31,4 @@ function check_required(o::BinanceError)
 end
 
 function OpenAPI.validate_property(::Type{ BinanceError }, name::Symbol, val)
-
-
 end

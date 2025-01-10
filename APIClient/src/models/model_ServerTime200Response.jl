@@ -28,7 +28,6 @@ function check_required(o::ServerTime200Response)
 end
 
 function OpenAPI.validate_property(::Type{ ServerTime200Response }, name::Symbol, val)
-
     if name === Symbol("serverTime")
         OpenAPI.validate_param(name, "ServerTime200Response", :format, val, "int64")
     end

@@ -39,8 +39,4 @@ function check_required(o::PositionMarginResponse)
 end
 
 function OpenAPI.validate_property(::Type{ PositionMarginResponse }, name::Symbol, val)
-
-
-
-
 end

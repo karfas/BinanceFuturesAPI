@@ -47,10 +47,4 @@ function check_required(o::LeverageBracket200ResponseInnerBracketsInner)
 end
 
 function OpenAPI.validate_property(::Type{ LeverageBracket200ResponseInnerBracketsInner }, name::Symbol, val)
-
-
-
-
-
-
 end

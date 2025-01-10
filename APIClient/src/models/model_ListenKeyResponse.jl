@@ -27,5 +27,4 @@ function check_required(o::ListenKeyResponse)
 end
 
 function OpenAPI.validate_property(::Type{ ListenKeyResponse }, name::Symbol, val)
-
 end
